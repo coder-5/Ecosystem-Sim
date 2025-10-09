@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
@@ -25,19 +26,49 @@ public partial class App : Application
 
 public class Ecosystem
 {
+    public List<Species> activeSpecies = new List<Species>();
+    public List<FoodSpecies> activeFood = new List<FoodSpecies>();
 
+    public void update()
+    {
+        foreach (Species specie in activeSpecies)
+        {
+            specie.update();
+            if (specie.wanted_resource() == 0)
+            {
+                
+            }
+        }
+    }
+}
+public class FoodSpecies
+{
+    public int amountOfFood;
+    public string speciesName = "";
+    public int xPos;
+    public int yPos;
+    public FoodSpecies(int amountOfFoodNew, int posX, int posY) { amountOfFood = amountOfFoodNew; xPos = posX; yPos = posY; }
 }
 
-public class Creature
+public class Species
 {
     public int stamina = 1;
     public int age = 0;
     public int reproductiveUrge = 0;
     public int hunger = 0;
     public int thirst = 0;
+    public string speciesName = "";
     public int xPos;
     public int yPos;
-    public bool isMoving;
+    public enum State
+    {
+        moving,
+        eating,
+        drinking,
+        nothing
+    }
+
+    State currentState = State.nothing;
 
     // These variables are for the genes
 
@@ -49,7 +80,7 @@ public class Creature
     public int maxLife;
     public int reproductiveAge;
 
-    public Creature(string genesMother, string genesFather, int posX, int posY) { genesList[0] = genesMother; genesList[1] = genesFather; xPos = posX; yPos = posY; }
+    public Species(string genesMother, string genesFather, int posX, int posY) { genesList[0] = genesMother; genesList[1] = genesFather; xPos = posX; yPos = posY; }
     public void inherit_genes()
     {
         Random random = new Random();
@@ -109,12 +140,29 @@ public class Creature
         }
         return false;
     }
+    public int wanted_resource()
+    {
+        if (thirst >= hunger)
+        {
+            return 0;
+        }
+        else if (hunger >= thirst)
+        {
+            return 1;
+        }
+        else if (reproductiveUrge >= thirst && reproductiveUrge >= hunger && age >= reproductiveAge)
+        {
+            return 2;
+        }
+        return -1;
+    }
     public void update()
     {
         age += 1;
-        stamina += isMoving ? -5 : 1;
-        thirst += isMoving ? 10 : 1;
-        hunger += isMoving ? 5 : 1;
+        stamina += currentState == State.moving ? -5 : 1;
+        thirst += (currentState == State.moving ? 10 : 1) - (currentState == State.drinking ? 25 : 0);
+        hunger += (currentState == State.moving ? 5 : 1) - (currentState == State.eating ? 10 : 0);
         reproductiveUrge += age >= reproductiveAge ? 5 : 0;
+        check_death();
     }
 }
