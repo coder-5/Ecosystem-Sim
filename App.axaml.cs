@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
@@ -26,27 +27,83 @@ public partial class App : Application
 
 public class Ecosystem
 {
+    static Random random = new Random();
     public List<Species> activeSpecies = new List<Species>();
     public List<FoodSpecies> activeFood = new List<FoodSpecies>();
 
     public void update()
     {
-        foreach (Species specie in activeSpecies)
+        foreach (Species species in activeSpecies)
         {
-            specie.update();
-            if (specie.wanted_resource() == 0)
+            species.update();
+            if (species.wanted_resource() == 0)
             {
-                
+
+            }
+            else if (species.wanted_resource() == 1)
+            {
+                FoodSpecies food = FindClosestOfTypeFood(species);
+
+                if (food == null)
+                {
+                    double radius = 10.0;
+
+                    (double x, double y) = RandomPointInCircle(radius, new Vector2(species.xPos, species.yPos));
+
+                    Vector2 currentPosX = new Vector2(species.xPos, species.yPos);
+                    Vector2 targetPosX = new Vector2((float)x, (float)y);
+
+                    species.move_species(targetPosX, currentPosX);
+
+                    continue;
+                }
+
+                Vector2 currentPos = new Vector2(species.xPos, species.yPos);
+                Vector2 targetPos = new Vector2(food.xPos, food.yPos);
+
+                species.move_species(targetPos, currentPos);
+                // x is cosin, y is sin
             }
         }
+    }
+    static (double, double) RandomPointInCircle(double radius, Vector2 offset)
+    {
+        double angle = random.NextDouble() * MathF.PI * 2;
+        double distance = Math.Sqrt(random.NextDouble()) * radius;
+
+        double x = Math.Cos(angle) * distance;
+        double y = Math.Sin(angle) * distance;
+
+        x += offset.X;
+        y += offset.Y;
+
+        return (x, y);
+    }
+    public FoodSpecies FindClosestOfTypeFood(Species species)
+    {
+        FoodSpecies result = new FoodSpecies(0, 0, 0);
+
+        float closestDistance = 100000;
+        FoodSpecies returnClass = new FoodSpecies(0, 0, 0);
+        foreach (FoodSpecies food in activeFood)
+        {
+            float distance = Vector2.Distance(new Vector2(food.xPos, food.xPos), new Vector2(species.xPos, species.yPos));
+            if (distance < closestDistance)
+            {
+                returnClass = food;
+                distance = closestDistance;
+            }
+        }
+        if (closestDistance > species.eyeSght) { return null; }
+        return returnClass;
     }
 }
 public class FoodSpecies
 {
     public int amountOfFood;
     public string speciesName = "";
-    public int xPos;
-    public int yPos;
+    public float xPos;
+    public float yPos;
     public FoodSpecies(int amountOfFoodNew, int posX, int posY) { amountOfFood = amountOfFoodNew; xPos = posX; yPos = posY; }
 }
 
@@ -58,8 +115,8 @@ public class Species
     public int hunger = 0;
     public int thirst = 0;
     public string speciesName = "";
-    public int xPos;
-    public int yPos;
+    public float xPos;
+    public float yPos;
     public enum State
     {
         moving,
@@ -155,6 +212,18 @@ public class Species
             return 2;
         }
         return -1;
+    }
+    public void move_species(Vector2 targetPos, Vector2 currentPos)
+    {
+        float angle = MathF.Atan2(targetPos.Y - currentPos.Y, targetPos.X - currentPos.X);
+
+        float dx = MathF.Cos(angle);
+        float dy = MathF.Sin(angle);
+
+        Vector2 direction = new Vector2(dx, dy);
+
+        this.xPos = (currentPos + direction * this.speed).X;
+        this.yPos = (currentPos + direction * this.speed).Y;
     }
     public void update()
     {
