@@ -74,8 +74,9 @@ namespace EcosystemSim
 
         public void update()
         {
-            foreach (Species species in activeSpecies)
+            for (int i = activeSpecies.Count - 1; i >= 0; i--)
             {
+                Species species = activeSpecies[i];
                 species.update();
                 if (species.wanted_resource() == 0)
                 {
@@ -91,7 +92,7 @@ namespace EcosystemSim
                 }
                 if (species.check_death())
                 {
-                    activeSpecies.Remove(species);
+                    activeSpecies.RemoveAt(i);
                 }
             }
         }
@@ -227,11 +228,11 @@ namespace EcosystemSim
 
     public class Species
     {
-        public int stamina = 1;
-        public int age = 0;
-        public int reproductiveUrge = 0;
-        public int hunger = 0;
-        public int thirst = 0;
+        public float stamina = 1;
+        public float age = 0;
+        public float reproductiveUrge = 0;
+        public float hunger = 0;
+        public float thirst = 0;
         public string speciesName = "";
         public float xPos;
         public float yPos;
@@ -371,10 +372,10 @@ namespace EcosystemSim
         public void update()
         {
             age += 1;
-            stamina += currentState == State.moving ? -5 : 1;
-            thirst += (currentState == State.moving ? 10 : 1) - (currentState == State.drinking ? -25 : 0);
-            hunger += (currentState == State.moving ? 5 : 1) - (currentState == State.eating ? 10 : 0);
-            reproductiveUrge += age >= reproductiveAge ? 5 : 0;
+            stamina += currentState == State.moving ? -0.5f : 0.1f;
+            thirst += (currentState == State.moving ? 1 : 0.1f) - (currentState == State.drinking ? -2.5f : 0);
+            hunger += (currentState == State.moving ? 0.5f : 0.1f) - (currentState == State.eating ? 1 : 0);
+            reproductiveUrge += age >= reproductiveAge ? 0.5f : 0;
         }
     }
 }
