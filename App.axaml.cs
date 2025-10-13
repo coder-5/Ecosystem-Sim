@@ -123,6 +123,7 @@ namespace EcosystemSim
             {
                 species.currentState = Species.State.eating;
                 activeFood.Remove(food);
+                activeFood.Add(new FoodSpecies(1, random.Next(0, 800), random.Next(0, 450)));
             }
 
             return true;
@@ -155,6 +156,7 @@ namespace EcosystemSim
             {
                 species.currentState = Species.State.drinking;
                 activeWater.Remove(water);
+                activeWater.Add(new WaterZone(1, random.Next(0, 800), random.Next(0, 450)));
             }
 
             return true;
