@@ -90,12 +90,51 @@ namespace EcosystemSim
                 else if (species.wanted_resource() == 1)
                 {
                     bool worked = goToFood(species);
+                } else if (species.wanted_resource() == 2)
+                {
+                    bool worked = goToSpecies(species);
+                    if (!worked)
+                    {
+                        goToFood(species);
+                    }
                 }
                 if (species.check_death())
                 {
                     activeSpecies.RemoveAt(i);
                 }
             }
+        }
+        public bool goToSpecies(Species species)
+        {
+            Species species1 = FindClosestOfTypeSpecies(species);
+
+            if (species1 == null)
+            {
+                double radius = 100.0;
+
+                (double x, double y) = RandomPointInCircle(radius, new Vector2(species.xPos, species.yPos));
+
+                Vector2 currentPosX = new Vector2(species.xPos, species.yPos);
+                Vector2 targetPosX = new Vector2((float)x, (float)y);
+
+                species.move_species(targetPosX);
+
+                return false;
+            }
+
+            Vector2 currentPos = new Vector2(species.xPos, species.yPos);
+            Vector2 targetPos = new Vector2(species1.xPos, species1.yPos);
+
+            bool collided = species.move_species(targetPos);
+            
+            if (collided && species.gender == 0)
+            {
+                species.currentState = Species.State.nothing;
+                activeSpecies.Add(species.mate(species1));
+            }
+
+            return true;
+            // x is cosin, y is sin
         }
         public bool goToFood(Species species)
         {
@@ -194,6 +233,22 @@ namespace EcosystemSim
             if (closestDistance > species.eyeSght) { return null; }
             return returnClass;
         }
+        public Species FindClosestOfTypeSpecies(Species species)
+        {
+            float closestDistance = 100000;
+            Species returnClass = new Species("", "", 0, 0);
+            foreach (Species species1 in activeSpecies)
+            {
+                float distance = Vector2.Distance(new Vector2(species1.xPos, species1.yPos), new Vector2(species.xPos, species.yPos));
+                if (distance < closestDistance && species1.gender != species.gender)
+                {
+                    returnClass = species1;
+                    closestDistance = distance;
+                }
+            }
+            if (closestDistance > species.eyeSght) { return null; }
+            return returnClass;
+        }
         public WaterZone FindClosestWaterZone(Species species)
         {
             WaterZone result = new WaterZone(0, 0, 0);
@@ -251,7 +306,7 @@ namespace EcosystemSim
 
         // These variables are for the genes
 
-        public string genes = ""; // first slot: speed, second slot: eye sight, third slot: gender, fourth slot: maxLife, fifth slot: reproductive age
+        public string genes = ""; // first slot: speed, second slot: eye sight, third slot: gender, fourth slot: maxLife, fifth slot: reproductive age.  1 is male 0 is female
         private string[] genesList = new string[2];
         public int speed;
         public int eyeSght;
@@ -259,7 +314,7 @@ namespace EcosystemSim
         public int maxLife;
         public int reproductiveAge;
 
-        public Species(string genesMother, string genesFather, int posX, int posY) { genesList[0] = genesMother; genesList[1] = genesFather; xPos = posX; yPos = posY; }
+        public Species(string genesMother, string genesFather, float posX, float posY) { genesList[0] = genesMother; genesList[1] = genesFather; xPos = posX; yPos = posY; }
         public void inherit_genes()
         {
             Random random = new Random();
@@ -276,6 +331,11 @@ namespace EcosystemSim
                 if (averageGene <= 0)
                 {
                     averageGene = 1;
+                }
+                if (i == 2)
+                {
+                    newGenes += random.Next(0, 2);
+                    continue;
                 }
                 if (i == motherSplitGenes.Length - 1)
                 {
@@ -345,6 +405,14 @@ namespace EcosystemSim
                 return 2;
             }
             return -1;
+        }
+        public Species mate(Species mate)
+        {
+            Species child = new Species(genes, mate.genes, xPos+20, yPos+20);
+
+            child.inherit_genes();
+
+            return child;
         }
         public bool move_species(Vector2 targetPos) // type 1 is water, type 2 is food, type 3 is mate
         {
