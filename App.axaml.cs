@@ -78,6 +78,7 @@ namespace EcosystemSim
             {
                 Species species = activeSpecies[i];
                 species.update();
+                int wanted = species.wanted_resource();
                 if (species.wanted_resource() == 0)
                 {
                     bool worked = goToWater(species);
@@ -375,8 +376,16 @@ namespace EcosystemSim
         {
             age += 1;
             stamina += currentState == State.moving ? -0.5f : 0.1f;
-            thirst += (currentState == State.moving ? 1 : 0.1f) - (currentState == State.drinking ? -2.5f : 0);
-            hunger += (currentState == State.moving ? 0.5f : 0.1f) - (currentState == State.eating ? 1 : 0);
+            thirst += (currentState == State.moving ? 1 : 0.1f) - (currentState == State.drinking ? 25f : 0);
+            hunger += (currentState == State.moving ? 0.5f : 0.1f) - (currentState == State.eating ? 10 : 0);
+            if (thirst <= 0)
+            {
+                thirst = 0;
+            }
+            if (hunger <= 0)
+            {
+                hunger = 0;
+            }
             reproductiveUrge += age >= reproductiveAge ? 0.5f : 0;
         }
     }

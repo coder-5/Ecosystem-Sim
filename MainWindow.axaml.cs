@@ -16,7 +16,7 @@ namespace EcosystemSim
             for (int i = 0; i < 10; i++)
             {
                 ecosystem.activeSpecies.Add(new Species("5:500:1:100:10", "5:500:1:100:10", rand.Next(0, 800), rand.Next(0, 450)));
-                ecosystem.activeSpecies[0].inherit_genes();
+                ecosystem.activeSpecies[i].inherit_genes();
                 ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 800), rand.Next(0, 450)));
                 ecosystem.activeWater.Add(new WaterZone(1, rand.Next(0, 800), rand.Next(0, 450)));
             }
