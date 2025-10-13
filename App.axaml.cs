@@ -89,6 +89,10 @@ namespace EcosystemSim
                 {
                     bool worked = goToFood(species);
                 }
+                if (species.check_death())
+                {
+                    activeSpecies.Remove(species);
+                }
             }
         }
         public bool goToFood(Species species)
@@ -112,7 +116,14 @@ namespace EcosystemSim
             Vector2 currentPos = new Vector2(species.xPos, species.yPos);
             Vector2 targetPos = new Vector2(food.xPos, food.yPos);
 
-            species.move_species(targetPos);
+            bool collided = species.move_species(targetPos);
+            
+            if (collided)
+            {
+                species.currentState = Species.State.eating;
+                activeFood.Remove(food);
+            }
+
             return true;
             // x is cosin, y is sin
         }
@@ -137,7 +148,14 @@ namespace EcosystemSim
             Vector2 currentPos = new Vector2(species.xPos, species.yPos);
             Vector2 targetPos = new Vector2(water.xPos, water.yPos);
 
-            species.move_species(targetPos);
+            bool collided = species.move_species(targetPos);
+
+            if (collided)
+            {
+                species.currentState = Species.State.drinking;
+                activeWater.Remove(water);
+            }
+
             return true;
             // x is cosin, y is sin
         }
@@ -225,7 +243,7 @@ namespace EcosystemSim
             nothing
         }
 
-        State currentState = State.nothing;
+        public State currentState = State.nothing;
 
         // These variables are for the genes
 
@@ -251,6 +269,10 @@ namespace EcosystemSim
                 int geneFatherNum = int.Parse(fatherSplitGenes[i]);
                 int averageGene = (geneMotherNum + geneFatherNum) / 2;
                 averageGene += random.Next(-1, 1);
+                if (averageGene <= 0)
+                {
+                    averageGene = 1;
+                }
                 if (i == motherSplitGenes.Length - 1)
                 {
                     newGenes += averageGene.ToString();
@@ -320,7 +342,7 @@ namespace EcosystemSim
             }
             return -1;
         }
-        public void move_species(Vector2 targetPos)
+        public bool move_species(Vector2 targetPos) // type 1 is water, type 2 is food, type 3 is mate
         {
             currentState = State.moving;
 
@@ -334,15 +356,25 @@ namespace EcosystemSim
 
             this.xPos = newPos.X;
             this.yPos = newPos.Y;
+
+            float distance = Vector2.Distance(targetPos, newPos);
+
+            if (distance <= 5)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public void update()
         {
             age += 1;
             stamina += currentState == State.moving ? -5 : 1;
-            thirst += (currentState == State.moving ? 10 : 1) - (currentState == State.drinking ? 25 : 0);
+            thirst += (currentState == State.moving ? 10 : 1) - (currentState == State.drinking ? -25 : 0);
             hunger += (currentState == State.moving ? 5 : 1) - (currentState == State.eating ? 10 : 0);
             reproductiveUrge += age >= reproductiveAge ? 5 : 0;
-            check_death();
         }
     }
 }
