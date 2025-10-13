@@ -92,8 +92,8 @@ namespace EcosystemSim
                     bool worked = goToFood(species);
                 } else if (species.wanted_resource() == 2)
                 {
-                    bool worked = goToSpecies(species);
-                    if (!worked)
+                    int worked = goToSpecies(species);
+                    if (worked == 0)
                     {
                         goToFood(species);
                     }
@@ -104,7 +104,7 @@ namespace EcosystemSim
                 }
             }
         }
-        public bool goToSpecies(Species species)
+        public int goToSpecies(Species species)
         {
             Species species1 = FindClosestOfTypeSpecies(species);
 
@@ -119,7 +119,7 @@ namespace EcosystemSim
 
                 species.move_species(targetPosX);
 
-                return false;
+                return 0;
             }
 
             Vector2 currentPos = new Vector2(species.xPos, species.yPos);
@@ -131,9 +131,10 @@ namespace EcosystemSim
             {
                 species.currentState = Species.State.nothing;
                 activeSpecies.Add(species.mate(species1));
+                return 2;
             }
 
-            return true;
+            return 1;
             // x is cosin, y is sin
         }
         public bool goToFood(Species species)
@@ -392,6 +393,10 @@ namespace EcosystemSim
         }
         public int wanted_resource()
         {
+            if (reproductiveUrge >= thirst && reproductiveUrge >= hunger && age >= reproductiveAge)
+            {
+                return 2;
+            }
             if (thirst >= hunger)
             {
                 return 0;
@@ -399,10 +404,6 @@ namespace EcosystemSim
             else if (hunger >= thirst)
             {
                 return 1;
-            }
-            else if (reproductiveUrge >= thirst && reproductiveUrge >= hunger && age >= reproductiveAge)
-            {
-                return 2;
             }
             return -1;
         }
@@ -454,7 +455,7 @@ namespace EcosystemSim
             {
                 hunger = 0;
             }
-            reproductiveUrge += age >= reproductiveAge ? 0.5f : 0;
+            reproductiveUrge += age >= reproductiveAge ? 5f : 0;
         }
     }
 }
