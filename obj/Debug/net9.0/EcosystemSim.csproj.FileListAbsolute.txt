@@ -71,3 +71,4 @@
 /Users/griffinroberts/Movies/C# Projects/EcosystemSim/obj/Debug/net9.0/EcosystemSim.pdb
 /Users/griffinroberts/Movies/C# Projects/EcosystemSim/obj/Debug/net9.0/EcosystemSim.genruntimeconfig.cache
 /Users/griffinroberts/Movies/C# Projects/EcosystemSim/obj/Debug/net9.0/ref/EcosystemSim.dll
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/obj/Debug/net9.0/EcosystemSim.sourcelink.json
