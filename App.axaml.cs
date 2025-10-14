@@ -9,6 +9,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using System.IO;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace EcosystemSim
 {
@@ -77,7 +78,7 @@ namespace EcosystemSim
 
         public void start()
         {
-            File.AppendAllText("data.txt", "=====NEW SIMULATION=====");
+            Directory.CreateDirectory("saves/" + start_time);
         }
 
         public void update()
@@ -117,23 +118,38 @@ namespace EcosystemSim
             //update_text();
             saveToJson();
         }
-        public void saveToJson(string filename = "")
+        public async Task saveToJson(string filename = "")
         {
-            var options = new JsonSerializerOptions
+            Ecosystem snapshot;
+            lock (this)
             {
-                WriteIndented = true
-            };
-
-            Directory.CreateDirectory("saves/"+start_time);
-
-            if (string.IsNullOrEmpty(filename))
-            {
-                string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-                filename = $"saves/{start_time}/date_{timestamp}.json";
+                string tempJson = JsonSerializer.Serialize(this);
+                snapshot = JsonSerializer.Deserialize<Ecosystem>(tempJson);
             }
 
-            string json = JsonSerializer.Serialize(this, options); // finish the json serialization code and such
-            File.WriteAllText(filename, json);
+            await Task.Run(() =>
+            {
+                try
+                {
+                    var options = new JsonSerializerOptions
+                    {
+                        WriteIndented = true
+                    };
+
+                    if (string.IsNullOrEmpty(filename))
+                    {
+                        string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                        filename = $"saves/{start_time}/date_{timestamp}.json";
+                    }
+
+                    string json = JsonSerializer.Serialize(snapshot, options); // finish the json serialization code and such
+                    File.WriteAllText(filename, json);
+                }
+                catch (Exception ex)
+                {
+
+                }
+            });
         }
         public void update_text()
         {
