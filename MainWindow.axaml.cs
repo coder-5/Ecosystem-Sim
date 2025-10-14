@@ -13,6 +13,8 @@ namespace EcosystemSim
         bool paused = false;
         public MainWindow()
         {
+            ecosystem.start();
+
             InitializeComponent();
 
             this.KeyDown += OnKeyDown;

@@ -7,6 +7,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using System.IO;
 
 namespace EcosystemSim
 {
@@ -72,6 +73,11 @@ namespace EcosystemSim
         public List<FoodSpecies> activeFood = new List<FoodSpecies>();
         public List<WaterZone> activeWater = new List<WaterZone>();
 
+        public void start()
+        {
+            File.AppendAllText("data.txt", "=====NEW SIMULATION=====");
+        }
+
         public void update()
         {
             Console.WriteLine("==========Update==========");
@@ -92,7 +98,8 @@ namespace EcosystemSim
                 else if (species.wanted_resource() == 1)
                 {
                     bool worked = goToFood(species);
-                } else if (species.wanted_resource() == 2)
+                }
+                else if (species.wanted_resource() == 2)
                 {
                     int worked = goToSpecies(species);
                     if (worked == 0)
@@ -105,6 +112,21 @@ namespace EcosystemSim
                     activeSpecies.RemoveAt(i);
                 }
             }
+            update_text();
+        }
+        public void update_text()
+        {
+            List<string> text = new List<string>();
+
+            text.Add("=====UPDATE=====");
+
+            for (int i = 0; i < activeSpecies.Count; i++)
+            {
+                Species species = activeSpecies[i];
+                text.Add($"current species {i} hunger:{species.hunger}  thirst:{species.thirst}   urge to reproduce{species.reproductiveUrge}  age to reproduce:{species.reproductiveAge}  genes:{species.genes}");
+            }
+
+            File.AppendAllLinesAsync("data.txt", text);
         }
         public int goToSpecies(Species species)
         {
