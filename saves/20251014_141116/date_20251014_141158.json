@@ -1,0 +1,2571 @@
+{
+  "activeSpecies": [
+    {
+      "stamina": -17.490017,
+      "age": 39.49997,
+      "reproductiveUrge": 1.459999,
+      "hunger": 2.1199992,
+      "thirst": 1.7000003,
+      "speciesName": "",
+      "xPos": 344.35205,
+      "yPos": 116.92535,
+      "drinkingWaterAmount": 0,
+      "currentState": 0,
+      "genes": "4:500:0:100:25",
+      "speed": 4,
+      "eyeSght": 500,
+      "gender": 0,
+      "maxLife": 100,
+      "reproductiveAge": 25
+    },
+    {
+      "stamina": -17.730015,
+      "age": 39.49997,
+      "reproductiveUrge": 1.5599989,
+      "hunger": 4.900001,
+      "thirst": 3.0099976,
+      "speciesName": "",
+      "xPos": 392.97476,
+      "yPos": 204.78123,
+      "drinkingWaterAmount": 0,
+      "currentState": 0,
+      "genes": "4:499:1:99:24",
+      "speed": 4,
+      "eyeSght": 499,
+      "gender": 1,
+      "maxLife": 99,
+      "reproductiveAge": 24
+    },
+    {
+      "stamina": -17.250021,
+      "age": 39.49997,
+      "reproductiveUrge": 1.459999,
+      "hunger": 0.91000015,
+      "thirst": 0.5,
+      "speciesName": "",
+      "xPos": 397.6416,
+      "yPos": 250.2548,
+      "drinkingWaterAmount": 0,
+      "currentState": 0,
+      "genes": "4:500:1:99:25",
+      "speed": 4,
+      "eyeSght": 500,
+      "gender": 1,
+      "maxLife": 99,
+      "reproductiveAge": 25
+    },
+    {
+      "stamina": -17.730015,
+      "age": 39.49997,
+      "reproductiveUrge": 1.5599989,
+      "hunger": 2.0199993,
+      "thirst": 1.8000003,
+      "speciesName": "",
+      "xPos": 493.92685,
+      "yPos": 360.7367,
+      "drinkingWaterAmount": 0,
+      "currentState": 0,
+      "genes": "5:499:1:100:24",
+      "speed": 5,
+      "eyeSght": 499,
+      "gender": 1,
+      "maxLife": 100,
+      "reproductiveAge": 24
+    },
+    {
+      "stamina": -17.310019,
+      "age": 39.49997,
+      "reproductiveUrge": 0.049999997,
+      "hunger": 0.22999999,
+      "thirst": 0.3,
+      "speciesName": "",
+      "xPos": 425.27502,
+      "yPos": 288.5277,
+      "drinkingWaterAmount": 4,
+      "currentState": 2,
+      "genes": "5:499:0:100:25",
+      "speed": 5,
+      "eyeSght": 499,
+      "gender": 0,
+      "maxLife": 100,
+      "reproductiveAge": 25
+    },
+    {
+      "stamina": -17.490017,
+      "age": 39.49997,
+      "reproductiveUrge": 1.459999,
+      "hunger": 5.0300016,
+      "thirst": 0.3,
+      "speciesName": "",
+      "xPos": 436.5098,
+      "yPos": 262.92706,
+      "drinkingWaterAmount": 0,
+      "currentState": 0,
+      "genes": "4:499:0:99:25",
+      "speed": 4,
+      "eyeSght": 499,
+      "gender": 0,
+      "maxLife": 99,
+      "reproductiveAge": 25
+    },
+    {
+      "stamina": -17.850012,
+      "age": 39.49997,
+      "reproductiveUrge": 1.459999,
+      "hunger": 0.21,
+      "thirst": 0.4,
+      "speciesName": "",
+      "xPos": 395.17184,
+      "yPos": 225.98584,
+      "drinkingWaterAmount": 0,
+      "currentState": 0,
+      "genes": "5:500:1:99:25",
+      "speed": 5,
+      "eyeSght": 500,
+      "gender": 1,
+      "maxLife": 99,
+      "reproductiveAge": 25
+    },
+    {
+      "stamina": -17.850012,
+      "age": 39.49997,
+      "reproductiveUrge": 1.5599989,
+      "hunger": 2.7299986,
+      "thirst": 1.1000001,
+      "speciesName": "",
+      "xPos": 444.62527,
+      "yPos": 298.27182,
+      "drinkingWaterAmount": 0,
+      "currentState": 0,
+      "genes": "5:499:1:99:24",
+      "speed": 5,
+      "eyeSght": 499,
+      "gender": 1,
+      "maxLife": 99,
+      "reproductiveAge": 24
+    },
+    {
+      "stamina": -17.070024,
+      "age": 39.49997,
+      "reproductiveUrge": 1.5599989,
+      "hunger": 0.7000001,
+      "thirst": 3.9099984,
+      "speciesName": "",
+      "xPos": 471.74734,
+      "yPos": 392.25247,
+      "drinkingWaterAmount": 0,
+      "currentState": 0,
+      "genes": "4:500:0:100:24",
+      "speed": 4,
+      "eyeSght": 500,
+      "gender": 0,
+      "maxLife": 100,
+      "reproductiveAge": 24
+    },
+    {
+      "stamina": -17.43002,
+      "age": 39.49997,
+      "reproductiveUrge": 1.459999,
+      "hunger": 3.6899977,
+      "thirst": 3.7999985,
+      "speciesName": "",
+      "xPos": 335.56677,
+      "yPos": 224.04782,
+      "drinkingWaterAmount": 0,
+      "currentState": 0,
+      "genes": "4:500:1:100:25",
+      "speed": 4,
+      "eyeSght": 500,
+      "gender": 1,
+      "maxLife": 100,
+      "reproductiveAge": 25
+    },
+    {
+      "stamina": -1.6299998,
+      "age": 6.0999966,
+      "reproductiveUrge": 0,
+      "hunger": 2.7699986,
+      "thirst": 1.1000001,
+      "speciesName": "",
+      "xPos": 450.1107,
+      "yPos": 368.5765,
+      "drinkingWaterAmount": 0,
+      "currentState": 0,
+      "genes": "3:498:1:98:25",
+      "speed": 3,
+      "eyeSght": 498,
+      "gender": 1,
+      "maxLife": 98,
+      "reproductiveAge": 25
+    },
+    {
+      "stamina": 0.86999995,
+      "age": 0.5,
+      "reproductiveUrge": 0,
+      "hunger": 0.17,
+      "thirst": 0,
+      "speciesName": "",
+      "xPos": 429.078,
+      "yPos": 300.62436,
+      "drinkingWaterAmount": 0,
+      "currentState": 0,
+      "genes": "5:499:0:99:24",
+      "speed": 5,
+      "eyeSght": 499,
+      "gender": 0,
+      "maxLife": 99,
+      "reproductiveAge": 24
+    }
+  ],
+  "activeFood": [
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 174,
+      "yPos": 237,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 667,
+      "yPos": 20,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 160,
+      "yPos": 316,
+      "seedsAmount": 1
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 29,
+      "yPos": 65,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 35,
+      "yPos": 410,
+      "seedsAmount": 1
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 760,
+      "yPos": 447,
+      "seedsAmount": 1
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 226,
+      "yPos": 300,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 205,
+      "yPos": 424,
+      "seedsAmount": 1
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 18,
+      "yPos": 46,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 715,
+      "yPos": 199,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 574,
+      "yPos": 82,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 111,
+      "yPos": 434,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 63,
+      "yPos": 311,
+      "seedsAmount": 1
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 575,
+      "yPos": 280,
+      "seedsAmount": 1
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 99,
+      "yPos": 122,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 648,
+      "yPos": 313,
+      "seedsAmount": 4
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 716,
+      "yPos": 154,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 613,
+      "yPos": 19,
+      "seedsAmount": 0
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 689,
+      "yPos": 48,
+      "seedsAmount": 1
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 665,
+      "yPos": 96,
+      "seedsAmount": 1
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 620,
+      "yPos": 443,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 216,
+      "yPos": 262,
+      "seedsAmount": 1
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 213,
+      "yPos": 22,
+      "seedsAmount": 1
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 20,
+      "yPos": 160,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 218,
+      "yPos": 148,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 679,
+      "yPos": 432,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 673,
+      "yPos": 294,
+      "seedsAmount": 1
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 100,
+      "yPos": 426,
+      "seedsAmount": 4
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 770,
+      "yPos": 44,
+      "seedsAmount": 4
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 111,
+      "yPos": 124,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 109,
+      "yPos": 313,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 33,
+      "yPos": 13,
+      "seedsAmount": 4
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 578,
+      "yPos": 21,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 150,
+      "yPos": 19,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 138,
+      "yPos": 438,
+      "seedsAmount": 4
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 47,
+      "yPos": 53,
+      "seedsAmount": 5
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 57,
+      "yPos": 273,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 23,
+      "yPos": 325,
+      "seedsAmount": 5
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 770,
+      "yPos": 165,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 78,
+      "yPos": 86,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 713,
+      "yPos": 188,
+      "seedsAmount": 4
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 8,
+      "yPos": 352,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 165,
+      "yPos": 115,
+      "seedsAmount": 4
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 74,
+      "yPos": 318,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 734,
+      "yPos": 63,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 778,
+      "yPos": 149,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 95,
+      "yPos": 24,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 673,
+      "yPos": 290,
+      "seedsAmount": 4
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 589,
+      "yPos": 143,
+      "seedsAmount": 4
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 635,
+      "yPos": 378,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 125,
+      "yPos": 207,
+      "seedsAmount": 4
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 208,
+      "yPos": 356,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 666,
+      "yPos": 162,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 697,
+      "yPos": 181,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 620,
+      "yPos": 422,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 613,
+      "yPos": 144,
+      "seedsAmount": 1
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 702,
+      "yPos": 211,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 790,
+      "yPos": 298,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 180,
+      "yPos": 25,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 183,
+      "yPos": 407,
+      "seedsAmount": 4
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 26,
+      "yPos": 318,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 145,
+      "yPos": 433,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 26,
+      "yPos": 443,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 618,
+      "yPos": 414,
+      "seedsAmount": 4
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 672,
+      "yPos": 39,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 759,
+      "yPos": 47,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 17,
+      "yPos": 112,
+      "seedsAmount": 1
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 214,
+      "yPos": 58,
+      "seedsAmount": 0
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 683,
+      "yPos": 53,
+      "seedsAmount": 1
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 141,
+      "yPos": 238,
+      "seedsAmount": 5
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 598,
+      "yPos": 295,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 587,
+      "yPos": 77,
+      "seedsAmount": 4
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 561,
+      "yPos": 386,
+      "seedsAmount": 6
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 795,
+      "yPos": 313,
+      "seedsAmount": 6
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 678,
+      "yPos": 93,
+      "seedsAmount": 1
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 514,
+      "yPos": 189,
+      "seedsAmount": 5
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 209,
+      "yPos": 396,
+      "seedsAmount": 7
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 530,
+      "yPos": 340,
+      "seedsAmount": 0
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 223,
+      "yPos": 161,
+      "seedsAmount": 0
+    }
+  ],
+  "activeWater": [
+    {
+      "amountOfWater": 126,
+      "xPos": 424,
+      "yPos": 141
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 423,
+      "yPos": 342
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 415,
+      "yPos": 375
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 400,
+      "yPos": 198
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 401,
+      "yPos": 77
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 378,
+      "yPos": 32
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 414,
+      "yPos": 98
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 385,
+      "yPos": 92
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 405,
+      "yPos": 198
+    },
+    {
+      "amountOfWater": 59,
+      "xPos": 387,
+      "yPos": 257
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 403,
+      "yPos": 143
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 401,
+      "yPos": 136
+    },
+    {
+      "amountOfWater": 158,
+      "xPos": 421,
+      "yPos": 29
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 407,
+      "yPos": 332
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 405,
+      "yPos": 179
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 403,
+      "yPos": 115
+    },
+    {
+      "amountOfWater": 245,
+      "xPos": 421,
+      "yPos": 55
+    },
+    {
+      "amountOfWater": 156,
+      "xPos": 376,
+      "yPos": 191
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 413,
+      "yPos": 381
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 417,
+      "yPos": 385
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 378,
+      "yPos": 129
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 384,
+      "yPos": 16
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 404,
+      "yPos": 446
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 378,
+      "yPos": 248
+    },
+    {
+      "amountOfWater": 64,
+      "xPos": 392,
+      "yPos": 308
+    },
+    {
+      "amountOfWater": 13,
+      "xPos": 424,
+      "yPos": 388
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 405,
+      "yPos": 349
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 386,
+      "yPos": 381
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 401,
+      "yPos": 168
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 399,
+      "yPos": 24
+    },
+    {
+      "amountOfWater": 352,
+      "xPos": 397,
+      "yPos": 379
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 411,
+      "yPos": 78
+    },
+    {
+      "amountOfWater": 328,
+      "xPos": 420,
+      "yPos": 52
+    },
+    {
+      "amountOfWater": 251,
+      "xPos": 423,
+      "yPos": 337
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 384,
+      "yPos": 184
+    },
+    {
+      "amountOfWater": 42,
+      "xPos": 412,
+      "yPos": 355
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 382,
+      "yPos": 114
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 401,
+      "yPos": 306
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 392,
+      "yPos": 440
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 401,
+      "yPos": 67
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 410,
+      "yPos": 154
+    },
+    {
+      "amountOfWater": 82,
+      "xPos": 409,
+      "yPos": 41
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 400,
+      "yPos": 109
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 379,
+      "yPos": 127
+    },
+    {
+      "amountOfWater": 344,
+      "xPos": 397,
+      "yPos": 399
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 418,
+      "yPos": 276
+    },
+    {
+      "amountOfWater": 349,
+      "xPos": 395,
+      "yPos": 391
+    },
+    {
+      "amountOfWater": 258,
+      "xPos": 380,
+      "yPos": 443
+    },
+    {
+      "amountOfWater": 5,
+      "xPos": 423,
+      "yPos": 274
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 422,
+      "yPos": 139
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 412,
+      "yPos": 231
+    },
+    {
+      "amountOfWater": 84,
+      "xPos": 419,
+      "yPos": 413
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 421,
+      "yPos": 159
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 394,
+      "yPos": 28
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 398,
+      "yPos": 363
+    },
+    {
+      "amountOfWater": 51,
+      "xPos": 420,
+      "yPos": 334
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 391,
+      "yPos": 55
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 382,
+      "yPos": 12
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 402,
+      "yPos": 202
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 412,
+      "yPos": 272
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 415,
+      "yPos": 190
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 388,
+      "yPos": 324
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 412,
+      "yPos": 282
+    },
+    {
+      "amountOfWater": 177,
+      "xPos": 422,
+      "yPos": 109
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 395,
+      "yPos": 204
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 381,
+      "yPos": 391
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 396,
+      "yPos": 94
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 376,
+      "yPos": 212
+    },
+    {
+      "amountOfWater": 305,
+      "xPos": 392,
+      "yPos": 36
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 405,
+      "yPos": 372
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 386,
+      "yPos": 318
+    },
+    {
+      "amountOfWater": 91,
+      "xPos": 413,
+      "yPos": 27
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 382,
+      "yPos": 9
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 380,
+      "yPos": 211
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 394,
+      "yPos": 188
+    },
+    {
+      "amountOfWater": 33,
+      "xPos": 379,
+      "yPos": 14
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 399,
+      "yPos": 248
+    },
+    {
+      "amountOfWater": 4,
+      "xPos": 379,
+      "yPos": 206
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 400,
+      "yPos": 136
+    },
+    {
+      "amountOfWater": 40,
+      "xPos": 389,
+      "yPos": 278
+    },
+    {
+      "amountOfWater": 281,
+      "xPos": 410,
+      "yPos": 202
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 413,
+      "yPos": 406
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 380,
+      "yPos": 367
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 400,
+      "yPos": 240
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 391,
+      "yPos": 438
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 413,
+      "yPos": 304
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 388,
+      "yPos": 323
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 417,
+      "yPos": 407
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 390,
+      "yPos": 70
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 389,
+      "yPos": 449
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 387,
+      "yPos": 234
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 404,
+      "yPos": 320
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 396,
+      "yPos": 81
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 386,
+      "yPos": 370
+    },
+    {
+      "amountOfWater": 78,
+      "xPos": 395,
+      "yPos": 239
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 407,
+      "yPos": 282
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 410,
+      "yPos": 284
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 390,
+      "yPos": 178
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 420,
+      "yPos": 214
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 390,
+      "yPos": 422
+    },
+    {
+      "amountOfWater": 1,
+      "xPos": 423,
+      "yPos": 288
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 399,
+      "yPos": 37
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 414,
+      "yPos": 249
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 392,
+      "yPos": 158
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 400,
+      "yPos": 254
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 417,
+      "yPos": 18
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 414,
+      "yPos": 200
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 413,
+      "yPos": 228
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 394,
+      "yPos": 14
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 392,
+      "yPos": 7
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 411,
+      "yPos": 334
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 405,
+      "yPos": 390
+    },
+    {
+      "amountOfWater": 57,
+      "xPos": 396,
+      "yPos": 207
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 408,
+      "yPos": 284
+    },
+    {
+      "amountOfWater": 53,
+      "xPos": 419,
+      "yPos": 206
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 381,
+      "yPos": 318
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 420,
+      "yPos": 373
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 393,
+      "yPos": 332
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 393,
+      "yPos": 414
+    },
+    {
+      "amountOfWater": 280,
+      "xPos": 375,
+      "yPos": 61
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 385,
+      "yPos": 178
+    },
+    {
+      "amountOfWater": 147,
+      "xPos": 378,
+      "yPos": 252
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 398,
+      "yPos": 75
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 382,
+      "yPos": 97
+    },
+    {
+      "amountOfWater": 43,
+      "xPos": 422,
+      "yPos": 250
+    },
+    {
+      "amountOfWater": 97,
+      "xPos": 413,
+      "yPos": 441
+    },
+    {
+      "amountOfWater": 205,
+      "xPos": 423,
+      "yPos": 81
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 398,
+      "yPos": 32
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 411,
+      "yPos": 231
+    },
+    {
+      "amountOfWater": 54,
+      "xPos": 375,
+      "yPos": 357
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 394,
+      "yPos": 265
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 420,
+      "yPos": 71
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 420,
+      "yPos": 72
+    },
+    {
+      "amountOfWater": 28,
+      "xPos": 424,
+      "yPos": 228
+    },
+    {
+      "amountOfWater": 2,
+      "xPos": 423,
+      "yPos": 298
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 386,
+      "yPos": 360
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 420,
+      "yPos": 174
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 421,
+      "yPos": 191
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 399,
+      "yPos": 281
+    },
+    {
+      "amountOfWater": 19,
+      "xPos": 375,
+      "yPos": 67
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 391,
+      "yPos": 327
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 414,
+      "yPos": 92
+    },
+    {
+      "amountOfWater": 152,
+      "xPos": 376,
+      "yPos": 400
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 407,
+      "yPos": 171
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 397,
+      "yPos": 67
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 418,
+      "yPos": 117
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 405,
+      "yPos": 130
+    },
+    {
+      "amountOfWater": 58,
+      "xPos": 392,
+      "yPos": 285
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 390,
+      "yPos": 273
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 415,
+      "yPos": 331
+    },
+    {
+      "amountOfWater": 98,
+      "xPos": 394,
+      "yPos": 13
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 405,
+      "yPos": 408
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 393,
+      "yPos": 376
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 405,
+      "yPos": 50
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 413,
+      "yPos": 145
+    },
+    {
+      "amountOfWater": 59,
+      "xPos": 415,
+      "yPos": 316
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 414,
+      "yPos": 271
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 409,
+      "yPos": 264
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 399,
+      "yPos": 74
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 384,
+      "yPos": 294
+    },
+    {
+      "amountOfWater": 257,
+      "xPos": 375,
+      "yPos": 118
+    },
+    {
+      "amountOfWater": 74,
+      "xPos": 424,
+      "yPos": 174
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 421,
+      "yPos": 383
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 389,
+      "yPos": 180
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 406,
+      "yPos": 157
+    },
+    {
+      "amountOfWater": 56,
+      "xPos": 418,
+      "yPos": 322
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 392,
+      "yPos": 299
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 400,
+      "yPos": 272
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 393,
+      "yPos": 167
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 419,
+      "yPos": 396
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 388,
+      "yPos": 98
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 419,
+      "yPos": 233
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 402,
+      "yPos": 291
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 409,
+      "yPos": 224
+    },
+    {
+      "amountOfWater": 111,
+      "xPos": 376,
+      "yPos": 37
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 400,
+      "yPos": 92
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 401,
+      "yPos": 66
+    },
+    {
+      "amountOfWater": 69,
+      "xPos": 383,
+      "yPos": 264
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 381,
+      "yPos": 321
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 386,
+      "yPos": 92
+    },
+    {
+      "amountOfWater": 46,
+      "xPos": 378,
+      "yPos": 313
+    },
+    {
+      "amountOfWater": 40,
+      "xPos": 384,
+      "yPos": 398
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 395,
+      "yPos": 406
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 418,
+      "yPos": 102
+    },
+    {
+      "amountOfWater": 355,
+      "xPos": 393,
+      "yPos": 199
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 407,
+      "yPos": 382
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 392,
+      "yPos": 357
+    },
+    {
+      "amountOfWater": 26,
+      "xPos": 376,
+      "yPos": 305
+    },
+    {
+      "amountOfWater": 7,
+      "xPos": 378,
+      "yPos": 239
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 398,
+      "yPos": 186
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 381,
+      "yPos": 312
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 387,
+      "yPos": 142
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 416,
+      "yPos": 90
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 397,
+      "yPos": 417
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 417,
+      "yPos": 316
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 383,
+      "yPos": 71
+    },
+    {
+      "amountOfWater": 86,
+      "xPos": 376,
+      "yPos": 215
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 376,
+      "yPos": 43
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 412,
+      "yPos": 270
+    },
+    {
+      "amountOfWater": 396,
+      "xPos": 394,
+      "yPos": 176
+    }
+  ],
+  "populationSizes": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12
+  ],
+  "foodSizes": [
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    29,
+    29,
+    29,
+    29,
+    29,
+    30,
+    30,
+    30,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    33,
+    33,
+    34,
+    34,
+    34,
+    34,
+    34,
+    34,
+    34,
+    34,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    36,
+    36,
+    36,
+    36,
+    36,
+    37,
+    37,
+    37,
+    37,
+    37,
+    37,
+    37,
+    37,
+    37,
+    38,
+    38,
+    38,
+    38,
+    38,
+    38,
+    38,
+    38,
+    38,
+    38,
+    38,
+    40,
+    40,
+    40,
+    40,
+    40,
+    41,
+    41,
+    41,
+    41,
+    41,
+    41,
+    41,
+    42,
+    42,
+    42,
+    43,
+    43,
+    43,
+    43,
+    43,
+    43,
+    44,
+    44,
+    44,
+    44,
+    44,
+    44,
+    44,
+    44,
+    45,
+    45,
+    45,
+    45,
+    45,
+    45,
+    45,
+    45,
+    45,
+    45,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    48,
+    49,
+    49,
+    49,
+    50,
+    50,
+    50,
+    50,
+    51,
+    51,
+    51,
+    51,
+    51,
+    52,
+    52,
+    52,
+    52,
+    52,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    55,
+    55,
+    55,
+    55,
+    55,
+    55,
+    55,
+    55,
+    55,
+    55,
+    55,
+    55,
+    55,
+    55,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    57,
+    58,
+    58,
+    58,
+    58,
+    58,
+    58,
+    58,
+    58,
+    58,
+    59,
+    59,
+    59,
+    59,
+    59,
+    59,
+    59,
+    59,
+    59,
+    59,
+    59,
+    59,
+    59,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    61,
+    61,
+    61,
+    61,
+    61,
+    61,
+    61,
+    61,
+    61,
+    61,
+    61,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    63,
+    63,
+    64,
+    64,
+    65,
+    66,
+    66,
+    66,
+    66,
+    67,
+    67,
+    67,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    69,
+    70,
+    70,
+    70,
+    70,
+    70,
+    70,
+    70,
+    70,
+    70,
+    70,
+    70,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    73,
+    73,
+    73,
+    73,
+    73,
+    73,
+    73,
+    74,
+    74,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    76,
+    76,
+    76,
+    76,
+    76,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    78,
+    78,
+    79,
+    79,
+    79,
+    79,
+    79,
+    79,
+    79
+  ]
+}

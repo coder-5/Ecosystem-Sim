@@ -39,6 +39,14 @@ namespace EcosystemSim
             base.Render(context);
             if (EcosystemData == null) Debug.WriteLine("Ecosystem Data is null");
 
+            foreach (var water in EcosystemData.activeWater)
+            {
+                var brush = water.amountOfWater == 0 ? Brushes.Transparent : water.amountOfWater >= 0 && water.amountOfWater <= 25 ? Brushes.LightBlue : water.amountOfWater >= 26 && water.amountOfWater <= 75 ? Brushes.Blue : Brushes.DarkBlue;
+                var pen = new Pen(Brushes.Transparent, 1);
+                var center = new Point(water.xPos, water.yPos);
+                context.DrawEllipse(brush, pen, center, size, size);
+            }
+
             foreach (var food in EcosystemData.activeFood)
             {
                 var brush = Brushes.Green;
@@ -52,14 +60,6 @@ namespace EcosystemSim
                 var brush = Brushes.Red;
                 var pen = new Pen(Brushes.Transparent, 1);
                 var center = new Point(species.xPos, species.yPos);
-                context.DrawEllipse(brush, pen, center, size, size);
-            }
-
-            foreach (var water in EcosystemData.activeWater)
-            {
-                var brush = Brushes.Blue;
-                var pen = new Pen(Brushes.Transparent, 1);
-                var center = new Point(water.xPos, water.yPos);
                 context.DrawEllipse(brush, pen, center, size, size);
             }
         }
@@ -119,6 +119,10 @@ namespace EcosystemSim
             }
             populationSizes.Add(activeSpecies.Count);
             foodSizes.Add(activeFood.Count);
+            foreach (var water in activeWater)
+            {
+                water.amountOfWater += 1f;
+            }
             //update_text();
             saveToJson();
         }
@@ -258,8 +262,8 @@ namespace EcosystemSim
             if (collided)
             {
                 species.currentState = Species.State.drinking;
-                activeWater.Remove(water);
-                activeWater.Add(new WaterZone(1, random.Next(0, 800), random.Next(0, 450)));
+                species.drinkingWaterAmount = water.amountOfWater;
+                water.amountOfWater = 0;
             }
 
             return true;
@@ -321,7 +325,7 @@ namespace EcosystemSim
             foreach (WaterZone water in activeWater)
             {
                 float distance = Vector2.Distance(new Vector2(water.xPos, water.yPos), new Vector2(species.xPos, species.yPos));
-                if (distance < closestDistance)
+                if (distance < closestDistance && water.amountOfWater > 0)
                 {
                     returnClass = water;
                     closestDistance = distance;
@@ -332,8 +336,8 @@ namespace EcosystemSim
         }
     }
     public class WaterZone
-    {
-        public int amountOfWater;
+    { 
+        public float amountOfWater;
         public float xPos;
         public float yPos;
         public WaterZone(int amountOfWaterNew, int posX, int posY) { amountOfWater = amountOfWaterNew; xPos = posX; yPos = posY; }
@@ -358,6 +362,7 @@ namespace EcosystemSim
         public string speciesName = "";
         public float xPos;
         public float yPos;
+        public float drinkingWaterAmount;
         public enum State
         {
             moving,
@@ -517,7 +522,8 @@ namespace EcosystemSim
         {
             age += 0.1f;
             stamina += currentState == State.moving ? -0.05f : 0.01f;
-            thirst += (currentState == State.moving ? 0.1f : 0.01f) - (currentState == State.drinking ? 100f : 0);
+            thirst += (currentState == State.moving ? 0.1f : 0.01f) - (currentState == State.drinking ? drinkingWaterAmount : 0);
+            drinkingWaterAmount = 0;
             hunger += (currentState == State.moving ? 0.05f : 0.01f) - (currentState == State.eating ? 50f : 0);
             if (thirst <= 0)
             {
