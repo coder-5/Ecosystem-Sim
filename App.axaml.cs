@@ -123,7 +123,7 @@ namespace EcosystemSim
             for (int i = 0; i < activeSpecies.Count; i++)
             {
                 Species species = activeSpecies[i];
-                text.Add($"current species {i} hunger:{species.hunger}  thirst:{species.thirst}   urge to reproduce{species.reproductiveUrge}  age to reproduce:{species.reproductiveAge}  genes:{species.genes}");
+                text.Add($"current species {i} hunger:{species.hunger}  thirst:{species.thirst}   urge to reproduce{species.reproductiveUrge}  age to reproduce:{species.reproductiveAge}  genes:{species.genes}   xPos:{species.xPos}   yPos:{species.yPos}   state:{species.currentState}   eye Sight:{species.eyeSght}   gender:{species.gender}");
             }
 
             File.AppendAllLinesAsync("data.txt", text);
