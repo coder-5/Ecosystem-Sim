@@ -56,8 +56,10 @@ namespace EcosystemSim
 
         private async void RunLoop()
         {
-            var populationLineGraph = new LineGraphWindow();
+            var populationLineGraph = new LineGraphWindow("Populations Graph");
             populationLineGraph.Show();
+            var femaleToMale = new LineGraphWindow("Female v Male Line Graph");
+            femaleToMale.Show();
             while (true)
             {
                 if (!paused)
@@ -66,6 +68,8 @@ namespace EcosystemSim
                     EcosystemCanvas.Refresh();
                     List<IBrush> colors = [Brushes.Red, Brushes.Green];
                     populationLineGraph.drawLineGraph(new List<List<double>> { ecosystem.populationSizes, ecosystem.foodSizes }, colors);
+                    List<IBrush> colors2 = [Brushes.Red, Brushes.Black];
+                    populationLineGraph.drawLineGraph(new List<List<double>> { ecosystem.femaleSpecies, ecosystem.maleSpecies }, colors2);
                 }
                 await Task.Delay(100);
             }
@@ -74,11 +78,11 @@ namespace EcosystemSim
     public partial class LineGraphWindow : Window
     {
         public Canvas GraphCanvas;
-        public LineGraphWindow()
+        public LineGraphWindow(string name)
         {
             Width = 500;
             Height = 300;
-            Title = "line Graph";
+            Title = name;
 
             GraphCanvas = new Canvas { Background = Brushes.White };
             Content = GraphCanvas;

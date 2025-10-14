@@ -78,6 +78,9 @@ namespace EcosystemSim
         public List<WaterZone> activeWater { get; set; } = new();
         public List<double> populationSizes = new();
         public List<double> foodSizes = new();
+        public List<double> maleSpecies = new();
+        public List<double> femaleSpecies = new();
+        public bool devBeta = true;
 
         public void start()
         {
@@ -85,10 +88,20 @@ namespace EcosystemSim
         }
         public void update()
         {
+            maleSpecies.Add(0);
+            femaleSpecies.Add(0);
             Console.WriteLine("==========Update==========");
             for (int i = activeSpecies.Count - 1; i >= 0; i--)
             {
                 Species species = activeSpecies[i];
+                if (species.gender == 0)
+                {
+                    femaleSpecies[femaleSpecies.Count - 1] += 1;
+                }
+                else
+                {
+                    maleSpecies[maleSpecies.Count - 1] += 1;
+                }
                 Console.WriteLine($"Species num:{i} is age: {species.age}");
                 species.update();
                 int wanted = species.wanted_resource();
@@ -124,7 +137,7 @@ namespace EcosystemSim
                 water.amountOfWater += 1f;
             }
             //update_text();
-            saveToJson();
+            if (!devBeta) {saveToJson();}
         }
         public void saveToJson(string filename = "")
         {
