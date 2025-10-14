@@ -31,7 +31,7 @@ namespace EcosystemSim
             }
             for (int i = 0; i < 26; i++)
             {
-                ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 800), rand.Next(0, 450), rand.Next(1, 4), 50, 250 + rand.Next(-50,51)));
+                ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 800), rand.Next(0, 450), rand.Next(1, 4), 50, 500 + rand.Next(-50,51)));
             }
             for (int i = 0; i < 100; i++)
             {
