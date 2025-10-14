@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Input;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,13 +10,16 @@ namespace EcosystemSim
     {
         Random rand = new Random();
         Ecosystem ecosystem = new Ecosystem();
+        bool paused = false;
         public MainWindow()
         {
             InitializeComponent();
 
+            this.KeyDown += OnKeyDown;
+
             for (int i = 0; i < 10; i++)
             {
-                ecosystem.activeSpecies.Add(new Species("5:500:1:100:10", "5:500:0:100:10", rand.Next(0, 800), rand.Next(0, 450)));
+                ecosystem.activeSpecies.Add(new Species("5:500:1:100:25", "5:500:0:100:25", rand.Next(0, 800), rand.Next(0, 450)));
                 ecosystem.activeSpecies[i].inherit_genes();
                 ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 800), rand.Next(0, 450)));
                 ecosystem.activeWater.Add(new WaterZone(1, rand.Next(0, 800), rand.Next(0, 450)));
@@ -25,13 +29,23 @@ namespace EcosystemSim
 
             RunLoop();
         }
+        private void OnKeyDown(object? sende, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                paused = !paused;
+            }
+        }
 
         private async void RunLoop()
         {
             while (true)
             {
-                ecosystem.update();
-                EcosystemCanvas.Refresh();
+                if (!paused)
+                {
+                    ecosystem.update();
+                    EcosystemCanvas.Refresh();
+                }
                 await Task.Delay(100);
             }
         }

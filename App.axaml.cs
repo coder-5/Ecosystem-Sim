@@ -74,9 +74,11 @@ namespace EcosystemSim
 
         public void update()
         {
+            Console.WriteLine("==========Update==========");
             for (int i = activeSpecies.Count - 1; i >= 0; i--)
             {
                 Species species = activeSpecies[i];
+                Console.WriteLine($"Species num:{i} is age: {species.age}");
                 species.update();
                 int wanted = species.wanted_resource();
                 if (species.wanted_resource() == 0)
@@ -335,7 +337,7 @@ namespace EcosystemSim
                 }
                 if (i == 2)
                 {
-                    newGenes += random.Next(0, 2);
+                    newGenes += random.Next(0, 2) + ":";
                     continue;
                 }
                 if (i == motherSplitGenes.Length - 1)
@@ -395,14 +397,17 @@ namespace EcosystemSim
         {
             if (reproductiveUrge >= thirst && reproductiveUrge >= hunger && age >= reproductiveAge)
             {
+                Console.WriteLine($"Species want to mate hunger:{hunger}  thirst:{thirst}   urge to reproduce{reproductiveUrge}  age to reproduce{reproductiveAge}  genes:{genes}");
                 return 2;
             }
             if (thirst >= hunger)
             {
+                Console.WriteLine($"Species is thirsty hunger:{hunger}  thirst:{thirst}   urge to reproduce{reproductiveUrge}  age to reproduce{reproductiveAge}  genes:{genes}");
                 return 0;
             }
             else if (hunger >= thirst)
             {
+                Console.WriteLine($"Species is hungry hunger:{hunger}  thirst:{thirst}   urge to reproduce{reproductiveUrge}  age to reproduce:{reproductiveAge}  genes:{genes}");
                 return 1;
             }
             return -1;
@@ -412,6 +417,8 @@ namespace EcosystemSim
             Species child = new Species(genes, mate.genes, xPos+20, yPos+20);
 
             child.inherit_genes();
+
+            reproductiveUrge = 0;
 
             return child;
         }
@@ -444,9 +451,9 @@ namespace EcosystemSim
         public void update()
         {
             age += 1;
-            stamina += currentState == State.moving ? -0.5f : 0.1f;
-            thirst += (currentState == State.moving ? 1 : 0.1f) - (currentState == State.drinking ? 25f : 0);
-            hunger += (currentState == State.moving ? 0.5f : 0.1f) - (currentState == State.eating ? 10 : 0);
+            stamina += currentState == State.moving ? -0.05f : 0.01f;
+            thirst += (currentState == State.moving ? 1 : 0.01f) - (currentState == State.drinking ? 25f : 0);
+            hunger += (currentState == State.moving ? 0.05f : 0.01f) - (currentState == State.eating ? 10f : 0);
             if (thirst <= 0)
             {
                 thirst = 0;
@@ -455,7 +462,7 @@ namespace EcosystemSim
             {
                 hunger = 0;
             }
-            reproductiveUrge += age >= reproductiveAge ? 5f : 0;
+            reproductiveUrge += age >= reproductiveAge ? 0.01f : 0;
         }
     }
 }
