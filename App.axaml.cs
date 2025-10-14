@@ -77,6 +77,7 @@ namespace EcosystemSim
         public List<FoodSpecies> activeFood { get; set; } = new();
         public List<WaterZone> activeWater { get; set; } = new();
         public List<double> populationSizes = new();
+        public List<double> foodSizes = new();
 
         public void start()
         {
@@ -117,6 +118,7 @@ namespace EcosystemSim
                 }
             }
             populationSizes.Add(activeSpecies.Count);
+            foodSizes.Add(activeFood.Count);
             //update_text();
             saveToJson();
         }
@@ -220,8 +222,11 @@ namespace EcosystemSim
             if (collided)
             {
                 species.currentState = Species.State.eating;
+                for (int i = 0; i < food.amountOfFood + 1; i++)
+                {
+                    activeFood.Add(new FoodSpecies(1, random.Next(0, 800), random.Next(0, 450), food.seedsAmount + random.Next(-1, 2)));
+                }
                 activeFood.Remove(food);
-                activeFood.Add(new FoodSpecies(1, random.Next(0, 800), random.Next(0, 450)));
             }
 
             return true;
@@ -275,10 +280,10 @@ namespace EcosystemSim
         }
         public FoodSpecies FindClosestOfTypeFood(Species species)
         {
-            FoodSpecies result = new FoodSpecies(0, 0, 0);
+            FoodSpecies result = new FoodSpecies(0, 0, 0, 1);
 
             float closestDistance = 100000;
-            FoodSpecies returnClass = new FoodSpecies(0, 0, 0);
+            FoodSpecies returnClass = new FoodSpecies(0, 0, 0, 1);
             foreach (FoodSpecies food in activeFood)
             {
                 float distance = Vector2.Distance(new Vector2(food.xPos, food.yPos), new Vector2(species.xPos, species.yPos));
@@ -339,7 +344,8 @@ namespace EcosystemSim
         public string speciesName = "";
         public float xPos;
         public float yPos;
-        public FoodSpecies(int amountOfFoodNew, int posX, int posY) { amountOfFood = amountOfFoodNew; xPos = posX; yPos = posY; }
+        public int seedsAmount;
+        public FoodSpecies(int amountOfFoodNew, int posX, int posY, int seedsAmount1) { amountOfFood = amountOfFoodNew; xPos = posX; yPos = posY; seedsAmount = seedsAmount1 >= 0 ? seedsAmount1 : 0; }
     }
 
     public class Species
@@ -446,6 +452,10 @@ namespace EcosystemSim
             {
                 return true;
             }
+            else if (age >= maxLife)
+            {
+                return true;
+            }
             return false;
         }
         public int wanted_resource()
@@ -505,7 +515,7 @@ namespace EcosystemSim
         }
         public void update()
         {
-            age += 1;
+            age += 0.1f;
             stamina += currentState == State.moving ? -0.05f : 0.01f;
             thirst += (currentState == State.moving ? 0.1f : 0.01f) - (currentState == State.drinking ? 100f : 0);
             hunger += (currentState == State.moving ? 0.05f : 0.01f) - (currentState == State.eating ? 50f : 0);

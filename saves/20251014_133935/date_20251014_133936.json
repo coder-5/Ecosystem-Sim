@@ -1,0 +1,322 @@
+{
+  "activeSpecies": [
+    {
+      "stamina": 0.5599999,
+      "age": 10,
+      "reproductiveUrge": 0,
+      "hunger": 0.46000004,
+      "thirst": 0.9100001,
+      "speciesName": "",
+      "xPos": 740.8468,
+      "yPos": 271.9096,
+      "currentState": 0,
+      "genes": "5:500:1:99:25",
+      "speed": 5,
+      "eyeSght": 500,
+      "gender": 1,
+      "maxLife": 99,
+      "reproductiveAge": 25
+    },
+    {
+      "stamina": 0.5599999,
+      "age": 10,
+      "reproductiveUrge": 0,
+      "hunger": 0.46000004,
+      "thirst": 0.9100001,
+      "speciesName": "",
+      "xPos": 743.6659,
+      "yPos": 317.31732,
+      "currentState": 0,
+      "genes": "4:499:1:99:24",
+      "speed": 4,
+      "eyeSght": 499,
+      "gender": 1,
+      "maxLife": 99,
+      "reproductiveAge": 24
+    },
+    {
+      "stamina": 0.5599999,
+      "age": 10,
+      "reproductiveUrge": 0,
+      "hunger": 0.46000004,
+      "thirst": 0.9100001,
+      "speciesName": "",
+      "xPos": 777.90247,
+      "yPos": 26.745937,
+      "currentState": 0,
+      "genes": "5:499:1:99:24",
+      "speed": 5,
+      "eyeSght": 499,
+      "gender": 1,
+      "maxLife": 99,
+      "reproductiveAge": 24
+    },
+    {
+      "stamina": 0.5599999,
+      "age": 10,
+      "reproductiveUrge": 0,
+      "hunger": 0.46000004,
+      "thirst": 0.9100001,
+      "speciesName": "",
+      "xPos": 786.0902,
+      "yPos": 408.05463,
+      "currentState": 0,
+      "genes": "4:499:1:99:25",
+      "speed": 4,
+      "eyeSght": 499,
+      "gender": 1,
+      "maxLife": 99,
+      "reproductiveAge": 25
+    },
+    {
+      "stamina": 0.5599999,
+      "age": 10,
+      "reproductiveUrge": 0,
+      "hunger": 0.46000004,
+      "thirst": 0.9100001,
+      "speciesName": "",
+      "xPos": 515.54443,
+      "yPos": 423.42407,
+      "currentState": 0,
+      "genes": "4:499:0:99:24",
+      "speed": 4,
+      "eyeSght": 499,
+      "gender": 0,
+      "maxLife": 99,
+      "reproductiveAge": 24
+    },
+    {
+      "stamina": 0.5599999,
+      "age": 10,
+      "reproductiveUrge": 0,
+      "hunger": 0.46000004,
+      "thirst": 0.9100001,
+      "speciesName": "",
+      "xPos": 367.89252,
+      "yPos": 203.50992,
+      "currentState": 0,
+      "genes": "4:500:0:99:25",
+      "speed": 4,
+      "eyeSght": 500,
+      "gender": 0,
+      "maxLife": 99,
+      "reproductiveAge": 25
+    },
+    {
+      "stamina": 0.5599999,
+      "age": 10,
+      "reproductiveUrge": 0,
+      "hunger": 0.46000004,
+      "thirst": 0.9100001,
+      "speciesName": "",
+      "xPos": 302.55212,
+      "yPos": 57.58535,
+      "currentState": 0,
+      "genes": "4:499:1:99:24",
+      "speed": 4,
+      "eyeSght": 499,
+      "gender": 1,
+      "maxLife": 99,
+      "reproductiveAge": 24
+    },
+    {
+      "stamina": 0.5599999,
+      "age": 10,
+      "reproductiveUrge": 0,
+      "hunger": 0.46000004,
+      "thirst": 0.9100001,
+      "speciesName": "",
+      "xPos": 751.4962,
+      "yPos": 297.56036,
+      "currentState": 0,
+      "genes": "4:500:1:99:24",
+      "speed": 4,
+      "eyeSght": 500,
+      "gender": 1,
+      "maxLife": 99,
+      "reproductiveAge": 24
+    },
+    {
+      "stamina": 0.5599999,
+      "age": 10,
+      "reproductiveUrge": 0,
+      "hunger": 0.46000004,
+      "thirst": 0.9100001,
+      "speciesName": "",
+      "xPos": 63,
+      "yPos": 75,
+      "currentState": 0,
+      "genes": "5:499:0:99:24",
+      "speed": 5,
+      "eyeSght": 499,
+      "gender": 0,
+      "maxLife": 99,
+      "reproductiveAge": 24
+    },
+    {
+      "stamina": 0.5599999,
+      "age": 10,
+      "reproductiveUrge": 0,
+      "hunger": 0.46000004,
+      "thirst": 0.9100001,
+      "speciesName": "",
+      "xPos": 460.33453,
+      "yPos": 164.60197,
+      "currentState": 0,
+      "genes": "4:500:0:99:25",
+      "speed": 4,
+      "eyeSght": 500,
+      "gender": 0,
+      "maxLife": 99,
+      "reproductiveAge": 25
+    }
+  ],
+  "activeFood": [
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 384,
+      "yPos": 363,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 309,
+      "yPos": 268,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 567,
+      "yPos": 212,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 643,
+      "yPos": 313,
+      "seedsAmount": 1
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 223,
+      "yPos": 340,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 414,
+      "yPos": 42,
+      "seedsAmount": 3
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 243,
+      "yPos": 369,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 423,
+      "yPos": 163,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 289,
+      "yPos": 268,
+      "seedsAmount": 2
+    },
+    {
+      "amountOfFood": 1,
+      "speciesName": "",
+      "xPos": 616,
+      "yPos": 130,
+      "seedsAmount": 1
+    }
+  ],
+  "activeWater": [
+    {
+      "amountOfWater": 1,
+      "xPos": 210,
+      "yPos": 366
+    },
+    {
+      "amountOfWater": 1,
+      "xPos": 303,
+      "yPos": 432
+    },
+    {
+      "amountOfWater": 1,
+      "xPos": 141,
+      "yPos": 75
+    },
+    {
+      "amountOfWater": 1,
+      "xPos": 793,
+      "yPos": 276
+    },
+    {
+      "amountOfWater": 1,
+      "xPos": 711,
+      "yPos": 103
+    },
+    {
+      "amountOfWater": 1,
+      "xPos": 772,
+      "yPos": 5
+    },
+    {
+      "amountOfWater": 1,
+      "xPos": 374,
+      "yPos": 220
+    },
+    {
+      "amountOfWater": 1,
+      "xPos": 316,
+      "yPos": 28
+    },
+    {
+      "amountOfWater": 1,
+      "xPos": 213,
+      "yPos": 114
+    },
+    {
+      "amountOfWater": 1,
+      "xPos": 381,
+      "yPos": 401
+    }
+  ],
+  "populationSizes": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+  ],
+  "foodSizes": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+  ]
+}

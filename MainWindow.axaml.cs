@@ -4,6 +4,7 @@ using Avalonia.Input;
 using Avalonia.Media;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,7 +27,7 @@ namespace EcosystemSim
             {
                 ecosystem.activeSpecies.Add(new Species("5:500:1:100:25", "5:500:0:100:25", rand.Next(0, 800), rand.Next(0, 450)));
                 ecosystem.activeSpecies[i].inherit_genes();
-                ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 800), rand.Next(0, 450)));
+                ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 800), rand.Next(0, 450), rand.Next(1, 4)));
                 ecosystem.activeWater.Add(new WaterZone(1, rand.Next(0, 800), rand.Next(0, 450)));
             }
 
@@ -44,15 +45,16 @@ namespace EcosystemSim
 
         private async void RunLoop()
         {
-            var LineGraphWindow = new LineGraphWindow();
-            LineGraphWindow.Show();
+            var populationLineGraph = new LineGraphWindow();
+            populationLineGraph.Show();
             while (true)
             {
                 if (!paused)
                 {
                     ecosystem.update();
                     EcosystemCanvas.Refresh();
-                    LineGraphWindow.drawLineGraph(ecosystem.populationSizes);
+                    List<IBrush> colors = [Brushes.Red, Brushes.Green];
+                    populationLineGraph.drawLineGraph(new List<List<double>> { ecosystem.populationSizes, ecosystem.foodSizes }, colors);
                 }
                 await Task.Delay(100);
             }
@@ -68,32 +70,39 @@ namespace EcosystemSim
             Title = "line Graph";
 
             GraphCanvas = new Canvas { Background = Brushes.White };
+            Content = GraphCanvas;
         }
 
-        public void drawLineGraph(List<double> data)
+        public void drawLineGraph(List<List<double>> datas, List<IBrush> colors)
         {
             GraphCanvas.Children.Clear();
 
-            double width = GraphCanvas.Bounds.Width;
-            double height = GraphCanvas.Bounds.Height;
-            double xStep = width / (data.Count - 1);
-            double yMax = 100;
-            double yScale = height / yMax;
-
-            var Polyline = new Polyline
+            for (int j = 0; j < datas.Count; j++)
             {
-                Stroke = Brushes.Blue,
-                StrokeThickness = 2
-            };
+                List<double> data = datas[j];
+                var color = colors[j];
 
-            for (int i = 0; i < data.Count; i++)
-            {
-                double x = i * xStep;
-                double y = height - (data[i] * yScale);
-                Polyline.Points.Add(new Avalonia.Point(x, y));
+                double width = GraphCanvas.Bounds.Width;
+                double height = GraphCanvas.Bounds.Height;
+                double xStep = width / (data.Count - 1);
+                double yMax = 100;
+                double yScale = height / yMax;
+
+                var Polyline = new Polyline
+                {
+                    Stroke = color,
+                    StrokeThickness = 2
+                };
+
+                for (int i = 0; i < data.Count; i++)
+                {
+                    double x = i * xStep;
+                    double y = height - (data[i] * yScale);
+                    Polyline.Points.Add(new Avalonia.Point(x, y));
+                }
+
+                GraphCanvas.Children.Add(Polyline);
             }
-
-            GraphCanvas.Children.Add(Polyline);
         }
     }
 }
