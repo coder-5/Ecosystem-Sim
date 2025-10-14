@@ -70,6 +70,7 @@ namespace EcosystemSim
     public class Ecosystem
     {
         static Random random = new Random();
+        static string start_time = DateTime.Now.ToString("yyyyMMdd_HHmmss");
         public List<Species> activeSpecies = new List<Species>();
         public List<FoodSpecies> activeFood = new List<FoodSpecies>();
         public List<WaterZone> activeWater = new List<WaterZone>();
@@ -113,14 +114,23 @@ namespace EcosystemSim
                     activeSpecies.RemoveAt(i);
                 }
             }
-            update_text();
+            //update_text();
+            saveToJson();
         }
-        public void saveToJson(string filename = "data.json")
+        public void saveToJson(string filename = "")
         {
             var options = new JsonSerializerOptions
             {
                 WriteIndented = true
             };
+
+            Directory.CreateDirectory("saves/"+start_time);
+
+            if (string.IsNullOrEmpty(filename))
+            {
+                string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                filename = $"saves/{start_time}/date_{timestamp}.json";
+            }
 
             string json = JsonSerializer.Serialize(this, options); // finish the json serialization code and such
             File.WriteAllText(filename, json);
