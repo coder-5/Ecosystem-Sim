@@ -122,7 +122,7 @@ namespace EcosystemSim
                 WriteIndented = true
             };
 
-            string json = JsonSerializer.Serialize(this, options);
+            string json = JsonSerializer.Serialize(this, options); // finish the json serialization code and such
             File.WriteAllText(filename, json);
         }
         public void update_text()
