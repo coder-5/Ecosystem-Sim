@@ -10,6 +10,7 @@ using Avalonia.Media;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace EcosystemSim
 {
@@ -72,9 +73,9 @@ namespace EcosystemSim
     {
         static Random random = new Random();
         static string start_time = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-        public List<Species> activeSpecies = new List<Species>();
-        public List<FoodSpecies> activeFood = new List<FoodSpecies>();
-        public List<WaterZone> activeWater = new List<WaterZone>();
+        public List<Species> activeSpecies { get; set; } = new();
+        public List<FoodSpecies> activeFood { get; set; } = new();
+        public List<WaterZone> activeWater { get; set; } = new();
 
         public void start()
         {
@@ -118,38 +119,32 @@ namespace EcosystemSim
             //update_text();
             saveToJson();
         }
-        public async Task saveToJson(string filename = "")
+        public void saveToJson(string filename = "")
         {
-            Ecosystem snapshot;
-            lock (this)
+            Console.WriteLine("Saving to json called");
+
+            try
             {
-                string tempJson = JsonSerializer.Serialize(this);
-                snapshot = JsonSerializer.Deserialize<Ecosystem>(tempJson);
+                Console.WriteLine("Saving to json file");
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    IncludeFields = true
+                };
+
+                if (string.IsNullOrEmpty(filename))
+                {
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    filename = $"saves/{start_time}/date_{timestamp}.json";
+                }
+
+                string json = JsonSerializer.Serialize(this, options); // finish the json serialization code and such
+                File.WriteAllText(filename, json);
             }
-
-            await Task.Run(() =>
+            catch (Exception ex)
             {
-                try
-                {
-                    var options = new JsonSerializerOptions
-                    {
-                        WriteIndented = true
-                    };
-
-                    if (string.IsNullOrEmpty(filename))
-                    {
-                        string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-                        filename = $"saves/{start_time}/date_{timestamp}.json";
-                    }
-
-                    string json = JsonSerializer.Serialize(snapshot, options); // finish the json serialization code and such
-                    File.WriteAllText(filename, json);
-                }
-                catch (Exception ex)
-                {
-
-                }
-            });
+                Console.WriteLine("Error saving json: " + ex);
+            }
         }
         public void update_text()
         {
