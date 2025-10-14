@@ -4,6 +4,7 @@ using Avalonia.Input;
 using Avalonia.Media;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
@@ -77,6 +78,9 @@ namespace EcosystemSim
         {
             GraphCanvas.Children.Clear();
 
+            double yMax = datas.SelectMany(d => d).DefaultIfEmpty(1).Max();
+            yMax *= 1.1;
+
             for (int j = 0; j < datas.Count; j++)
             {
                 List<double> data = datas[j];
@@ -85,7 +89,6 @@ namespace EcosystemSim
                 double width = GraphCanvas.Bounds.Width;
                 double height = GraphCanvas.Bounds.Height;
                 double xStep = width / (data.Count - 1);
-                double yMax = 100;
                 double yScale = height / yMax;
 
                 var Polyline = new Polyline
