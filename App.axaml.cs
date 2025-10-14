@@ -76,12 +76,12 @@ namespace EcosystemSim
         public List<Species> activeSpecies { get; set; } = new();
         public List<FoodSpecies> activeFood { get; set; } = new();
         public List<WaterZone> activeWater { get; set; } = new();
+        public List<double> populationSizes = new();
 
         public void start()
         {
             Directory.CreateDirectory("saves/" + start_time);
         }
-
         public void update()
         {
             Console.WriteLine("==========Update==========");
@@ -116,6 +116,7 @@ namespace EcosystemSim
                     activeSpecies.RemoveAt(i);
                 }
             }
+            populationSizes.Add(activeSpecies.Count);
             //update_text();
             saveToJson();
         }
@@ -182,7 +183,7 @@ namespace EcosystemSim
             Vector2 targetPos = new Vector2(species1.xPos, species1.yPos);
 
             bool collided = species.move_species(targetPos);
-            
+
             if (collided && species.gender == 0)
             {
                 species.currentState = Species.State.nothing;
@@ -215,7 +216,7 @@ namespace EcosystemSim
             Vector2 targetPos = new Vector2(food.xPos, food.yPos);
 
             bool collided = species.move_species(targetPos);
-            
+
             if (collided)
             {
                 species.currentState = Species.State.eating;
@@ -468,7 +469,7 @@ namespace EcosystemSim
         }
         public Species mate(Species mate)
         {
-            Species child = new Species(genes, mate.genes, xPos+20, yPos+20);
+            Species child = new Species(genes, mate.genes, xPos + 20, yPos + 20);
 
             child.inherit_genes();
 
