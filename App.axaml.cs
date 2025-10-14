@@ -242,6 +242,17 @@ namespace EcosystemSim
                 for (int i = 0; i < food.amountOfFood + 1; i++)
                 {
                     activeFood.Add(new FoodSpecies(1, random.Next(0, 800), random.Next(0, 450), food.seedsAmount + random.Next(-1, 2)));
+                    FoodSpecies foodNew = activeFood[activeFood.Count - 1];
+                    for (int l = 0; l < activeFood.Count - 1; l++)
+                    {
+                        FoodSpecies foodAnalysis = activeFood[l];
+                        if (Vector2.Distance(new Vector2(foodAnalysis.xPos, foodAnalysis.yPos), new Vector2(foodNew.xPos, foodNew.yPos)) <= 5)
+                        {
+                            activeFood.Remove(foodAnalysis);
+                            activeFood.Remove(foodNew);
+                            break;
+                        }
+                    }
                 }
                 activeFood.Remove(food);
             }
