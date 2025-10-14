@@ -49,7 +49,7 @@ namespace EcosystemSim
 
             foreach (var food in EcosystemData.activeFood)
             {
-                var brush = Brushes.Green;
+                var brush = food.age >= food.sproutingAge ? Brushes.Green : Brushes.Brown;
                 var pen = new Pen(Brushes.Transparent, 1);
                 var center = new Point(food.xPos, food.yPos);
                 context.DrawEllipse(brush, pen, center, size, size);
@@ -80,6 +80,8 @@ namespace EcosystemSim
         public List<double> foodSizes = new();
         public List<double> maleSpecies = new();
         public List<double> femaleSpecies = new();
+        public List<double> sproutedPlants = new();
+        public List<double> unSproutedPlants = new();
         public bool devBeta = true;
 
         public void start()
@@ -136,8 +138,66 @@ namespace EcosystemSim
             {
                 water.amountOfWater += 1f;
             }
+            List<FoodSpecies> newFoods = new();
+            foreach (var food in activeFood)
+            {
+                sproutedPlants.Add(0);
+                unSproutedPlants.Add(0);
+                food.age += 1f;
+                if (food.age >= food.seedingAge)
+                {
+                    food.seedingAge += food.originalSeedingAge;
+                    int spawnCount = food.amountOfFood + 1;
+                    for (int i = 0; i < spawnCount; i++)
+                    {
+
+                        FoodSpecies newFood;
+
+                        bool validPosition = false;
+
+                        int attempts = 0;
+
+                        do
+                        {
+                            float x = food.xPos + random.Next(-150, 150);
+                            float y = food.yPos + random.Next(-150, 150);
+                            newFood = new FoodSpecies(1, (int)x, (int)y, food.seedsAmount + random.Next(-1, 2), food.sproutingAge + random.Next(-1, 2), food.originalSeedingAge + random.Next(-1, 2));
+                            newFood.seedingAge = newFood.originalSeedingAge;
+
+                            validPosition = true;
+                            foreach (var existing in activeFood)
+                            {
+                                if (Vector2.Distance(new Vector2(existing.xPos, existing.yPos), new Vector2(x, y)) <= 10)
+                                {
+                                    validPosition = false;
+                                    break;
+                                }
+                            }
+                            attempts++;
+                        }
+                        while (!validPosition && attempts < 20);
+
+                        if (validPosition)
+                        {
+                            newFoods.Add(newFood);
+                        }
+                    }
+                }
+                if (food.age >= food.sproutingAge)
+                {
+                    sproutedPlants[sproutedPlants.Count - 1] += 1;
+                }
+                else
+                {
+                    unSproutedPlants[unSproutedPlants.Count - 1] += 1;
+                }
+            }
+            foreach (var food1 in newFoods)
+            {
+                activeFood.Add(food1);
+            }
             //update_text();
-            if (!devBeta) {saveToJson();}
+            if (!devBeta) { saveToJson(); }
         }
         public void saveToJson(string filename = "")
         {
@@ -239,21 +299,7 @@ namespace EcosystemSim
             if (collided)
             {
                 species.currentState = Species.State.eating;
-                for (int i = 0; i < food.amountOfFood + 1; i++)
-                {
-                    activeFood.Add(new FoodSpecies(1, random.Next(0, 800), random.Next(0, 450), food.seedsAmount + random.Next(-1, 2)));
-                    FoodSpecies foodNew = activeFood[activeFood.Count - 1];
-                    for (int l = 0; l < activeFood.Count - 1; l++)
-                    {
-                        FoodSpecies foodAnalysis = activeFood[l];
-                        if (Vector2.Distance(new Vector2(foodAnalysis.xPos, foodAnalysis.yPos), new Vector2(foodNew.xPos, foodNew.yPos)) <= 5)
-                        {
-                            activeFood.Remove(foodAnalysis);
-                            activeFood.Remove(foodNew);
-                            break;
-                        }
-                    }
-                }
+
                 activeFood.Remove(food);
             }
 
@@ -308,14 +354,14 @@ namespace EcosystemSim
         }
         public FoodSpecies FindClosestOfTypeFood(Species species)
         {
-            FoodSpecies result = new FoodSpecies(0, 0, 0, 1);
+            FoodSpecies result = new FoodSpecies(0, 0, 0, 1, 0, 0);
 
             float closestDistance = 100000;
-            FoodSpecies returnClass = new FoodSpecies(0, 0, 0, 1);
+            FoodSpecies returnClass = new FoodSpecies(0, 0, 0, 1, 0, 0);
             foreach (FoodSpecies food in activeFood)
             {
                 float distance = Vector2.Distance(new Vector2(food.xPos, food.yPos), new Vector2(species.xPos, species.yPos));
-                if (distance < closestDistance)
+                if (distance < closestDistance && food.age >= food.sproutingAge)
                 {
                     returnClass = food;
                     closestDistance = distance;
@@ -359,6 +405,10 @@ namespace EcosystemSim
             return returnClass;
         }
     }
+    public class SeedSpecies
+    {
+        
+    }
     public class WaterZone
     { 
         public float amountOfWater;
@@ -373,7 +423,11 @@ namespace EcosystemSim
         public float xPos;
         public float yPos;
         public int seedsAmount;
-        public FoodSpecies(int amountOfFoodNew, int posX, int posY, int seedsAmount1) { amountOfFood = amountOfFoodNew; xPos = posX; yPos = posY; seedsAmount = seedsAmount1 >= 0 ? seedsAmount1 : 0; }
+        public float age;
+        public float sproutingAge;
+        public float seedingAge;
+        public float originalSeedingAge;
+        public FoodSpecies(int amountOfFoodNew, int posX, int posY, int seedsAmount1, float sproutingAge1, float originalSeedingAge1) { amountOfFood = amountOfFoodNew; xPos = posX; yPos = posY; seedsAmount = seedsAmount1 >= 0 ? seedsAmount1 : 0; sproutingAge = sproutingAge1; originalSeedingAge = originalSeedingAge1; }
     }
 
     public class Species

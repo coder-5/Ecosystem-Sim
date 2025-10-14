@@ -31,7 +31,7 @@ namespace EcosystemSim
             }
             for (int i = 0; i < 26; i++)
             {
-                ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 800), rand.Next(0, 450), rand.Next(1, 4)));
+                ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 800), rand.Next(0, 450), rand.Next(1, 4), 50, 250));
             }
             for (int i = 0; i < 100; i++)
             {
@@ -60,6 +60,8 @@ namespace EcosystemSim
             populationLineGraph.Show();
             var femaleToMale = new LineGraphWindow("Female v Male Line Graph");
             femaleToMale.Show();
+            var sproutedToUnsprouted = new LineGraphWindow("Sprouted v Un-Sprouted Line Graph");
+            sproutedToUnsprouted.Show();
             while (true)
             {
                 if (!paused)
@@ -70,6 +72,8 @@ namespace EcosystemSim
                     populationLineGraph.drawLineGraph(new List<List<double>> { ecosystem.populationSizes, ecosystem.foodSizes }, colors);
                     List<IBrush> colors2 = [Brushes.Red, Brushes.Black];
                     femaleToMale.drawLineGraph(new List<List<double>> { ecosystem.femaleSpecies, ecosystem.maleSpecies }, colors2);
+                    List<IBrush> colors3 = [Brushes.Green, Brushes.Brown];
+                    sproutedToUnsprouted.drawLineGraph(new List<List<double>> { ecosystem.sproutedPlants, ecosystem.unSproutedPlants }, colors3);
                 }
                 await Task.Delay(100);
             }
