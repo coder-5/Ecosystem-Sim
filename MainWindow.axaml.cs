@@ -69,7 +69,7 @@ namespace EcosystemSim
                     List<IBrush> colors = [Brushes.Red, Brushes.Green];
                     populationLineGraph.drawLineGraph(new List<List<double>> { ecosystem.populationSizes, ecosystem.foodSizes }, colors);
                     List<IBrush> colors2 = [Brushes.Red, Brushes.Black];
-                    populationLineGraph.drawLineGraph(new List<List<double>> { ecosystem.femaleSpecies, ecosystem.maleSpecies }, colors2);
+                    femaleToMale.drawLineGraph(new List<List<double>> { ecosystem.femaleSpecies, ecosystem.maleSpecies }, colors2);
                 }
                 await Task.Delay(100);
             }
