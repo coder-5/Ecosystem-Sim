@@ -159,8 +159,8 @@ namespace EcosystemSim
 
                         do
                         {
-                            float x = food.xPos + random.Next(-150, 150);
-                            float y = food.yPos + random.Next(-150, 150);
+                            float x = Math.Clamp(food.xPos + random.Next(-150, 150), 0, 800);
+                            float y = Math.Clamp(food.yPos + random.Next(-150, 150), 0, 800);
                             newFood = new FoodSpecies(1, (int)x, (int)y, food.seedsAmount + random.Next(-1, 2), food.sproutingAge + random.Next(-1, 2), food.originalSeedingAge + random.Next(-1, 2));
                             newFood.seedingAge = newFood.originalSeedingAge;
 
