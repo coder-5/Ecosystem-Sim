@@ -8,6 +8,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using System.IO;
+using System.Text.Json;
 
 namespace EcosystemSim
 {
@@ -113,6 +114,16 @@ namespace EcosystemSim
                 }
             }
             update_text();
+        }
+        public void saveToJson(string filename = "data.json")
+        {
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+
+            string json = JsonSerializer.Serialize(this, options);
+            File.WriteAllText(filename, json);
         }
         public void update_text()
         {
