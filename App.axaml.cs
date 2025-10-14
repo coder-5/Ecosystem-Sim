@@ -474,7 +474,7 @@ namespace EcosystemSim
         {
             age += 1;
             stamina += currentState == State.moving ? -0.05f : 0.01f;
-            thirst += (currentState == State.moving ? 1 : 0.01f) - (currentState == State.drinking ? 100f : 0);
+            thirst += (currentState == State.moving ? 0.1f : 0.01f) - (currentState == State.drinking ? 100f : 0);
             hunger += (currentState == State.moving ? 0.05f : 0.01f) - (currentState == State.eating ? 50f : 0);
             if (thirst <= 0)
             {
