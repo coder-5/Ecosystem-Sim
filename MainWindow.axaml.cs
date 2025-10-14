@@ -33,9 +33,13 @@ namespace EcosystemSim
             {
                 ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 800), rand.Next(0, 450), rand.Next(1, 4)));
             }
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < 100; i++)
             {
-                ecosystem.activeWater.Add(new WaterZone(1, 400 + rand.Next(-25, 25), rand.Next(0, 450)));
+                ecosystem.activeWater.Add(new WaterZone(1, 650 + rand.Next(-25, 25), rand.Next(0, 450)));
+            }
+            for (int i = 0; i < 100; i++)
+            {
+                ecosystem.activeWater.Add(new WaterZone(1, 250 + rand.Next(-25, 25), rand.Next(0, 450)));
             }
 
             EcosystemCanvas.EcosystemData = ecosystem;
