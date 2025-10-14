@@ -46,7 +46,7 @@ namespace EcosystemSim
 
             foreach (var species in EcosystemData.activeSpecies)
             {
-                var brush = Brushes.Black;
+                var brush = Brushes.Red;
                 var pen = new Pen(Brushes.Transparent, 1);
                 var center = new Point(species.xPos, species.yPos);
                 context.DrawEllipse(brush, pen, center, size, size);
