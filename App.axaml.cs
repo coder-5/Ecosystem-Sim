@@ -161,7 +161,7 @@ namespace EcosystemSim
                         {
                             float x = Math.Clamp(food.xPos + random.Next(-150, 150), 0, 800);
                             float y = Math.Clamp(food.yPos + random.Next(-150, 150), 0, 450);
-                            newFood = new FoodSpecies(1, (int)x, (int)y, food.seedsAmount + random.Next(-1, 2), food.sproutingAge + random.Next(-1, 2), food.originalSeedingAge + random.Next(-1, 2));
+                            newFood = new FoodSpecies(1, (int)x, (int)y, food.seedsAmount + random.Next(-1, 2), food.sproutingAge + random.Next(-1, 2), food.originalSeedingAge + random.Next(-1, 2), food.maxLife + random.Next(-1,2));
                             newFood.seedingAge = newFood.originalSeedingAge;
 
                             validPosition = true;
@@ -195,6 +195,13 @@ namespace EcosystemSim
             foreach (var food1 in newFoods)
             {
                 activeFood.Add(food1);
+            }
+            for (int i = activeFood.Count - 1; i >= 0; i--)
+            {
+                if (activeFood[i].age >= activeFood[i].maxLife)
+                {
+                    activeFood.RemoveAt(i);
+                }
             }
             //update_text();
             if (!devBeta) { saveToJson(); }
@@ -354,10 +361,10 @@ namespace EcosystemSim
         }
         public FoodSpecies FindClosestOfTypeFood(Species species)
         {
-            FoodSpecies result = new FoodSpecies(0, 0, 0, 1, 0, 0);
+            FoodSpecies result = new FoodSpecies(0, 0, 0, 1, 0, 0, 0);
 
             float closestDistance = 100000;
-            FoodSpecies returnClass = new FoodSpecies(0, 0, 0, 1, 0, 0);
+            FoodSpecies returnClass = new FoodSpecies(0, 0, 0, 1, 0, 0, 0);
             foreach (FoodSpecies food in activeFood)
             {
                 float distance = Vector2.Distance(new Vector2(food.xPos, food.yPos), new Vector2(species.xPos, species.yPos));

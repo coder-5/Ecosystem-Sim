@@ -29,9 +29,9 @@ namespace EcosystemSim
                 ecosystem.activeSpecies.Add(new Species("5:500:1:100:25", "5:500:0:100:25", rand.Next(0, 800), rand.Next(0, 450)));
                 ecosystem.activeSpecies[i].inherit_genes();
             }
-            for (int i = 0; i < 26; i++)
+            for (int i = 0; i < 51; i++)
             {
-                ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 800), rand.Next(0, 450), rand.Next(1, 4), 50, 500 + rand.Next(-50,51)));
+                ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 800), rand.Next(0, 450), rand.Next(1, 4), 50, 500 + rand.Next(-50,51), 1000 + rand.Next(-50,51)));
             }
             for (int i = 0; i < 100; i++)
             {
@@ -75,7 +75,7 @@ namespace EcosystemSim
                     List<IBrush> colors3 = [Brushes.Green, Brushes.Brown];
                     sproutedToUnsprouted.drawLineGraph(new List<List<double>> { ecosystem.sproutedPlants, ecosystem.unSproutedPlants }, colors3);
                 }
-                await Task.Delay(100);
+                await Task.Delay(10);
             }
         }
     }

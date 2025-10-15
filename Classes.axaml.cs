@@ -24,7 +24,8 @@ namespace EcosystemSim
         public float sproutingAge;
         public float seedingAge;
         public float originalSeedingAge;
-        public FoodSpecies(int amountOfFoodNew, int posX, int posY, int seedsAmount1, float sproutingAge1, float originalSeedingAge1) { amountOfFood = amountOfFoodNew; xPos = posX; yPos = posY; seedsAmount = seedsAmount1 >= 0 ? seedsAmount1 : 0; sproutingAge = sproutingAge1; originalSeedingAge = originalSeedingAge1; }
+        public float maxLife;
+        public FoodSpecies(int amountOfFoodNew, int posX, int posY, int seedsAmount1, float sproutingAge1, float originalSeedingAge1, float maxLife1) { amountOfFood = amountOfFoodNew; xPos = posX; yPos = posY; seedsAmount = seedsAmount1 >= 0 ? seedsAmount1 : 0; sproutingAge = sproutingAge1; originalSeedingAge = originalSeedingAge1; maxLife = maxLife1; }
     }
 
     public class Species
@@ -197,9 +198,9 @@ namespace EcosystemSim
         {
             age += 0.1f;
             stamina += currentState == State.moving ? -0.05f : 0.01f;
-            thirst += (currentState == State.moving ? 0.1f : 0.01f) - (currentState == State.drinking ? drinkingWaterAmount : 0);
+            thirst += (currentState == State.moving ? 0.2f : 0.075f) - (currentState == State.drinking ? drinkingWaterAmount : 0);
             drinkingWaterAmount = 0;
-            hunger += (currentState == State.moving ? 0.05f : 0.01f) - (currentState == State.eating ? 50f : 0);
+            hunger += (currentState == State.moving ? 0.1f : 0.05f) - (currentState == State.eating ? 50f : 0);
             if (thirst <= 0)
             {
                 thirst = 0;
