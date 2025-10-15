@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
 using Avalonia.Input;
 using Avalonia.Media;
+using Avalonia.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,6 +15,7 @@ namespace EcosystemSim
 {
     public partial class MainWindow : Window
     {
+        private CancellationTokenSource appCancellation = new CancellationTokenSource();
         Random rand = new Random();
         Ecosystem ecosystem = new Ecosystem();
         bool paused = false;
@@ -22,6 +24,11 @@ namespace EcosystemSim
             ecosystem.start();
 
             InitializeComponent();
+
+            this.Closing += (s, e) =>
+            {
+                appCancellation.Cancel();
+            };
 
             this.KeyDown += OnKeyDown;
 
@@ -32,7 +39,7 @@ namespace EcosystemSim
             }
             for (int i = 0; i < 51; i++)
             {
-                ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 800), rand.Next(0, 450), rand.Next(1, 4), 50, 500 + rand.Next(-50,51), 1000 + rand.Next(-50,51)));
+                ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 800), rand.Next(0, 450), rand.Next(1, 4), 50, 500 + rand.Next(-50, 51), 1000 + rand.Next(-50, 51)));
             }
             for (int i = 0; i < 100; i++)
             {
@@ -45,7 +52,7 @@ namespace EcosystemSim
 
             EcosystemCanvas.EcosystemData = ecosystem;
 
-            RunLoop();
+            RunLoop(appCancellation.Token);
         }
         private void OnKeyDown(object? sende, KeyEventArgs e)
         {
@@ -55,7 +62,7 @@ namespace EcosystemSim
             }
         }
 
-        private async void RunLoop()
+        private async void RunLoop(CancellationToken token)
         {
             var populationLineGraph = new LineGraphWindow("Populations Graph");
             populationLineGraph.Show();
@@ -65,97 +72,110 @@ namespace EcosystemSim
             sproutedToUnsprouted.Show();
             var traits = new LineGraphWindow("Traits Line Graph");
             traits.Show();
-            while (true)
+            updateGraphs(populationLineGraph, femaleToMale, sproutedToUnsprouted, traits, token);
+            while (!token.IsCancellationRequested)
             {
                 if (!paused)
                 {
                     ecosystem.update();
                     EcosystemCanvas.Refresh();
-                    List<IBrush> colors = [Brushes.Red, Brushes.Green];
-                    populationLineGraph.drawLineGraph(new List<List<double>> { ecosystem.populationSizes, ecosystem.foodSizes }, colors, new List<string> { "Population Size", "Food Population"});
-                    List<IBrush> colors2 = [Brushes.Red, Brushes.Black];
-                    femaleToMale.drawLineGraph(new List<List<double>> { ecosystem.femaleSpecies, ecosystem.maleSpecies }, colors2, new List<string> { "Female", "Male"});
-                    List<IBrush> colors3 = [Brushes.Green, Brushes.Brown];
-                    sproutedToUnsprouted.drawLineGraph(new List<List<double>> { ecosystem.sproutedPlants, ecosystem.unSproutedPlants }, colors3, new List<string> { "Sprouted", "UnSprouted"});
-                    List<IBrush> colors4 = [Brushes.Green, Brushes.Blue, Brushes.Red];
-                    traits.drawLineGraph(new List<List<double>> { ecosystem.averageEyeSight, ecosystem.averageReproductionAge, ecosystem.averageSpeedPrey }, colors4, new List<string> { "Eye Sight", "Reproduction", "Speed"});
+                    await Task.Delay(10);
                 }
-                await Task.Delay(10);
             }
         }
-    }
-    public partial class LineGraphWindow : Window
-    {
-        public Canvas GraphCanvas;
-        public LineGraphWindow(string name)
+        private async void updateGraphs(LineGraphWindow populationLineGraph, LineGraphWindow femaleToMale, LineGraphWindow sproutedToUnsprouted, LineGraphWindow traits, CancellationToken token)
         {
-            Width = 500;
-            Height = 300;
-            Title = name;
-
-            GraphCanvas = new Canvas { Background = Brushes.White };
-            Content = GraphCanvas;
-        }
-
-        public void drawLineGraph(List<List<double>> datas, List<IBrush> colors, List<string> names)
-        {
-            GraphCanvas.Children.Clear();
-
-            double yMax = datas.SelectMany(d => d).DefaultIfEmpty(1).Max();
-            yMax *= 1.1;
-
-            for (int j = 0; j < datas.Count; j++)
+            while (!token.IsCancellationRequested)
             {
-                List<double> data = datas[j];
-                var color = colors[j];
-
-                double width = GraphCanvas.Bounds.Width;
-                double height = GraphCanvas.Bounds.Height;
-                double xStep = width / (data.Count - 1);
-                double yScale = height / yMax;
-
-                var Polyline = new Polyline
+                List<IBrush> colors = [Brushes.Red, Brushes.Green];
+                populationLineGraph.drawLineGraph(new List<List<double>> { ecosystem.populationSizes, ecosystem.foodSizes }, colors, new List<string> { "Population Size", "Food Population" });
+                List<IBrush> colors2 = [Brushes.Red, Brushes.Black];
+                femaleToMale.drawLineGraph(new List<List<double>> { ecosystem.femaleSpecies, ecosystem.maleSpecies }, colors2, new List<string> { "Female", "Male" });
+                List<IBrush> colors3 = [Brushes.Green, Brushes.Brown];
+                sproutedToUnsprouted.drawLineGraph(new List<List<double>> { ecosystem.sproutedPlants, ecosystem.unSproutedPlants }, colors3, new List<string> { "Sprouted", "UnSprouted" });
+                List<IBrush> colors4 = [Brushes.Green, Brushes.Blue, Brushes.Red];
+                List<double> averageEyeSightSmaller = new();
+                foreach (double sight in ecosystem.averageEyeSight)
                 {
-                    Stroke = color,
-                    StrokeThickness = 2
-                };
-
-                for (int i = 0; i < data.Count; i++)
-                {
-                    double x = i * xStep;
-                    double y = height - (data[i] * yScale);
-                    Polyline.Points.Add(new Avalonia.Point(x, y));
+                    averageEyeSightSmaller.Add(sight / 10);
                 }
+                traits.drawLineGraph(new List<List<double>> { averageEyeSightSmaller, ecosystem.averageReproductionAge, ecosystem.averageSpeedPrey }, colors4, new List<string> { "Eye Sight", "Reproduction", "Speed" });
+                await Task.Delay(500);
+            }
+        }
+        public partial class LineGraphWindow : Window
+        {
+            public Canvas GraphCanvas;
+            public LineGraphWindow(string name)
+            {
+                Width = 500;
+                Height = 300;
+                Title = name;
 
-                GraphCanvas.Children.Add(Polyline);
+                GraphCanvas = new Canvas { Background = Brushes.White };
+                Content = GraphCanvas;
             }
 
-            double legendX = 10;
-            double legendY = 10;
-            double legendSpacing = 20;
-            
-            for (int h = 0; h < datas.Count; h++)
+            public void drawLineGraph(List<List<double>> datas, List<IBrush> colors, List<string> names)
             {
-                var rect = new Rectangle()
-                {
-                    Width = 15,
-                    Height = 15,
-                    Fill = colors[h]
-                };
-                Canvas.SetLeft(rect, legendX);
-                Canvas.SetTop(rect, legendY + h * legendSpacing);
-                GraphCanvas.Children.Add(rect);
+                GraphCanvas.Children.Clear();
 
-                string labelText = names[h];
-                var text = new TextBlock
+                double yMax = datas.SelectMany(d => d).DefaultIfEmpty(1).Max();
+                yMax *= 1.1;
+
+                for (int j = 0; j < datas.Count; j++)
                 {
-                    Text = labelText,
-                    Foreground = Brushes.Black,
-                    FontSize = 14
-                };
-                Canvas.SetLeft(text, legendX + 20);
-                Canvas.SetTop(text, legendY + h * legendSpacing - 2);
-                GraphCanvas.Children.Add(text);
+                    List<double> data = datas[j];
+                    var color = colors[j];
+
+                    double width = GraphCanvas.Bounds.Width;
+                    double height = GraphCanvas.Bounds.Height;
+                    double xStep = width / (data.Count - 1);
+                    double yScale = height / yMax;
+
+                    var Polyline = new Polyline
+                    {
+                        Stroke = color,
+                        StrokeThickness = 2
+                    };
+
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        double x = i * xStep;
+                        double y = height - (data[i] * yScale);
+                        Polyline.Points.Add(new Avalonia.Point(x, y));
+                    }
+
+                    GraphCanvas.Children.Add(Polyline);
+                }
+
+                double legendX = 10;
+                double legendY = 10;
+                double legendSpacing = 20;
+
+                for (int h = 0; h < datas.Count; h++)
+                {
+                    var rect = new Rectangle()
+                    {
+                        Width = 15,
+                        Height = 15,
+                        Fill = colors[h]
+                    };
+                    Canvas.SetLeft(rect, legendX);
+                    Canvas.SetTop(rect, legendY + h * legendSpacing);
+                    GraphCanvas.Children.Add(rect);
+
+                    string labelText = names[h];
+                    var text = new TextBlock
+                    {
+                        Text = labelText,
+                        Foreground = Brushes.Black,
+                        FontSize = 14
+                    };
+                    Canvas.SetLeft(text, legendX + 20);
+                    Canvas.SetTop(text, legendY + h * legendSpacing - 2);
+                    GraphCanvas.Children.Add(text);
+                }
             }
         }
     }
