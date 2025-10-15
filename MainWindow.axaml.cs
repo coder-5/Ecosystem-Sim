@@ -1,3 +1,4 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
 using Avalonia.Input;
@@ -21,7 +22,7 @@ namespace EcosystemSim
         bool paused = false;
         bool simulationLineGraphsvisible = true;
         bool simulationProgressBarVisible = true;
-        int max_simulation_steps;
+        int max_simulation_steps = 10000;
         public MainWindow()
         {
             ecosystem.start();
@@ -75,7 +76,9 @@ namespace EcosystemSim
             sproutedToUnsprouted.Show();
             var traits = new LineGraphWindow("Traits Line Graph");
             traits.Show();
-            updateGraphs(populationLineGraph, femaleToMale, sproutedToUnsprouted, traits, token);
+            var progress = new progressBar("Finished Progress");
+            progress.Show();
+            updateGraphs(populationLineGraph, femaleToMale, sproutedToUnsprouted, traits, token, progress);
             while (!token.IsCancellationRequested && ecosystem.simulationSteps < max_simulation_steps)
             {
                 if (!paused)
@@ -86,7 +89,7 @@ namespace EcosystemSim
                 }
             }
         }
-        private async void updateGraphs(LineGraphWindow populationLineGraph, LineGraphWindow femaleToMale, LineGraphWindow sproutedToUnsprouted, LineGraphWindow traits, CancellationToken token)
+        private async void updateGraphs(LineGraphWindow populationLineGraph, LineGraphWindow femaleToMale, LineGraphWindow sproutedToUnsprouted, LineGraphWindow traits, CancellationToken token, progressBar progress)
         {
             while (!token.IsCancellationRequested && simulationLineGraphsvisible && ecosystem.simulationSteps < max_simulation_steps)
             {
@@ -103,7 +106,52 @@ namespace EcosystemSim
                     averageEyeSightSmaller.Add(sight / 10);
                 }
                 traits.drawLineGraph(new List<List<double>> { averageEyeSightSmaller, ecosystem.averageReproductionAge, ecosystem.averageSpeedPrey }, colors4, new List<string> { "Eye Sight", "Reproduction", "Speed" });
+                if (simulationProgressBarVisible)
+                {
+                    progress.drawProgressBar(ecosystem.simulationSteps, max_simulation_steps);
+                }
                 await Task.Delay(100);
+            }
+        }
+        public partial class progressBar : Window
+        {
+            public Canvas GraphCanvas;
+            public progressBar(string name)
+            {
+                Width = 500;
+                Height = 50;
+                Title = name;
+
+                GraphCanvas = new Canvas { Background = Brushes.White };
+                Content = GraphCanvas;
+            }
+            public void drawProgressBar(int amount, int goal)
+            {
+                GraphCanvas.Children.Clear();
+
+                var progressRect = new Rectangle()
+                {
+                    Width = 490 * ((double)amount / goal),
+                    Height = 90,
+                    Fill = Brushes.Green
+                };
+
+                Canvas.SetLeft(progressRect, 5);
+                Canvas.SetBottom(progressRect, 5);
+
+                GraphCanvas.Children.Add(progressRect);
+
+                var progressRectUnfilled = new Rectangle()
+                {
+                    Width = 490 - (490 * (amount / goal)),
+                    Height = 90,
+                    Fill = Brushes.Blue
+                };
+                
+                Canvas.SetLeft(progressRectUnfilled, 5 + (490 * ((double)amount / goal)));
+                Canvas.SetBottom(progressRectUnfilled, 5);
+
+                GraphCanvas.Children.Add(progressRectUnfilled);
             }
         }
         public partial class LineGraphWindow : Window
