@@ -34,9 +34,11 @@ namespace EcosystemSim
     {
         public Ecosystem EcosystemData { get; set; }
         public float size = 5f;
+        bool simulationUIvisible = true;
 
         public override void Render(DrawingContext context)
         {
+            if (!simulationUIvisible){ return; }
             base.Render(context);
             if (EcosystemData == null) Debug.WriteLine("Ecosystem Data is null");
 
@@ -86,7 +88,8 @@ namespace EcosystemSim
         public List<double> averageSpeedPrey = new();
         public List<double> averageReproductionAge = new();
         public List<double> averageEyeSight = new();
-        public bool devBeta = true;
+        public bool noRecording = true;
+        public int simulationSteps = 0;
 
         public void start()
         {
@@ -94,6 +97,7 @@ namespace EcosystemSim
         }
         public void update()
         {
+            simulationSteps++;
             maleSpecies.Add(0);
             femaleSpecies.Add(0);
             List<double> speed = new();
@@ -250,7 +254,7 @@ namespace EcosystemSim
                 }
             }
             //update_text();
-            if (!devBeta) { saveToJson(); }
+            if (!noRecording) { saveToJson(); }
         }
         public void saveToJson(string filename = "")
         {

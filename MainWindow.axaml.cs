@@ -19,6 +19,9 @@ namespace EcosystemSim
         Random rand = new Random();
         Ecosystem ecosystem = new Ecosystem();
         bool paused = false;
+        bool simulationLineGraphsvisible = true;
+        bool simulationProgressBarVisible = true;
+        int max_simulation_steps;
         public MainWindow()
         {
             ecosystem.start();
@@ -73,7 +76,7 @@ namespace EcosystemSim
             var traits = new LineGraphWindow("Traits Line Graph");
             traits.Show();
             updateGraphs(populationLineGraph, femaleToMale, sproutedToUnsprouted, traits, token);
-            while (!token.IsCancellationRequested)
+            while (!token.IsCancellationRequested && ecosystem.simulationSteps < max_simulation_steps)
             {
                 if (!paused)
                 {
@@ -85,7 +88,7 @@ namespace EcosystemSim
         }
         private async void updateGraphs(LineGraphWindow populationLineGraph, LineGraphWindow femaleToMale, LineGraphWindow sproutedToUnsprouted, LineGraphWindow traits, CancellationToken token)
         {
-            while (!token.IsCancellationRequested)
+            while (!token.IsCancellationRequested && simulationLineGraphsvisible && ecosystem.simulationSteps < max_simulation_steps)
             {
                 List<IBrush> colors = [Brushes.Red, Brushes.Green];
                 populationLineGraph.drawLineGraph(new List<List<double>> { ecosystem.populationSizes, ecosystem.foodSizes }, colors, new List<string> { "Population Size", "Food Population" });
@@ -100,7 +103,7 @@ namespace EcosystemSim
                     averageEyeSightSmaller.Add(sight / 10);
                 }
                 traits.drawLineGraph(new List<List<double>> { averageEyeSightSmaller, ecosystem.averageReproductionAge, ecosystem.averageSpeedPrey }, colors4, new List<string> { "Eye Sight", "Reproduction", "Speed" });
-                await Task.Delay(500);
+                await Task.Delay(100);
             }
         }
         public partial class LineGraphWindow : Window
