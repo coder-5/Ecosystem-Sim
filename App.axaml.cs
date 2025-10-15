@@ -11,6 +11,7 @@ using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
+using System.Linq;
 
 namespace EcosystemSim
 {
@@ -82,6 +83,9 @@ namespace EcosystemSim
         public List<double> femaleSpecies = new();
         public List<double> sproutedPlants = new();
         public List<double> unSproutedPlants = new();
+        public List<double> averageSpeedPrey = new();
+        public List<double> averageReproductionAge = new();
+        public List<double> averageEyeSight = new();
         public bool devBeta = true;
 
         public void start()
@@ -92,10 +96,16 @@ namespace EcosystemSim
         {
             maleSpecies.Add(0);
             femaleSpecies.Add(0);
+            List<double> speed = new();
+            List<double> eyeSisht = new();
+            List<double> reproductionAge = new();
             Console.WriteLine("==========Update==========");
             for (int i = activeSpecies.Count - 1; i >= 0; i--)
             {
                 Species species = activeSpecies[i];
+                speed.Add(species.speed);
+                averageEyeSight.Add(species.eyeSght);
+                averageReproductionAge.Add(species.reproductiveAge);
                 if (species.gender == 0)
                 {
                     femaleSpecies[femaleSpecies.Count - 1] += 1;
@@ -132,6 +142,11 @@ namespace EcosystemSim
                     activeSpecies.RemoveAt(i);
                 }
             }
+
+            averageSpeedPrey.Add(speed.Average());
+            averageEyeSight.Add(eyeSisht.Average());
+            averageReproductionAge.Add(reproductionAge.Average());
+
             populationSizes.Add(activeSpecies.Count);
             foodSizes.Add(activeFood.Count);
             foreach (var water in activeWater)
@@ -168,6 +183,14 @@ namespace EcosystemSim
                             foreach (var existing in activeFood)
                             {
                                 if (Vector2.Distance(new Vector2(existing.xPos, existing.yPos), new Vector2(x, y)) <= 10)
+                                {
+                                    validPosition = false;
+                                    break;
+                                }
+                            }
+                            foreach (var existing in activeWater)
+                            {
+                                if (Vector2.Distance(new Vector2(existing.xPos, existing.yPos), new Vector2(x, y)) <= 20)
                                 {
                                     validPosition = false;
                                     break;

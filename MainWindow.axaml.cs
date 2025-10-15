@@ -4,6 +4,7 @@ using Avalonia.Input;
 using Avalonia.Media;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
@@ -69,11 +70,13 @@ namespace EcosystemSim
                     ecosystem.update();
                     EcosystemCanvas.Refresh();
                     List<IBrush> colors = [Brushes.Red, Brushes.Green];
-                    populationLineGraph.drawLineGraph(new List<List<double>> { ecosystem.populationSizes, ecosystem.foodSizes }, colors);
+                    populationLineGraph.drawLineGraph(new List<List<double>> { ecosystem.populationSizes, ecosystem.foodSizes }, colors, new List<string> { "Population Size", "Food Population"});
                     List<IBrush> colors2 = [Brushes.Red, Brushes.Black];
-                    femaleToMale.drawLineGraph(new List<List<double>> { ecosystem.femaleSpecies, ecosystem.maleSpecies }, colors2);
+                    femaleToMale.drawLineGraph(new List<List<double>> { ecosystem.femaleSpecies, ecosystem.maleSpecies }, colors2, new List<string> { "Female", "Male"});
                     List<IBrush> colors3 = [Brushes.Green, Brushes.Brown];
-                    sproutedToUnsprouted.drawLineGraph(new List<List<double>> { ecosystem.sproutedPlants, ecosystem.unSproutedPlants }, colors3);
+                    sproutedToUnsprouted.drawLineGraph(new List<List<double>> { ecosystem.sproutedPlants, ecosystem.unSproutedPlants }, colors3, new List<string> { "Sprouted", "UnSprouted"});
+                    List<IBrush> colors4 = [Brushes.Green, Brushes.Blue, Brushes.Red];
+                    sproutedToUnsprouted.drawLineGraph(new List<List<double>> { ecosystem.averageEyeSight, ecosystem.averageReproductionAge, ecosystem.averageSpeedPrey }, colors4, new List<string> { "Eye Sight", "Reproduction", "Speed"});
                 }
                 await Task.Delay(10);
             }
@@ -92,7 +95,7 @@ namespace EcosystemSim
             Content = GraphCanvas;
         }
 
-        public void drawLineGraph(List<List<double>> datas, List<IBrush> colors)
+        public void drawLineGraph(List<List<double>> datas, List<IBrush> colors, List<string> names)
         {
             GraphCanvas.Children.Clear();
 
@@ -123,6 +126,34 @@ namespace EcosystemSim
                 }
 
                 GraphCanvas.Children.Add(Polyline);
+            }
+
+            double legendX = 10;
+            double legendY = 10;
+            double legendSpacing = 20;
+            
+            for (int h = 0; h < datas.Count; h++)
+            {
+                var rect = new Rectangle()
+                {
+                    Width = 15,
+                    Height = 15,
+                    Fill = colors[h]
+                };
+                Canvas.SetLeft(rect, legendX);
+                Canvas.SetTop(rect, legendY + h * legendSpacing);
+                GraphCanvas.Children.Add(rect);
+
+                string labelText = names[h];
+                var text = new TextBlock
+                {
+                    Text = labelText,
+                    Foreground = Brushes.Black,
+                    FontSize = 14
+                };
+                Canvas.SetLeft(text, legendX + 20);
+                Canvas.SetTop(text, legendY + h * legendSpacing - 2);
+                GraphCanvas.Children.Add(text);
             }
         }
     }
