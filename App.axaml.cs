@@ -143,9 +143,30 @@ namespace EcosystemSim
                 }
             }
 
-            averageSpeedPrey.Add(speed.Average());
-            averageEyeSight.Add(eyeSisht.Average());
-            averageReproductionAge.Add(reproductionAge.Average());
+            if (speed.Count > 0)
+            {
+                averageSpeedPrey.Add(speed.Average());
+            }
+            else
+            {
+                averageSpeedPrey.Add(0);// finish adding this to the rest of these adds
+            }
+            if (eyeSisht.Count > 0)
+            {
+                averageEyeSight.Add(eyeSisht.Average());
+            }
+            else
+            {
+                averageEyeSight.Add(0);
+            }
+            if (reproductionAge.Count > 0)
+            {
+                averageReproductionAge.Add(reproductionAge.Average());
+            }
+            else
+            {
+                averageReproductionAge.Add(0);
+            }
 
             populationSizes.Add(activeSpecies.Count);
             foodSizes.Add(activeFood.Count);
