@@ -76,7 +76,7 @@ namespace EcosystemSim
             var progress = new progressBar("Finished Progress");
             progress.Show();
             updateGraphs(populationLineGraph, femaleToMale, sproutedToUnsprouted, traits, token, progress);
-            while (!token.IsCancellationRequested && ecosystem.simulationSteps < max_simulation_steps)
+            while (!token.IsCancellationRequested && ecosystem.simulationSteps < max_simulation_steps && ecosystem.activeSpecies.Count != 0)
             {
                 if (!paused)
                 {
@@ -88,7 +88,7 @@ namespace EcosystemSim
         }
         private async void updateGraphs(LineGraphWindow populationLineGraph, LineGraphWindow femaleToMale, LineGraphWindow sproutedToUnsprouted, LineGraphWindow traits, CancellationToken token, progressBar progress)
         {
-            while (!token.IsCancellationRequested && simulationLineGraphsvisible && ecosystem.simulationSteps < max_simulation_steps)
+            while (!token.IsCancellationRequested && simulationLineGraphsvisible && ecosystem.simulationSteps < max_simulation_steps && ecosystem.activeSpecies.Count != 0)
             {
                 List<IBrush> colors = [Brushes.Red, Brushes.Green];
                 populationLineGraph.drawLineGraph(new List<List<double>> { ecosystem.populationSizes, ecosystem.foodSizes }, colors, new List<string> { "Population Size", "Food Population" });
