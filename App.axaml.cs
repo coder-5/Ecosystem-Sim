@@ -104,8 +104,8 @@ namespace EcosystemSim
             {
                 Species species = activeSpecies[i];
                 speed.Add(species.speed);
-                averageEyeSight.Add(species.eyeSght);
-                averageReproductionAge.Add(species.reproductiveAge);
+                eyeSisht.Add(species.eyeSght);
+                reproductionAge.Add(species.reproductiveAge);
                 if (species.gender == 0)
                 {
                     femaleSpecies[femaleSpecies.Count - 1] += 1;
@@ -160,7 +160,7 @@ namespace EcosystemSim
             {
                 averageEyeSight.Add(0);
             }
-            
+
             if (reproductionAge.Count > 0)
             {
                 averageReproductionAge.Add(reproductionAge.Average());
