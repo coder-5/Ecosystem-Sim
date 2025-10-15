@@ -72,7 +72,7 @@ namespace EcosystemSim
                 int geneMotherNum = int.Parse(motherSplitGenes[i]);
                 int geneFatherNum = int.Parse(fatherSplitGenes[i]);
                 int averageGene = (geneMotherNum + geneFatherNum) / 2;
-                averageGene += random.Next(-1, 1);
+                averageGene += random.Next(-1, 2);
                 if (averageGene <= 0)
                 {
                     averageGene = 1;
@@ -198,7 +198,7 @@ namespace EcosystemSim
         {
             age += 0.1f;
             stamina += currentState == State.moving ? -0.05f : 0.01f;
-            thirst += (currentState == State.moving ? 0.2f : 0.075f) - (currentState == State.drinking ? drinkingWaterAmount : 0);
+            thirst += (currentState == State.moving ? 0.2f : 0.0f) - (currentState == State.drinking ? drinkingWaterAmount : 0);
             drinkingWaterAmount = 0;
             hunger += (currentState == State.moving ? 0.1f : 0.05f) - (currentState == State.eating ? 50f : 0);
             if (thirst <= 0)
