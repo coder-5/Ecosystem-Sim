@@ -200,7 +200,7 @@ namespace EcosystemSim
             stamina += currentState == State.moving ? -0.05f : 0.01f;
             thirst += (currentState == State.moving ? 0.2f : 0.0f) - (currentState == State.drinking ? drinkingWaterAmount : 0) + speed;
             drinkingWaterAmount = 0;
-            hunger += (currentState == State.moving ? 0.1f : 0.05f) - (currentState == State.eating ? 50f : 0) + speed * 2;
+            hunger += (currentState == State.moving ? 0.1f : 0.05f) - (currentState == State.eating ? 50f : 0) + speed * 2; // make eye sight and stuff effect it and stamina effect it
             if (thirst <= 0)
             {
                 thirst = 0;
