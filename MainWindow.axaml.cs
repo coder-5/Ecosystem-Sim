@@ -63,6 +63,8 @@ namespace EcosystemSim
             femaleToMale.Show();
             var sproutedToUnsprouted = new LineGraphWindow("Sprouted v Un-Sprouted Line Graph");
             sproutedToUnsprouted.Show();
+            var traits = new LineGraphWindow("Traits Line Graph");
+            traits.Show();
             while (true)
             {
                 if (!paused)
@@ -76,7 +78,7 @@ namespace EcosystemSim
                     List<IBrush> colors3 = [Brushes.Green, Brushes.Brown];
                     sproutedToUnsprouted.drawLineGraph(new List<List<double>> { ecosystem.sproutedPlants, ecosystem.unSproutedPlants }, colors3, new List<string> { "Sprouted", "UnSprouted"});
                     List<IBrush> colors4 = [Brushes.Green, Brushes.Blue, Brushes.Red];
-                    sproutedToUnsprouted.drawLineGraph(new List<List<double>> { ecosystem.averageEyeSight, ecosystem.averageReproductionAge, ecosystem.averageSpeedPrey }, colors4, new List<string> { "Eye Sight", "Reproduction", "Speed"});
+                    traits.drawLineGraph(new List<List<double>> { ecosystem.averageEyeSight, ecosystem.averageReproductionAge, ecosystem.averageSpeedPrey }, colors4, new List<string> { "Eye Sight", "Reproduction", "Speed"});
                 }
                 await Task.Delay(10);
             }
