@@ -151,6 +151,7 @@ namespace EcosystemSim
             {
                 averageSpeedPrey.Add(0);// finish adding this to the rest of these adds
             }
+
             if (eyeSisht.Count > 0)
             {
                 averageEyeSight.Add(eyeSisht.Average());
@@ -159,6 +160,7 @@ namespace EcosystemSim
             {
                 averageEyeSight.Add(0);
             }
+            
             if (reproductionAge.Count > 0)
             {
                 averageReproductionAge.Add(reproductionAge.Average());
