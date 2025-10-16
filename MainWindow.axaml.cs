@@ -426,7 +426,7 @@ namespace EcosystemSim
                     var mainWindw = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
                     if (mainWindw != null)
                     {
-                        mainWindw.amountOfSpawnedFood--;
+                        mainWindw.amountOfSpawnedSpecies--;
                         mainWindw.updateProgressBar();
                     }
                 };
@@ -448,7 +448,7 @@ namespace EcosystemSim
                     var mainWindw = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
                     if (mainWindw != null)
                     {
-                        mainWindw.amountOfSpawnedFood++;
+                        mainWindw.amountOfSpawnedSpecies++;
                         mainWindw.updateProgressBar();
                     }
                 };
