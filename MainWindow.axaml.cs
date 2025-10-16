@@ -69,9 +69,9 @@ namespace EcosystemSim
                 paused = !paused;
             }
         }
-        public void updateSimulationSteps()
+        public void updateSimulationSteps(int negative)
         {
-            max_simulation_steps += 100;
+            max_simulation_steps += 100 * negative;
             progress.drawProgressBar(ecosystem.simulationSteps, max_simulation_steps);
         }
         public void RunLoopCaller()
@@ -189,7 +189,7 @@ namespace EcosystemSim
                 {
                     Width = 100,
                     Height = 30,
-                    Content = "+100 Step"
+                    Content = "-100 Step"
                 };
 
                 Canvas.SetLeft(startButton1, 5);
@@ -200,7 +200,7 @@ namespace EcosystemSim
                     var mainWindw = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
                     if (mainWindw != null)
                     {
-                        mainWindw.updateSimulationSteps();
+                        mainWindw.updateSimulationSteps(-1);
                     }
                 };
 
@@ -210,7 +210,7 @@ namespace EcosystemSim
                 {
                     Width = 100,
                     Height = 30,
-                    Content = "-100 Step"
+                    Content = "+100 Step"
                 };
 
                 Canvas.SetLeft(startButton2, 5 + 100 + 5 + 200 + 5);
@@ -221,7 +221,7 @@ namespace EcosystemSim
                     var mainWindw = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
                     if (mainWindw != null)
                     {
-                        mainWindw.updateSimulationSteps();
+                        mainWindw.updateSimulationSteps(1);
                     }
                 };
 
