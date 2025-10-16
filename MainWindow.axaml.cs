@@ -132,6 +132,7 @@ namespace EcosystemSim
             public Rectangle progressRect = new();
             public Rectangle progressRectUnfilled = new();
             public TextBlock stepsText = new();
+            public Button startButton;
             public progressBar(string name)
             {
                 Width = 500;
@@ -163,6 +164,21 @@ namespace EcosystemSim
                         stepsText.Text = mainWindow.ecosystem.simulationSteps.ToString() + "/" + mainWindow.max_simulation_steps.ToString();
                     }
                 }
+
+                var mainWindw = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
+
+                if (mainWindw != null && startButton != null)
+                {
+                    if (startButton.Content.ToString() != "UnPause Simulation" && mainWindw.running && mainWindw.paused)
+                    {
+                        startButton.Content = "UnPause Simulation";
+                    }
+                    else if (startButton.Content.ToString() != "Pause Simulation" && mainWindw.running && !mainWindw.paused)
+                    {
+                        startButton.Content = "Pause Simulation";
+                    }
+                }
+                
                 GraphCanvas.InvalidateArrange();
                 GraphCanvas.InvalidateVisual(); // fix bug were ui rects arent changing size
             }
@@ -194,7 +210,7 @@ namespace EcosystemSim
 
                 GraphCanvas.Children.Add(progressRectUnfilled);
 
-                var startButton = new Button()
+                startButton = new Button()
                 {
                     Width = 490,
                     Height = 30,
