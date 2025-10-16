@@ -151,6 +151,7 @@ namespace EcosystemSim
                 if (progressRectUnfilled != null)
                 {
                     progressRectUnfilled.Width = 490 - (490 * ((double)amount / goal));
+                    Canvas.SetLeft(progressRectUnfilled, 5 + (490 * ((double)amount / goal)));
                     progressRectUnfilled.InvalidateMeasure();
                 }
                 if (stepsText != null)
