@@ -22,6 +22,7 @@ namespace EcosystemSim
         bool simulationProgressBarVisible = true;
         int max_simulation_steps = 10000;
         progressBar progress;
+        public bool running;
         public MainWindow()
         {
             ecosystem.start();
@@ -81,6 +82,7 @@ namespace EcosystemSim
 
         private async void RunLoop(CancellationToken token, progressBar progress)
         {
+            running = true;
             var populationLineGraph = new LineGraphWindow("Populations Graph");
             populationLineGraph.Show();
             var femaleToMale = new LineGraphWindow("Female v Male Line Graph");
@@ -174,12 +176,32 @@ namespace EcosystemSim
                 Canvas.SetLeft(startButton, 5);
                 Canvas.SetBottom(startButton, 5 + 50 + 5);
 
+                var mainWindw = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
+                if (mainWindw != null)
+                {
+                    if (mainWindw.running && !mainWindw.paused)
+                    {
+                        startButton.Content = "Pause Simulation";
+                    }
+                    else if (mainWindw.running && mainWindw.paused)
+                    {
+                        startButton.Content = "UnPause Simulation";
+                    }
+                }
+
                 startButton.Click += (s, e) =>
                 {
                     var mainWindw = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
                     if (mainWindw != null)
                     {
-                        mainWindw.RunLoopCaller();
+                        if (mainWindw.running)
+                        {
+                            mainWindw.paused = !mainWindw.paused;
+                        }
+                        else
+                        {
+                            mainWindw.RunLoopCaller();
+                        }
                     }
                 };
 
