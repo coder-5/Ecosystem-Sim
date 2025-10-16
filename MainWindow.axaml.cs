@@ -163,7 +163,7 @@ namespace EcosystemSim
                     }
                 }
                 GraphCanvas.InvalidateArrange();
-                GraphCanvas.InvalidateVisual();
+                GraphCanvas.InvalidateVisual(); // fix bug were ui rects arent changing size
             }
             public void drawProgressBar(int amount, int goal)
             {
