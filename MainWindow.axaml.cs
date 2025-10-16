@@ -23,8 +23,19 @@ namespace EcosystemSim
         int max_simulation_steps = 10000;
         progressBar progress;
         public bool running;
+        public enum shownGraphState
+        {
+            population,
+            femaleToMale,
+            sproutedToUnsprouted,
+            traits,
+            none
+        }
+        public shownGraphState currentUIState;
         public MainWindow()
         {
+            currentUIState = shownGraphState.none;
+
             ecosystem.start();
 
             InitializeComponent();
@@ -106,6 +117,37 @@ namespace EcosystemSim
         {
             while (!token.IsCancellationRequested && simulationLineGraphsvisible && ecosystem.simulationSteps < max_simulation_steps && ecosystem.activeSpecies.Count != 0)
             {
+                if (currentUIState == shownGraphState.femaleToMale)
+                {
+                    femaleToMale.Show();
+                    populationLineGraph.Hide();
+                    sproutedToUnsprouted.Hide();
+                    traits.Hide();
+                } else if (currentUIState == shownGraphState.population)
+                {
+                    femaleToMale.Hide();
+                    populationLineGraph.Show();
+                    sproutedToUnsprouted.Hide();
+                    traits.Hide();
+                } else if (currentUIState == shownGraphState.traits)
+                {
+                    femaleToMale.Hide();
+                    populationLineGraph.Hide();
+                    sproutedToUnsprouted.Hide();
+                    traits.Show();
+                } else if (currentUIState == shownGraphState.sproutedToUnsprouted)
+                {
+                    femaleToMale.Hide();
+                    populationLineGraph.Hide();
+                    sproutedToUnsprouted.Show();
+                    traits.Hide();
+                } else if (currentUIState == shownGraphState.none)
+                {
+                    femaleToMale.Hide();
+                    populationLineGraph.Hide();
+                    sproutedToUnsprouted.Hide();
+                    traits.Hide();
+                }
                 List<IBrush> colors = [Brushes.Red, Brushes.Green];
                 populationLineGraph.drawLineGraph(new List<List<double>> { ecosystem.populationSizes, ecosystem.foodSizes }, colors, new List<string> { "Population Size", "Food Population" });
                 List<IBrush> colors2 = [Brushes.Red, Brushes.Black];
@@ -312,6 +354,50 @@ namespace EcosystemSim
                 }
 
                 GraphCanvas.Children.Add(stepsText);
+
+                var dropdownForGraphs = new ComboBox()
+                {
+                    Width = 200,
+                    Height = 30,
+                    ItemsSource = new List<string>
+                    {
+                        "Population",
+                        "Female vs Male",
+                        "Sprouted vs Unsprouted",
+                        "Traits",
+                        "None"
+                    },
+                    SelectedIndex = 4
+                };
+
+                Canvas.SetLeft(dropdownForGraphs, 5 + 200 + 5 + 100 + 5);
+                Canvas.SetBottom(dropdownForGraphs, 5 + 50 + 5 + 30 + 5);
+
+                dropdownForGraphs.SelectionChanged += (s,e) =>
+                {
+                    var mainWindow = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
+                    if (mainWindow != null)
+                    {
+                        switch (dropdownForGraphs.SelectedItem.ToString())
+                        {
+                            case "Population":
+                                mainWindow.currentUIState = MainWindow.shownGraphState.population;
+                                break;
+                            case "Female vs Male":
+                                mainWindow.currentUIState = MainWindow.shownGraphState.femaleToMale;
+                                break;
+                            case "Sprouted vs Unsprouted":
+                                mainWindow.currentUIState = MainWindow.shownGraphState.sproutedToUnsprouted;
+                                break;
+                            case "Traits":
+                                mainWindow.currentUIState = MainWindow.shownGraphState.traits;
+                                break;
+                            default:
+                                mainWindow.currentUIState = MainWindow.shownGraphState.none;
+                                break;
+                        }
+                    }
+                }
             }
         }
         public partial class LineGraphWindow : Window
