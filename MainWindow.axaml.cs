@@ -370,7 +370,7 @@ namespace EcosystemSim
                     SelectedIndex = 4
                 };
 
-                Canvas.SetLeft(dropdownForGraphs, 5 + 200 + 5 + 100 + 5);
+                Canvas.SetLeft(dropdownForGraphs, 5 + 200 + 5 + 200 + 5);
                 Canvas.SetBottom(dropdownForGraphs, 5 + 50 + 5 + 30 + 5);
 
                 dropdownForGraphs.SelectionChanged += (s, e) =>
