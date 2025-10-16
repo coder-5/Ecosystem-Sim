@@ -129,6 +129,8 @@ namespace EcosystemSim
         public partial class progressBar : Window
         {
             public Canvas GraphCanvas;
+            public Rectangle progressRect = new();
+            public Rectangle progressRectUnfilled = new();
             public progressBar(string name)
             {
                 Width = 500;
@@ -138,11 +140,22 @@ namespace EcosystemSim
                 GraphCanvas = new Canvas { Background = Brushes.White };
                 Content = GraphCanvas;
             }
+            public void update(int amount, int goal)
+            {
+                if (progressRect != null)
+                {
+                    progressRect.Width = 490 * ((double)amount / goal);
+                }
+                if (progressRectUnfilled != null)
+                {
+                    progressRectUnfilled.Width = 490 - (490 * (amount / goal));
+                }
+            }
             public void drawProgressBar(int amount, int goal)
             {
                 GraphCanvas.Children.Clear();
 
-                var progressRect = new Rectangle()
+                progressRect = new Rectangle()
                 {
                     Width = 490 * ((double)amount / goal),
                     Height = 50,
@@ -154,7 +167,7 @@ namespace EcosystemSim
 
                 GraphCanvas.Children.Add(progressRect);
 
-                var progressRectUnfilled = new Rectangle()
+                progressRectUnfilled = new Rectangle()
                 {
                     Width = 490 - (490 * (amount / goal)),
                     Height = 50,
