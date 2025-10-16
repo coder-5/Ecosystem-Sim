@@ -189,7 +189,7 @@ namespace EcosystemSim
             public progressBar(string name)
             {
                 Width = 650;
-                Height = 125;
+                Height = 225;
                 Title = name;
 
                 GraphCanvas = new Canvas { Background = Brushes.White };
@@ -484,7 +484,7 @@ namespace EcosystemSim
                 };
 
                 Canvas.SetLeft(startButton7, 5);
-                Canvas.SetBottom(startButton7, 5 + 50 + 5 + 30 + 5 + 30 + 5);
+                Canvas.SetBottom(startButton7, 5 + 50 + 5 + 30 + 5 + 30 + 5 + 30 + 5);
 
                 startButton7.Click += (s, e) =>
                 {
@@ -506,7 +506,7 @@ namespace EcosystemSim
                 };
 
                 Canvas.SetLeft(startButton8, 5 + 100 + 5 + 200 + 5);
-                Canvas.SetBottom(startButton8, 5 + 50 + 5 + 30 + 5 + 30 + 5);
+                Canvas.SetBottom(startButton8, 5 + 50 + 5 + 30 + 5 + 30 + 5 + 30 + 5);
 
                 startButton8.Click += (s, e) =>
                 {
@@ -529,7 +529,7 @@ namespace EcosystemSim
                 };
 
                 Canvas.SetLeft(stepsText2, 5 + 100 + 5);
-                Canvas.SetBottom(stepsText2, 5 + 50 + 5 + 30 + 5 + 30 + 5);
+                Canvas.SetBottom(stepsText2, 5 + 50 + 5 + 30 + 5 + 30 + 5 + 30 + 5);
 
                 if (mainWindow != null)
                 {
