@@ -23,7 +23,7 @@ namespace EcosystemSim
         int max_simulation_steps = 10000;
         progressBar progress;
         public bool running;
-        public int amountOfSpawnedFood = 50;
+        public int amountOfSpawnedFood = 50; // add ui for this
         public int amountOfSpawnedSpecies = 10;
         public enum shownGraphState
         {
