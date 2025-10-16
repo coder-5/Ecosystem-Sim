@@ -240,7 +240,7 @@ namespace EcosystemSim
                     {
                         if (mainWindw.running)
                         {
-                            mainWindw.paused = !mainWindw.paused;
+                            mainWindw.paused = !mainWindw.paused;  // Crashing happens here
                         }
                         else
                         {
