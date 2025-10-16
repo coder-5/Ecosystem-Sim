@@ -123,25 +123,29 @@ namespace EcosystemSim
                     populationLineGraph.Hide();
                     sproutedToUnsprouted.Hide();
                     traits.Hide();
-                } else if (currentUIState == shownGraphState.population)
+                }
+                else if (currentUIState == shownGraphState.population)
                 {
                     femaleToMale.Hide();
                     populationLineGraph.Show();
                     sproutedToUnsprouted.Hide();
                     traits.Hide();
-                } else if (currentUIState == shownGraphState.traits)
+                }
+                else if (currentUIState == shownGraphState.traits)
                 {
                     femaleToMale.Hide();
                     populationLineGraph.Hide();
                     sproutedToUnsprouted.Hide();
                     traits.Show();
-                } else if (currentUIState == shownGraphState.sproutedToUnsprouted)
+                }
+                else if (currentUIState == shownGraphState.sproutedToUnsprouted)
                 {
                     femaleToMale.Hide();
                     populationLineGraph.Hide();
                     sproutedToUnsprouted.Show();
                     traits.Hide();
-                } else if (currentUIState == shownGraphState.none)
+                }
+                else if (currentUIState == shownGraphState.none)
                 {
                     femaleToMale.Hide();
                     populationLineGraph.Hide();
@@ -220,7 +224,7 @@ namespace EcosystemSim
                         startButton.Content = "Pause Simulation";
                     }
                 }
-                
+
                 GraphCanvas.InvalidateArrange();
                 GraphCanvas.InvalidateVisual(); // fix bug were ui rects arent changing size
             }
@@ -246,7 +250,7 @@ namespace EcosystemSim
                     Height = 50,
                     Fill = Brushes.Blue
                 };
-                
+
                 Canvas.SetLeft(progressRectUnfilled, 5 + (490 * ((double)amount / goal)));
                 Canvas.SetBottom(progressRectUnfilled, 5);
 
