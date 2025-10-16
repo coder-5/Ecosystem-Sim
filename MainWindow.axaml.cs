@@ -121,7 +121,7 @@ namespace EcosystemSim
                 traits.drawLineGraph(new List<List<double>> { averageEyeSightSmaller, ecosystem.averageReproductionAge, ecosystem.averageSpeedPrey }, colors4, new List<string> { "Eye Sight", "Reproduction", "Speed" });
                 if (simulationProgressBarVisible)
                 {
-                    progress.drawProgressBar(ecosystem.simulationSteps, max_simulation_steps);
+                    progress.update(ecosystem.simulationSteps, max_simulation_steps);
                 }
                 await Task.Delay(100);
             }
@@ -131,6 +131,7 @@ namespace EcosystemSim
             public Canvas GraphCanvas;
             public Rectangle progressRect = new();
             public Rectangle progressRectUnfilled = new();
+            public TextBlock stepsText = new();
             public progressBar(string name)
             {
                 Width = 500;
@@ -148,8 +149,18 @@ namespace EcosystemSim
                 }
                 if (progressRectUnfilled != null)
                 {
-                    progressRectUnfilled.Width = 490 - (490 * (amount / goal));
+                    progressRectUnfilled.Width = 490 - (490 * ((double)amount / goal));
                 }
+                if (stepsText != null)
+                {
+                    var mainWindow = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
+
+                    if (mainWindow != null)
+                    {
+                        stepsText.Text = mainWindow.max_simulation_steps.ToString();
+                    }
+                }
+                GraphCanvas.InvalidateVisual();
             }
             public void drawProgressBar(int amount, int goal)
             {
@@ -264,7 +275,7 @@ namespace EcosystemSim
 
                 var mainWindow = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
 
-                var stepsText = new TextBlock()
+                stepsText = new TextBlock()
                 {
                     Width = 200,
                     Height = 30,
