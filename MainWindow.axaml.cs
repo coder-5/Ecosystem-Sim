@@ -157,7 +157,7 @@ namespace EcosystemSim
 
                     if (mainWindow != null)
                     {
-                        stepsText.Text = mainWindow.max_simulation_steps.ToString();
+                        stepsText.Text = mainWindow.ecosystem.simulationSteps.ToString() + "/" + mainWindow.max_simulation_steps.ToString();
                     }
                 }
                 GraphCanvas.InvalidateVisual();
