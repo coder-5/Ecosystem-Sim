@@ -146,10 +146,12 @@ namespace EcosystemSim
                 if (progressRect != null)
                 {
                     progressRect.Width = 490 * ((double)amount / goal);
+                    progressRect.InvalidateMeasure();
                 }
                 if (progressRectUnfilled != null)
                 {
                     progressRectUnfilled.Width = 490 - (490 * ((double)amount / goal));
+                    progressRectUnfilled.InvalidateMeasure();
                 }
                 if (stepsText != null)
                 {
@@ -160,6 +162,7 @@ namespace EcosystemSim
                         stepsText.Text = mainWindow.ecosystem.simulationSteps.ToString() + "/" + mainWindow.max_simulation_steps.ToString();
                     }
                 }
+                GraphCanvas.InvalidateArrange();
                 GraphCanvas.InvalidateVisual();
             }
             public void drawProgressBar(int amount, int goal)
