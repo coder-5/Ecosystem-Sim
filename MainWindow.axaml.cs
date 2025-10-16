@@ -71,7 +71,7 @@ namespace EcosystemSim
         }
         public void updateSimulationSteps()
         {
-            max_simulation_steps += 10;
+            max_simulation_steps += 100;
             progress.drawProgressBar(ecosystem.simulationSteps, max_simulation_steps);
         }
         public void RunLoopCaller()
@@ -187,9 +187,9 @@ namespace EcosystemSim
 
                 var startButton1 = new Button()
                 {
-                    Width = 50,
+                    Width = 100,
                     Height = 30,
-                    Content = "+1 Step"
+                    Content = "+100 Step"
                 };
 
                 Canvas.SetLeft(startButton1, 5);
@@ -208,12 +208,12 @@ namespace EcosystemSim
 
                 var startButton2 = new Button()
                 {
-                    Width = 50,
+                    Width = 100,
                     Height = 30,
-                    Content = "+1 Step"
+                    Content = "-100 Step"
                 };
 
-                Canvas.SetLeft(startButton2, 5 + 50 + 5 + 200 + 5);
+                Canvas.SetLeft(startButton2, 5 + 100 + 5 + 200 + 5);
                 Canvas.SetBottom(startButton2, 5 + 50 + 5 + 30 + 5);
 
                 startButton2.Click += (s, e) =>
@@ -237,7 +237,7 @@ namespace EcosystemSim
                     Text = "Main Window Not Found"
                 };
 
-                Canvas.SetLeft(stepsText, 5 + 50 + 5);
+                Canvas.SetLeft(stepsText, 5 + 100 + 5);
                 Canvas.SetBottom(stepsText, 5 + 50 + 5 + 30 + 5);
 
                 if (mainWindow != null)
