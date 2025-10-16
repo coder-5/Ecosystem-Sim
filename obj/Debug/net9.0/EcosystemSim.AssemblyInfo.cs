@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EcosystemSim")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd15992b9822ed4c9eccce5523f34b36cdfdd36b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e703c3585debfbda67b14c1db771e37de7f68f96")]
 [assembly: System.Reflection.AssemblyProductAttribute("EcosystemSim")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EcosystemSim")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -373,7 +373,7 @@ namespace EcosystemSim
                 Canvas.SetLeft(dropdownForGraphs, 5 + 200 + 5 + 100 + 5);
                 Canvas.SetBottom(dropdownForGraphs, 5 + 50 + 5 + 30 + 5);
 
-                dropdownForGraphs.SelectionChanged += (s,e) =>
+                dropdownForGraphs.SelectionChanged += (s, e) =>
                 {
                     var mainWindow = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
                     if (mainWindow != null)
@@ -397,7 +397,9 @@ namespace EcosystemSim
                                 break;
                         }
                     }
-                }
+                };
+
+                GraphCanvas.Children.Add(dropdownForGraphs);
             }
         }
         public partial class LineGraphWindow : Window
