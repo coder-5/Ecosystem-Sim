@@ -480,7 +480,7 @@ namespace EcosystemSim
                 {
                     Width = 100,
                     Height = 30,
-                    Content = "-1 species"
+                    Content = "-1 food"
                 };
 
                 Canvas.SetLeft(startButton7, 5);
@@ -502,7 +502,7 @@ namespace EcosystemSim
                 {
                     Width = 100,
                     Height = 30,
-                    Content = "+1 species"
+                    Content = "+1 food"
                 };
 
                 Canvas.SetLeft(startButton8, 5 + 100 + 5 + 200 + 5);
@@ -533,7 +533,7 @@ namespace EcosystemSim
 
                 if (mainWindow != null)
                 {
-                    stepsText2.Text = mainWindow.amountOfSpawnedSpecies.ToString();
+                    stepsText2.Text = mainWindow.amountOfSpawnedFood.ToString();
                 }
 
                 GraphCanvas.Children.Add(stepsText2);
