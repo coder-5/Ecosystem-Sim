@@ -23,6 +23,8 @@ namespace EcosystemSim
         int max_simulation_steps = 10000;
         progressBar progress;
         public bool running;
+        public int amountOfSpawnedFood = 50;
+        public int amountOfSpawnedSpecies = 10;
         public enum shownGraphState
         {
             population,
@@ -47,24 +49,6 @@ namespace EcosystemSim
 
             this.KeyDown += OnKeyDown;
 
-            for (int i = 0; i < 10; i++)
-            {
-                ecosystem.activeSpecies.Add(new Species("5:500:1:100:25", "5:500:0:100:25", rand.Next(0, 800), rand.Next(0, 450)));
-                ecosystem.activeSpecies[i].inherit_genes();
-            }
-            for (int i = 0; i < 51; i++)
-            {
-                ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 800), rand.Next(0, 450), rand.Next(1, 4), 50, 500 + rand.Next(-50, 51), 1000 + rand.Next(-50, 51)));
-            }
-            for (int i = 0; i < 100; i++)
-            {
-                ecosystem.activeWater.Add(new WaterZone(1, 650 + rand.Next(-25, 25), rand.Next(0, 450)));
-            }
-            for (int i = 0; i < 100; i++)
-            {
-                ecosystem.activeWater.Add(new WaterZone(1, 250 + rand.Next(-25, 25), rand.Next(0, 450)));
-            }
-
             EcosystemCanvas.EcosystemData = ecosystem;
 
             progress = new progressBar("Finished Progress");
@@ -86,6 +70,10 @@ namespace EcosystemSim
             max_simulation_steps += 100 * negative;
             progress.drawProgressBar(ecosystem.simulationSteps, max_simulation_steps);
         }
+        public void updateProgressBar()
+        {
+            progress.drawProgressBar(ecosystem.simulationSteps, max_simulation_steps);
+        }
         public void RunLoopCaller()
         {
             RunLoop(appCancellation.Token, progress);
@@ -93,6 +81,23 @@ namespace EcosystemSim
 
         private async void RunLoop(CancellationToken token, progressBar progress)
         {
+            for (int i = 0; i < amountOfSpawnedSpecies + 1; i++)
+            {
+                ecosystem.activeSpecies.Add(new Species("5:500:1:100:25", "5:500:0:100:25", rand.Next(0, 800), rand.Next(0, 450)));
+                ecosystem.activeSpecies[i].inherit_genes();
+            }
+            for (int i = 0; i < amountOfSpawnedFood + 1; i++)
+            {
+                ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 800), rand.Next(0, 450), rand.Next(1, 4), 50, 500 + rand.Next(-50, 51), 1000 + rand.Next(-50, 51)));
+            }
+            for (int i = 0; i < 100; i++)
+            {
+                ecosystem.activeWater.Add(new WaterZone(1, 650 + rand.Next(-25, 25), rand.Next(0, 450)));
+            }
+            for (int i = 0; i < 100; i++)
+            {
+                ecosystem.activeWater.Add(new WaterZone(1, 250 + rand.Next(-25, 25), rand.Next(0, 450)));
+            }
             running = true;
             var populationLineGraph = new LineGraphWindow("Populations Graph");
             populationLineGraph.Show();
@@ -179,6 +184,7 @@ namespace EcosystemSim
             public Rectangle progressRectUnfilled = new();
             public TextBlock stepsText = new();
             public Button startButton;
+            public TextBlock stepsText1 = new();
             public progressBar(string name)
             {
                 Width = 650;
@@ -404,6 +410,68 @@ namespace EcosystemSim
                 };
 
                 GraphCanvas.Children.Add(dropdownForGraphs);
+
+                var startButton3 = new Button()
+                {
+                    Width = 100,
+                    Height = 30,
+                    Content = "-1 species"
+                };
+
+                Canvas.SetLeft(startButton3, 5);
+                Canvas.SetBottom(startButton3, 5 + 50 + 5 + 30 + 5 + 30 + 5);
+
+                startButton3.Click += (s, e) =>
+                {
+                    var mainWindw = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
+                    if (mainWindw != null)
+                    {
+                        mainWindw.amountOfSpawnedFood--;
+                        mainWindw.updateProgressBar();
+                    }
+                };
+
+                GraphCanvas.Children.Add(startButton3);
+
+                var startButton4 = new Button()
+                {
+                    Width = 100,
+                    Height = 30,
+                    Content = "+1 species"
+                };
+
+                Canvas.SetLeft(startButton4, 5 + 100 + 5 + 200 + 5);
+                Canvas.SetBottom(startButton4, 5 + 50 + 5 + 30 + 5 + 30 + 5);
+
+                startButton4.Click += (s, e) =>
+                {
+                    var mainWindw = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
+                    if (mainWindw != null)
+                    {
+                        mainWindw.amountOfSpawnedFood++;
+                        mainWindw.updateProgressBar();
+                    }
+                };
+
+                GraphCanvas.Children.Add(startButton4);
+
+                stepsText1 = new TextBlock()
+                {
+                    Width = 200,
+                    Height = 30,
+                    TextAlignment = TextAlignment.Center,
+                    Text = "Main Window Not Found"
+                };
+
+                Canvas.SetLeft(stepsText1, 5 + 100 + 5);
+                Canvas.SetBottom(stepsText1, 5 + 50 + 5 + 30 + 5 + 30 + 5);
+
+                if (mainWindow != null)
+                {
+                    stepsText1.Text = mainWindow.amountOfSpawnedSpecies.ToString();
+                }
+
+                GraphCanvas.Children.Add(stepsText1);
             }
         }
         public partial class LineGraphWindow : Window
