@@ -185,6 +185,7 @@ namespace EcosystemSim
             public TextBlock stepsText = new();
             public Button startButton;
             public TextBlock stepsText1 = new();
+            public TextBlock stepsText2 = new();
             public progressBar(string name)
             {
                 Width = 650;
@@ -472,6 +473,70 @@ namespace EcosystemSim
                 }
 
                 GraphCanvas.Children.Add(stepsText1);
+
+                // ---------- Food
+
+                var startButton7 = new Button()
+                {
+                    Width = 100,
+                    Height = 30,
+                    Content = "-1 species"
+                };
+
+                Canvas.SetLeft(startButton7, 5);
+                Canvas.SetBottom(startButton7, 5 + 50 + 5 + 30 + 5 + 30 + 5);
+
+                startButton7.Click += (s, e) =>
+                {
+                    var mainWindw = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
+                    if (mainWindw != null)
+                    {
+                        mainWindw.amountOfSpawnedFood--;
+                        mainWindw.updateProgressBar();
+                    }
+                };
+
+                GraphCanvas.Children.Add(startButton7);
+
+                var startButton8 = new Button()
+                {
+                    Width = 100,
+                    Height = 30,
+                    Content = "+1 species"
+                };
+
+                Canvas.SetLeft(startButton8, 5 + 100 + 5 + 200 + 5);
+                Canvas.SetBottom(startButton8, 5 + 50 + 5 + 30 + 5 + 30 + 5);
+
+                startButton8.Click += (s, e) =>
+                {
+                    var mainWindw = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
+                    if (mainWindw != null)
+                    {
+                        mainWindw.amountOfSpawnedFood++;
+                        mainWindw.updateProgressBar();
+                    }
+                };
+
+                GraphCanvas.Children.Add(startButton8);
+
+                stepsText2 = new TextBlock()
+                {
+                    Width = 200,
+                    Height = 30,
+                    TextAlignment = TextAlignment.Center,
+                    Text = "Main Window Not Found"
+                };
+
+                Canvas.SetLeft(stepsText2, 5 + 100 + 5);
+                Canvas.SetBottom(stepsText2, 5 + 50 + 5 + 30 + 5 + 30 + 5);
+
+                if (mainWindow != null)
+                {
+                    stepsText2.Text = mainWindow.amountOfSpawnedSpecies.ToString();
+                }
+
+                GraphCanvas.Children.Add(stepsText2);
             }
         }
         public partial class LineGraphWindow : Window
