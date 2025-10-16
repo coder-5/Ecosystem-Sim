@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Controls.Shapes;
 using Avalonia.Input;
 using Avalonia.Media;
@@ -13,13 +14,14 @@ namespace EcosystemSim
 {
     public partial class MainWindow : Window
     {
-        private CancellationTokenSource appCancellation = new CancellationTokenSource();
+        public CancellationTokenSource appCancellation = new CancellationTokenSource();
         Random rand = new Random();
-        Ecosystem ecosystem = new Ecosystem();
+        public Ecosystem ecosystem = new Ecosystem();
         bool paused = false;
         bool simulationLineGraphsvisible = true;
         bool simulationProgressBarVisible = true;
         int max_simulation_steps = 10000;
+        progressBar progress;
         public MainWindow()
         {
             ecosystem.start();
@@ -53,7 +55,12 @@ namespace EcosystemSim
 
             EcosystemCanvas.EcosystemData = ecosystem;
 
-            RunLoop(appCancellation.Token);
+            progress = new progressBar("Finished Progress");
+            progress.Show();
+            if (simulationProgressBarVisible)
+            {
+                progress.drawProgressBar(ecosystem.simulationSteps, max_simulation_steps);
+            }
         }
         private void OnKeyDown(object? sende, KeyEventArgs e)
         {
@@ -62,8 +69,17 @@ namespace EcosystemSim
                 paused = !paused;
             }
         }
+        public void updateSimulationSteps()
+        {
+            max_simulation_steps += 10;
+            progress.drawProgressBar(ecosystem.simulationSteps, max_simulation_steps);
+        }
+        public void RunLoopCaller()
+        {
+            RunLoop(appCancellation.Token, progress);
+        }
 
-        private async void RunLoop(CancellationToken token)
+        private async void RunLoop(CancellationToken token, progressBar progress)
         {
             var populationLineGraph = new LineGraphWindow("Populations Graph");
             populationLineGraph.Show();
@@ -73,8 +89,6 @@ namespace EcosystemSim
             sproutedToUnsprouted.Show();
             var traits = new LineGraphWindow("Traits Line Graph");
             traits.Show();
-            var progress = new progressBar("Finished Progress");
-            progress.Show();
             updateGraphs(populationLineGraph, femaleToMale, sproutedToUnsprouted, traits, token, progress);
             while (!token.IsCancellationRequested && ecosystem.simulationSteps < max_simulation_steps && ecosystem.activeSpecies.Count != 0)
             {
@@ -116,7 +130,7 @@ namespace EcosystemSim
             public progressBar(string name)
             {
                 Width = 500;
-                Height = 50;
+                Height = 125;
                 Title = name;
 
                 GraphCanvas = new Canvas { Background = Brushes.White };
@@ -129,7 +143,7 @@ namespace EcosystemSim
                 var progressRect = new Rectangle()
                 {
                     Width = 490 * ((double)amount / goal),
-                    Height = 90,
+                    Height = 50,
                     Fill = Brushes.Green
                 };
 
@@ -141,7 +155,7 @@ namespace EcosystemSim
                 var progressRectUnfilled = new Rectangle()
                 {
                     Width = 490 - (490 * (amount / goal)),
-                    Height = 90,
+                    Height = 50,
                     Fill = Brushes.Blue
                 };
                 
@@ -149,6 +163,89 @@ namespace EcosystemSim
                 Canvas.SetBottom(progressRectUnfilled, 5);
 
                 GraphCanvas.Children.Add(progressRectUnfilled);
+
+                var startButton = new Button()
+                {
+                    Width = 490,
+                    Height = 30,
+                    Content = "Start Simulation"
+                };
+
+                Canvas.SetLeft(startButton, 5);
+                Canvas.SetBottom(startButton, 5 + 50 + 5);
+
+                startButton.Click += (s, e) =>
+                {
+                    var mainWindw = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
+                    if (mainWindw != null)
+                    {
+                        mainWindw.RunLoopCaller();
+                    }
+                };
+
+                GraphCanvas.Children.Add(startButton);
+
+                var startButton1 = new Button()
+                {
+                    Width = 50,
+                    Height = 30,
+                    Content = "+1 Step"
+                };
+
+                Canvas.SetLeft(startButton1, 5);
+                Canvas.SetBottom(startButton1, 5 + 50 + 5 + 30 + 5);
+
+                startButton1.Click += (s, e) =>
+                {
+                    var mainWindw = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
+                    if (mainWindw != null)
+                    {
+                        mainWindw.updateSimulationSteps();
+                    }
+                };
+
+                GraphCanvas.Children.Add(startButton1);
+
+                var startButton2 = new Button()
+                {
+                    Width = 50,
+                    Height = 30,
+                    Content = "+1 Step"
+                };
+
+                Canvas.SetLeft(startButton2, 5 + 50 + 5 + 200 + 5);
+                Canvas.SetBottom(startButton2, 5 + 50 + 5 + 30 + 5);
+
+                startButton2.Click += (s, e) =>
+                {
+                    var mainWindw = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
+                    if (mainWindw != null)
+                    {
+                        mainWindw.updateSimulationSteps();
+                    }
+                };
+
+                GraphCanvas.Children.Add(startButton2);
+
+                var mainWindow = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
+
+                var stepsText = new TextBlock()
+                {
+                    Width = 200,
+                    Height = 30,
+                    TextAlignment = TextAlignment.Center,
+                    Text = "Main Window Not Found"
+                };
+
+                Canvas.SetLeft(stepsText, 5 + 50 + 5);
+                Canvas.SetBottom(stepsText, 5 + 50 + 5 + 30 + 5);
+
+                if (mainWindow != null)
+                {
+                    stepsText.Text = mainWindow.max_simulation_steps.ToString();
+                }
+
+                GraphCanvas.Children.Add(stepsText);
             }
         }
         public partial class LineGraphWindow : Window
