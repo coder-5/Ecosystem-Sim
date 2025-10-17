@@ -25,6 +25,7 @@ namespace EcosystemSim
         public bool running;
         public int amountOfSpawnedFood = 50; // add ui for this
         public int amountOfSpawnedSpecies = 10;
+        public int amountOfSpawnedSpeciesPredator = 4;
         public enum shownGraphState
         {
             population,
@@ -83,7 +84,12 @@ namespace EcosystemSim
         {
             for (int i = 0; i < amountOfSpawnedSpecies + 1; i++)
             {
-                ecosystem.activeSpecies.Add(new Species("5:500:1:100:25", "5:500:0:100:25", rand.Next(0, 800), rand.Next(0, 450)));
+                ecosystem.activeSpecies.Add(new Species("5:500:1:100:25:0", "5:500:0:100:25:0", rand.Next(0, 800), rand.Next(0, 450)));
+                ecosystem.activeSpecies[i].inherit_genes();
+            }
+            for (int i = 0; i < amountOfSpawnedSpeciesPredator + 1; i++)
+            {
+                ecosystem.activeSpecies.Add(new Species("5:500:1:100:25:1", "5:500:0:100:25:1", rand.Next(0, 800), rand.Next(0, 450)));
                 ecosystem.activeSpecies[i].inherit_genes();
             }
             for (int i = 0; i < amountOfSpawnedFood + 1; i++)
@@ -520,7 +526,7 @@ namespace EcosystemSim
 
                 GraphCanvas.Children.Add(startButton8);
 
-                stepsText2 = new TextBlock()
+                var stepsText2 = new TextBlock()
                 {
                     Width = 200,
                     Height = 30,
@@ -537,6 +543,70 @@ namespace EcosystemSim
                 }
 
                 GraphCanvas.Children.Add(stepsText2);
+
+                // --- predators
+
+                var startButton9 = new Button()
+                {
+                    Width = 100,
+                    Height = 30,
+                    Content = "-1 pred species"
+                };
+
+                Canvas.SetLeft(startButton9, 5);
+                Canvas.SetBottom(startButton9, 5 + 50 + 5 + 30 + 5 + 30 + 5 + 30 + 5 + 30 + 5);
+
+                startButton9.Click += (s, e) =>
+                {
+                    var mainWindw = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
+                    if (mainWindw != null)
+                    {
+                        mainWindw.amountOfSpawnedSpeciesPredator--;
+                        mainWindw.updateProgressBar();
+                    }
+                };
+
+                GraphCanvas.Children.Add(startButton9);
+
+                var startButton10 = new Button()
+                {
+                    Width = 100,
+                    Height = 30,
+                    Content = "+1 pred species"
+                };
+
+                Canvas.SetLeft(startButton10, 5 + 100 + 5 + 200 + 5);
+                Canvas.SetBottom(startButton10, 5 + 50 + 5 + 30 + 5 + 30 + 5 + 30 + 5 + 30 + 5);
+
+                startButton10.Click += (s, e) =>
+                {
+                    var mainWindw = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
+                    if (mainWindw != null)
+                    {
+                        mainWindw.amountOfSpawnedSpeciesPredator++;
+                        mainWindw.updateProgressBar();
+                    }
+                };
+
+                GraphCanvas.Children.Add(startButton10);
+
+                var stepsText3 = new TextBlock()
+                {
+                    Width = 200,
+                    Height = 30,
+                    TextAlignment = TextAlignment.Center,
+                    Text = "Main Window Not Found"
+                };
+
+                Canvas.SetLeft(stepsText3, 5 + 100 + 5);
+                Canvas.SetBottom(stepsText3, 5 + 50 + 5 + 30 + 5 + 30 + 5 + 30 + 5 + 30 + 5);
+
+                if (mainWindow != null)
+                {
+                    stepsText3.Text = mainWindow.amountOfSpawnedSpeciesPredator.ToString();
+                }
+
+                GraphCanvas.Children.Add(stepsText3);
             }
         }
         public partial class LineGraphWindow : Window

@@ -474,7 +474,7 @@ namespace EcosystemSim
             foreach (Species species1 in activeSpecies)
             {
                 float distance = Vector2.Distance(new Vector2(species1.xPos, species1.yPos), new Vector2(species.xPos, species.yPos));
-                if (distance < closestDistance && species1.gender != species.gender)
+                if (distance < closestDistance && species1.gender != species.gender && species.predator == species1.predator)
                 {
                     returnClass = species1;
                     closestDistance = distance;

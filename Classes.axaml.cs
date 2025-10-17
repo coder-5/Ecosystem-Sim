@@ -91,11 +91,11 @@ namespace EcosystemSim
                 {
                     if (geneFatherNum == 1)
                     {
-                        newGenes += true;
+                        newGenes += ":" + 1;
                     }
                     else
                     {
-                        newGenes += false;
+                        newGenes += ":" + 0;
                     }
                 }
                 else
