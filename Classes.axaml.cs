@@ -46,6 +46,7 @@ namespace EcosystemSim
             drinking,
             nothing
         }
+        public bool running;
 
         public State currentState = State.nothing;
 
@@ -207,8 +208,13 @@ namespace EcosystemSim
         public bool move_species(Vector2 targetPos, bool run) // type 1 is water, type 2 is food, type 3 is mate
         {
             int speedNew;
+            if (running)
+            {
+                return false;
+            }
             if (run && stamina > 0)
             {
+                running = true;
                 speedNew = speed * 2;
                 stamina--;
             }
@@ -244,6 +250,7 @@ namespace EcosystemSim
         }
         public void update()
         {
+            running = false;
             age += 0.1f;
             stamina += currentState == State.moving ? -0.05f : 0.01f;
             thirst += (currentState == State.moving ? 0.75f : 0.0f) - (currentState == State.drinking ? drinkingWaterAmount : 0) + speed * 0.01f;
