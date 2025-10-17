@@ -21,7 +21,7 @@ namespace EcosystemSim
         bool paused = false;
         bool simulationLineGraphsvisible = true;
         bool simulationProgressBarVisible = true;
-        int max_simulation_steps = 10000;
+        int max_simulation_steps = 30000;
         progressBar progress;
         public bool running;
         public int amountOfSpawnedFood = 200; // add ui for this
@@ -95,17 +95,13 @@ namespace EcosystemSim
             }
             for (int i = 0; i < amountOfSpawnedFood + 1; i++)
             {
-                (double, double) pos = RandomPointInCircle(500, new Vector2(0,0));
+                ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 1600), rand.Next(0, 900), rand.Next(1, 4), 50, 500 + rand.Next(-50, 51), 1000 + rand.Next(-50, 51)));
+            }
+            for (int i = 0; i < 250; i++)
+            {
+                (double, double) pos = RandomPointInCircle(500, new Vector2(625,450));
                 Vector2 position = new Vector2((float)pos.Item1, (float)pos.Item2);
-                ecosystem.activeFood.Add(new FoodSpecies(1, (int)position.X, (int)position.Y, rand.Next(1, 4), 50, 500 + rand.Next(-50, 51), 1000 + rand.Next(-50, 51)));
-            }
-            for (int i = 0; i < 100; i++)
-            {
-                ecosystem.activeWater.Add(new WaterZone(1, 1250 + rand.Next(-25, 25), rand.Next(0, 900)));
-            }
-            for (int i = 0; i < 100; i++)
-            {
-                ecosystem.activeWater.Add(new WaterZone(1, 250 + rand.Next(-25, 25), rand.Next(0, 900)));
+                ecosystem.activeWater.Add(new WaterZone(1, (int)position.X, (int)position.Y));
             }
             running = true;
             var populationLineGraph = new LineGraphWindow("Populations Graph");
