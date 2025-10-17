@@ -238,7 +238,7 @@ namespace EcosystemSim
                             validPosition = true;
                             foreach (var existing in localFood)
                             {
-                                if (Vector2.Distance(new Vector2(existing.xPos, existing.yPos), new Vector2(x, y)) <= 10)
+                                if (Vector2.Distance(new Vector2(existing.xPos, existing.yPos), new Vector2(x, y)) <= 20)
                                 {
                                     validPosition = false;
                                     break;
@@ -246,7 +246,7 @@ namespace EcosystemSim
                             }
                             foreach (var existing in activeWater)
                             {
-                                if (Vector2.Distance(new Vector2(existing.xPos, existing.yPos), new Vector2(x, y)) <= 20)
+                                if (Vector2.Distance(new Vector2(existing.xPos, existing.yPos), new Vector2(x, y)) <= 30)
                                 {
                                     validPosition = false;
                                     break;
