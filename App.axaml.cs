@@ -131,7 +131,14 @@ namespace EcosystemSim
                     bool worked = goToWater(species);
                     if (!worked)
                     {
-                        goToFood(species);
+                        if (species.predator)
+                        {
+                            goToSpeciesEat(species);
+                        }
+                        else
+                        {
+                            goToFood(species);
+                        }
                     }
                 }
                 else if (species.wanted_resource() == 1)
@@ -150,7 +157,14 @@ namespace EcosystemSim
                     int worked = goToSpecies(species);
                     if (worked == 0)
                     {
-                        goToFood(species);
+                        if (species.predator)
+                        {
+                            goToSpeciesEat(species);
+                        }
+                        else
+                        {
+                            goToFood(species);
+                        }
                     }
                 }
                 else if (species.wanted_resource() == -1)
@@ -346,7 +360,7 @@ namespace EcosystemSim
             Vector2 targetPos = new Vector2(species1.xPos, species1.yPos);
 
             Vector2 escapeDirection = Vector2.Normalize(targetPos - currentPos);
-            Vector2 escapeTarget = targetPos + escapeDirection * 100;
+            Vector2 escapeTarget = new Vector2(species1.xPos + escapeDirection.X * 100, species1.yPos + escapeDirection.Y * 100);
             species1.move_species(escapeTarget, true);
 
             bool collided = species.move_species(targetPos, true);
