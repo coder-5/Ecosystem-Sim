@@ -7,6 +7,7 @@ using Avalonia.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -94,7 +95,9 @@ namespace EcosystemSim
             }
             for (int i = 0; i < amountOfSpawnedFood + 1; i++)
             {
-                ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 1600), rand.Next(0, 900), rand.Next(1, 4), 50, 500 + rand.Next(-50, 51), 1000 + rand.Next(-50, 51)));
+                (double, double) pos = RandomPointInCircle(500, new Vector2(0,0));
+                Vector2 position = new Vector2((float)pos.Item1, (float)pos.Item2);
+                ecosystem.activeFood.Add(new FoodSpecies(1, (int)position.X, (int)position.Y, rand.Next(1, 4), 50, 500 + rand.Next(-50, 51), 1000 + rand.Next(-50, 51)));
             }
             for (int i = 0; i < 100; i++)
             {
@@ -123,6 +126,20 @@ namespace EcosystemSim
                     await Task.Delay(10);
                 }
             }
+        }
+        static (double, double) RandomPointInCircle(double radius, Vector2 offset)
+        {
+            Random random = new Random();
+            double angle = random.NextDouble() * MathF.PI * 2;
+            double distance = Math.Sqrt(random.NextDouble()) * radius;
+
+            double x = Math.Cos(angle) * distance;
+            double y = Math.Sin(angle) * distance;
+
+            x += offset.X;
+            y += offset.Y;
+
+            return (x, y);
         }
         private async void updateGraphs(LineGraphWindow populationLineGraph, LineGraphWindow femaleToMale, LineGraphWindow sproutedToUnsprouted, LineGraphWindow traits, CancellationToken token, progressBar progress)
         {
