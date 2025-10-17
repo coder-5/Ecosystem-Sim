@@ -24,9 +24,9 @@ namespace EcosystemSim
         int max_simulation_steps = 30000;
         progressBar progress;
         public bool running;
-        public int amountOfSpawnedFood = 200; // add ui for this
-        public int amountOfSpawnedSpecies = 100;
-        public int amountOfSpawnedSpeciesPredator = 25;
+        public int amountOfSpawnedFood = 300; // add ui for this
+        public int amountOfSpawnedSpecies = 150;
+        public int amountOfSpawnedSpeciesPredator = 45;
         public enum shownGraphState
         {
             population,
@@ -99,7 +99,19 @@ namespace EcosystemSim
             }
             for (int i = 0; i < 250; i++)
             {
-                (double, double) pos = RandomPointInCircle(500, new Vector2(625,450));
+                (double, double) pos = RandomPointInCircle(250, new Vector2(1200, 500));
+                Vector2 position = new Vector2((float)pos.Item1, (float)pos.Item2);
+                ecosystem.activeWater.Add(new WaterZone(1, (int)position.X, (int)position.Y));
+            }
+            for (int i = 0; i < 250; i++)
+            {
+                (double, double) pos = RandomPointInCircle(250, new Vector2(600, 350));
+                Vector2 position = new Vector2((float)pos.Item1, (float)pos.Item2);
+                ecosystem.activeWater.Add(new WaterZone(1, (int)position.X, (int)position.Y));
+            }
+            for (int i = 0; i < 50; i++)
+            {
+                (double, double) pos = RandomPointInCircle(50, new Vector2(100,500));
                 Vector2 position = new Vector2((float)pos.Item1, (float)pos.Item2);
                 ecosystem.activeWater.Add(new WaterZone(1, (int)position.X, (int)position.Y));
             }
