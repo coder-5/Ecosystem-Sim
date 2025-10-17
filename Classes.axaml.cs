@@ -239,7 +239,7 @@ namespace EcosystemSim
 
             float distance = Vector2.Distance(targetPos, newPos);
 
-            if (distance <= 5)
+            if (distance <= 10)
             {
                 return true;
             }
