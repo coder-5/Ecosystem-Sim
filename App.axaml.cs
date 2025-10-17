@@ -131,7 +131,14 @@ namespace EcosystemSim
                 }
                 else if (species.wanted_resource() == 1)
                 {
-                    bool worked = goToFood(species);
+                    if (species.predator)
+                    {
+                        goToSpeciesEat(species);
+                    }
+                    else
+                    {
+                        goToFood(species);
+                    }
                 }
                 else if (species.wanted_resource() == 2)
                 {
@@ -296,6 +303,39 @@ namespace EcosystemSim
             }
 
             File.AppendAllLinesAsync("data.txt", text);
+        }
+        public int goToSpeciesEat(Species species)
+        {
+            Species species1 = FindClosestOfTypeSpecies(species);
+
+            if (species1 == null)
+            {
+                double radius = 100.0;
+
+                (double x, double y) = RandomPointInCircle(radius, new Vector2(species.xPos, species.yPos));
+
+                Vector2 currentPosX = new Vector2(species.xPos, species.yPos);
+                Vector2 targetPosX = new Vector2((float)x, (float)y);
+
+                species.move_species(targetPosX);
+
+                return 0;
+            }
+
+            Vector2 currentPos = new Vector2(species.xPos, species.yPos);
+            Vector2 targetPos = new Vector2(species1.xPos, species1.yPos);
+
+            bool collided = species.move_species(targetPos);
+
+            if (collided && species.gender == 0)
+            {
+                species.currentState = Species.State.eating;
+                activeSpecies.Remove(species1);
+                return 2;
+            }
+
+            return 1;
+            // x is cosin, y is sin
         }
         public int goToSpecies(Species species)
         {

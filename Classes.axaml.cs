@@ -51,13 +51,14 @@ namespace EcosystemSim
 
         // These variables are for the genes
 
-        public string genes = ""; // first slot: speed, second slot: eye sight, third slot: gender, fourth slot: maxLife, fifth slot: reproductive age.  1 is male 0 is female
+        public string genes = ""; // first slot: speed, second slot: eye sight, third slot: gender, fourth slot: maxLife, fifth slot: reproductive age. sixth slot is predator, 1 is male 0 is female
         private string[] genesList = new string[2];
         public int speed;
         public int eyeSght;
         public int gender;
         public int maxLife;
         public int reproductiveAge;
+        public bool predator;
 
         public Species(string genesMother, string genesFather, float posX, float posY) { genesList[0] = genesMother; genesList[1] = genesFather; xPos = posX; yPos = posY; }
         public void inherit_genes()
@@ -77,14 +78,25 @@ namespace EcosystemSim
                 {
                     averageGene = 1;
                 }
-                if (i == 2)
+                else if (i == 2)
                 {
                     newGenes += random.Next(0, 2) + ":";
                     continue;
                 }
-                if (i == motherSplitGenes.Length - 1)
+                else if (i == motherSplitGenes.Length - 2)
                 {
                     newGenes += averageGene.ToString();
+                }
+                else if (i == motherSplitGenes.Length - 1)
+                {
+                    if (geneFatherNum == 1)
+                    {
+                        newGenes += true;
+                    }
+                    else
+                    {
+                        newGenes += false;
+                    }
                 }
                 else
                 {
@@ -120,6 +132,9 @@ namespace EcosystemSim
                 else if (i == 4)
                 {
                     reproductiveAge = gene;
+                } else if (i == 5)
+                {
+                    predator = gene == 1 ? true : false;
                 }
             }
         }
@@ -200,7 +215,7 @@ namespace EcosystemSim
             stamina += currentState == State.moving ? -0.05f : 0.01f;
             thirst += (currentState == State.moving ? 0.2f : 0.0f) - (currentState == State.drinking ? drinkingWaterAmount : 0) + speed * 0.01f;
             drinkingWaterAmount = 0;
-            hunger += (currentState == State.moving ? 0.1f : 0.05f) - (currentState == State.eating ? 50f : 0) + speed * 0.01f * 0.01f; // make eye sight and stuff effect it and stamina effect it
+            hunger += (currentState == State.moving ? 0.05f : 0.01f) - (currentState == State.eating ? 50f : 0) + speed * 0.01f * 0.01f; // make eye sight and stuff effect it and stamina effect it
             if (thirst <= 0)
             {
                 thirst = 0;
