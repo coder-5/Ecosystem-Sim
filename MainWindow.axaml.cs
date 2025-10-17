@@ -84,7 +84,7 @@ namespace EcosystemSim
         {
             for (int i = 0; i < amountOfSpawnedSpecies + 1; i++)
             {
-                ecosystem.activeSpecies.Add(new Species("5:500:1:1000:25:0", "5:500:0:1000:25:0", rand.Next(0, 1600), rand.Next(0, 900)));
+                ecosystem.activeSpecies.Add(new Species("5:500:1:1000:75:0", "5:500:0:1000:75:0", rand.Next(0, 1600), rand.Next(0, 900)));
                 ecosystem.activeSpecies[i].inherit_genes();
             }
             for (int i = 0; i < amountOfSpawnedSpeciesPredator + 1; i++)
