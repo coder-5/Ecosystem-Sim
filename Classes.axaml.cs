@@ -51,7 +51,7 @@ namespace EcosystemSim
 
         // These variables are for the genes
 
-        public string genes = ""; // first slot: speed, second slot: eye sight, third slot: gender, fourth slot: maxLife, fifth slot: reproductive age. sixth slot is predator, 1 is male 0 is female
+        public string genes = ""; // first slot: speed, second slot: eye sight, third slot: gender, fourth slot: maxLife, fifth slot: reproductive age. sixth slot is predator, seventh slot if stamina max 1 is male 0 is female
         private string[] genesList = new string[2];
         public int speed;
         public int eyeSght;
@@ -59,6 +59,7 @@ namespace EcosystemSim
         public int maxLife;
         public int reproductiveAge;
         public bool predator;
+        public int maxStamina;
 
         public Species(string genesMother, string genesFather, float posX, float posY) { genesList[0] = genesMother; genesList[1] = genesFather; xPos = posX; yPos = posY; }
         public void inherit_genes()
@@ -89,12 +90,12 @@ namespace EcosystemSim
                     newGenes += random.Next(0, 2) + ":";
                     continue;
                 }
-                if (i == motherSplitGenes.Length - 2)
+                if (i == motherSplitGenes.Length - 3)
                 {
                     newGenes += averageGene.ToString();
                     continue;
                 }
-                if (i == motherSplitGenes.Length - 1)
+                if (i == motherSplitGenes.Length - 2)
                 {
                     if (geneFatherNum == 1)
                     {
@@ -104,6 +105,11 @@ namespace EcosystemSim
                     {
                         newGenes += ":" + 0;
                     }
+                    continue;
+                }
+                else if (i == motherSplitGenes.Length - 1)
+                {
+                    newGenes += ":" + averageGene.ToString();
                     continue;
                 }
                 else
@@ -143,6 +149,9 @@ namespace EcosystemSim
                 } else if (i == 5)
                 {
                     predator = gene == 1 ? true : false;
+                } else if (i == 6)
+                {
+                    maxStamina = gene;
                 }
             }
         }
@@ -195,8 +204,20 @@ namespace EcosystemSim
 
             return child;
         }
-        public bool move_species(Vector2 targetPos) // type 1 is water, type 2 is food, type 3 is mate
+        public bool move_species(Vector2 targetPos, bool run) // type 1 is water, type 2 is food, type 3 is mate
         {
+            int speedNew;
+            if (run && stamina > 0)
+            {
+                speedNew = speed * 2;
+                stamina--;
+            }
+            else
+            {
+                speedNew = speed;
+                stamina = maxStamina;
+            }
+
             currentState = State.moving;
 
             float angle = MathF.Atan2(targetPos.Y - yPos, targetPos.X - xPos);
@@ -205,7 +226,7 @@ namespace EcosystemSim
             float dy = MathF.Sin(angle);
 
             Vector2 direction = new Vector2(dx, dy);
-            Vector2 newPos = new Vector2(xPos, yPos) + direction * this.speed;
+            Vector2 newPos = new Vector2(xPos, yPos) + direction * speedNew;
 
             this.xPos = newPos.X;
             this.yPos = newPos.Y;

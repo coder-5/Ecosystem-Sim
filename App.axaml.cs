@@ -337,7 +337,7 @@ namespace EcosystemSim
                 Vector2 currentPosX = new Vector2(species.xPos, species.yPos);
                 Vector2 targetPosX = new Vector2((float)x, (float)y);
 
-                species.move_species(targetPosX);
+                species.move_species(targetPosX, false);
 
                 return 0;
             }
@@ -345,7 +345,11 @@ namespace EcosystemSim
             Vector2 currentPos = new Vector2(species.xPos, species.yPos);
             Vector2 targetPos = new Vector2(species1.xPos, species1.yPos);
 
-            bool collided = species.move_species(targetPos);
+            Vector2 escapeDirection = Vector2.Normalize(targetPos - currentPos);
+            Vector2 escapeTarget = targetPos + escapeDirection * 100;
+            species1.move_species(escapeTarget, true);
+
+            bool collided = species.move_species(targetPos, true);
 
             if (collided && species.gender == 0)
             {
@@ -370,7 +374,7 @@ namespace EcosystemSim
                 Vector2 currentPosX = new Vector2(species.xPos, species.yPos);
                 Vector2 targetPosX = new Vector2((float)x, (float)y);
 
-                species.move_species(targetPosX);
+                species.move_species(targetPosX, false);
 
                 return 0;
             }
@@ -378,7 +382,7 @@ namespace EcosystemSim
             Vector2 currentPos = new Vector2(species.xPos, species.yPos);
             Vector2 targetPos = new Vector2(species1.xPos, species1.yPos);
 
-            bool collided = species.move_species(targetPos);
+            bool collided = species.move_species(targetPos, false);
 
             if (collided && species.gender == 0)
             {
@@ -403,7 +407,7 @@ namespace EcosystemSim
                 Vector2 currentPosX = new Vector2(species.xPos, species.yPos);
                 Vector2 targetPosX = new Vector2((float)x, (float)y);
 
-                species.move_species(targetPosX);
+                species.move_species(targetPosX, false);
 
                 return false;
             }
@@ -411,7 +415,7 @@ namespace EcosystemSim
             Vector2 currentPos = new Vector2(species.xPos, species.yPos);
             Vector2 targetPos = new Vector2(food.xPos, food.yPos);
 
-            bool collided = species.move_species(targetPos);
+            bool collided = species.move_species(targetPos, false);
 
             if (collided)
             {
@@ -436,7 +440,7 @@ namespace EcosystemSim
                 Vector2 currentPosX = new Vector2(species.xPos, species.yPos);
                 Vector2 targetPosX = new Vector2((float)x, (float)y);
 
-                species.move_species(targetPosX);
+                species.move_species(targetPosX, false);
 
                 return false;
             }
@@ -444,7 +448,7 @@ namespace EcosystemSim
             Vector2 currentPos = new Vector2(species.xPos, species.yPos);
             Vector2 targetPos = new Vector2(water.xPos, water.yPos);
 
-            bool collided = species.move_species(targetPos);
+            bool collided = species.move_species(targetPos, false);
 
             if (collided)
             {
