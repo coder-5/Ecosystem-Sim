@@ -68,6 +68,12 @@ namespace EcosystemSim
             string newGenes = "";
             string[] motherSplitGenes = genesList[0].Split(':');
             string[] fatherSplitGenes = genesList[1].Split(':');
+            if (motherSplitGenes.Length != fatherSplitGenes.Length)
+            {
+                Console.WriteLine($"Gene length mismatch: mother={motherSplitGenes.Length}, father={fatherSplitGenes.Length}");
+                Console.WriteLine($"Mother: {genesList[0]}");
+                Console.WriteLine($"Father: {genesList[1]}");
+            }
             for (int i = 0; i < motherSplitGenes.Length; i++)
             {
                 int geneMotherNum = int.Parse(motherSplitGenes[i]);
@@ -78,16 +84,17 @@ namespace EcosystemSim
                 {
                     averageGene = 1;
                 }
-                else if (i == 2)
+                if (i == 2)
                 {
                     newGenes += random.Next(0, 2) + ":";
                     continue;
                 }
-                else if (i == motherSplitGenes.Length - 2)
+                if (i == motherSplitGenes.Length - 2)
                 {
                     newGenes += averageGene.ToString();
+                    continue;
                 }
-                else if (i == motherSplitGenes.Length - 1)
+                if (i == motherSplitGenes.Length - 1)
                 {
                     if (geneFatherNum == 1)
                     {
@@ -97,6 +104,7 @@ namespace EcosystemSim
                     {
                         newGenes += ":" + 0;
                     }
+                    continue;
                 }
                 else
                 {
@@ -166,9 +174,13 @@ namespace EcosystemSim
                 Console.WriteLine($"Species is thirsty hunger:{hunger}  thirst:{thirst}   urge to reproduce{reproductiveUrge}  age to reproduce{reproductiveAge}  genes:{genes}");
                 return 0;
             }
-            else if (hunger >= thirst)
+            else if (hunger >= thirst && !predator)
             {
                 Console.WriteLine($"Species is hungry hunger:{hunger}  thirst:{thirst}   urge to reproduce{reproductiveUrge}  age to reproduce:{reproductiveAge}  genes:{genes}");
+                return 1;
+            }
+            else if (predator && hunger >= thirst && hunger > 25)
+            {
                 return 1;
             }
             return -1;

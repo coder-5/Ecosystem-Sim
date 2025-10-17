@@ -55,12 +55,12 @@ namespace EcosystemSim
                 var brush = food.age >= food.sproutingAge ? Brushes.Green : Brushes.Brown;
                 var pen = new Pen(Brushes.Transparent, 1);
                 var center = new Point(food.xPos, food.yPos);
-                context.DrawEllipse(brush, pen, center, size, size);
+                context.DrawEllipse(brush, pen, center, size - (food.age >= food.sproutingAge ? 0f : 1f), size - (food.age >= food.sproutingAge ? 0 : 1));
             }
 
             foreach (var species in EcosystemData.activeSpecies)
             {
-                var brush = Brushes.Red;
+                var brush = species.predator ? Brushes.Red : Brushes.Black;
                 var pen = new Pen(Brushes.Transparent, 1);
                 var center = new Point(species.xPos, species.yPos);
                 context.DrawEllipse(brush, pen, center, size, size);
@@ -90,6 +90,7 @@ namespace EcosystemSim
         public List<double> averageEyeSight = new();
         public bool noRecording = true;
         public int simulationSteps = 0;
+        public Task foodUpdateTask = null;
 
         public void start()
         {
@@ -104,6 +105,10 @@ namespace EcosystemSim
             List<double> eyeSisht = new();
             List<double> reproductionAge = new();
             Console.WriteLine("==========Update==========");
+            if (foodUpdateTask == null || foodUpdateTask.IsCompleted)
+            {
+                foodUpdateTask = updateFoodAsync();
+            }
             for (int i = activeSpecies.Count - 1; i >= 0; i--)
             {
                 Species species = activeSpecies[i];
@@ -148,6 +153,10 @@ namespace EcosystemSim
                         goToFood(species);
                     }
                 }
+                else if (species.wanted_resource() == -1)
+                {
+                    species.currentState = Species.State.nothing;
+                }
                 if (species.check_death())
                 {
                     activeSpecies.RemoveAt(i);
@@ -187,10 +196,23 @@ namespace EcosystemSim
             {
                 water.amountOfWater += 1f;
             }
+            for (int i = activeFood.Count - 1; i >= 0; i--)
+            {
+                if (activeFood[i].age >= activeFood[i].maxLife)
+                {
+                    activeFood.RemoveAt(i);
+                }
+            }
+            //update_text();
+            if (!noRecording) { saveToJson(); }
+        }
+        public async Task updateFoodAsync()
+        {
+            var localFood = new List<FoodSpecies>(activeFood);
             List<FoodSpecies> newFoods = new();
             sproutedPlants.Add(0);
             unSproutedPlants.Add(0);
-            foreach (var food in activeFood)
+            foreach (var food in localFood)
             {
                 food.age += 1f;
                 if (food.age >= food.seedingAge)
@@ -208,13 +230,13 @@ namespace EcosystemSim
 
                         do
                         {
-                            float x = Math.Clamp(food.xPos + random.Next(-150, 150), 0, 800);
-                            float y = Math.Clamp(food.yPos + random.Next(-150, 150), 0, 450);
-                            newFood = new FoodSpecies(1, (int)x, (int)y, food.seedsAmount + random.Next(-1, 2), food.sproutingAge + random.Next(-1, 2), food.originalSeedingAge + random.Next(-1, 2), food.maxLife + random.Next(-1,2));
+                            float x = Math.Clamp(food.xPos + random.Next(-150, 150), 0, 1600);
+                            float y = Math.Clamp(food.yPos + random.Next(-150, 150), 0, 900);
+                            newFood = new FoodSpecies(1, (int)x, (int)y, food.seedsAmount + random.Next(-1, 2), food.sproutingAge + random.Next(-1, 2), food.originalSeedingAge + random.Next(-1, 2), food.maxLife + random.Next(-1, 2));
                             newFood.seedingAge = newFood.originalSeedingAge;
 
                             validPosition = true;
-                            foreach (var existing in activeFood)
+                            foreach (var existing in localFood)
                             {
                                 if (Vector2.Distance(new Vector2(existing.xPos, existing.yPos), new Vector2(x, y)) <= 10)
                                 {
@@ -249,19 +271,17 @@ namespace EcosystemSim
                     unSproutedPlants[unSproutedPlants.Count - 1] += 1;
                 }
             }
-            foreach (var food1 in newFoods)
+            await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>
             {
-                activeFood.Add(food1);
-            }
-            for (int i = activeFood.Count - 1; i >= 0; i--)
-            {
-                if (activeFood[i].age >= activeFood[i].maxLife)
+                lock (activeFood)
                 {
-                    activeFood.RemoveAt(i);
+                    foreach (var food1 in newFoods)
+                    {
+                        activeFood.Add(food1);
+                    }
+                    activeFood.RemoveAll(f => f.age >= f.maxLife);
                 }
-            }
-            //update_text();
-            if (!noRecording) { saveToJson(); }
+            });
         }
         public void saveToJson(string filename = "")
         {
@@ -306,7 +326,7 @@ namespace EcosystemSim
         }
         public int goToSpeciesEat(Species species)
         {
-            Species species1 = FindClosestOfTypeSpecies(species);
+            Species species1 = FindClosestOfTypeSpeciesPredators(species);
 
             if (species1 == null)
             {
@@ -475,6 +495,22 @@ namespace EcosystemSim
             {
                 float distance = Vector2.Distance(new Vector2(species1.xPos, species1.yPos), new Vector2(species.xPos, species.yPos));
                 if (distance < closestDistance && species1.gender != species.gender && species.predator == species1.predator)
+                {
+                    returnClass = species1;
+                    closestDistance = distance;
+                }
+            }
+            if (closestDistance > species.eyeSght) { return null; }
+            return returnClass;
+        }
+        public Species FindClosestOfTypeSpeciesPredators(Species species)
+        {
+            float closestDistance = 100000;
+            Species returnClass = new Species("", "", 0, 0);
+            foreach (Species species1 in activeSpecies)
+            {
+                float distance = Vector2.Distance(new Vector2(species1.xPos, species1.yPos), new Vector2(species.xPos, species.yPos));
+                if (distance < closestDistance && species1.gender != species.gender)
                 {
                     returnClass = species1;
                     closestDistance = distance;

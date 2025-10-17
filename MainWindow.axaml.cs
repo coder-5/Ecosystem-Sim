@@ -23,9 +23,9 @@ namespace EcosystemSim
         int max_simulation_steps = 10000;
         progressBar progress;
         public bool running;
-        public int amountOfSpawnedFood = 50; // add ui for this
-        public int amountOfSpawnedSpecies = 10;
-        public int amountOfSpawnedSpeciesPredator = 4;
+        public int amountOfSpawnedFood = 150; // add ui for this
+        public int amountOfSpawnedSpecies = 50;
+        public int amountOfSpawnedSpeciesPredator = 10;
         public enum shownGraphState
         {
             population,
@@ -84,25 +84,25 @@ namespace EcosystemSim
         {
             for (int i = 0; i < amountOfSpawnedSpecies + 1; i++)
             {
-                ecosystem.activeSpecies.Add(new Species("5:500:1:100:25:0", "5:500:0:100:25:0", rand.Next(0, 800), rand.Next(0, 450)));
+                ecosystem.activeSpecies.Add(new Species("5:500:1:100:25:0", "5:500:0:100:25:0", rand.Next(0, 1600), rand.Next(0, 900)));
                 ecosystem.activeSpecies[i].inherit_genes();
             }
             for (int i = 0; i < amountOfSpawnedSpeciesPredator + 1; i++)
             {
-                ecosystem.activeSpecies.Add(new Species("5:500:1:100:25:1", "5:500:0:100:25:1", rand.Next(0, 800), rand.Next(0, 450)));
-                ecosystem.activeSpecies[i].inherit_genes();
+                ecosystem.activeSpecies.Add(new Species("5:500:1:100:25:1", "5:500:0:100:25:1", rand.Next(0, 200), rand.Next(0, 200)));
+                ecosystem.activeSpecies[^1].inherit_genes();
             }
             for (int i = 0; i < amountOfSpawnedFood + 1; i++)
             {
-                ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 800), rand.Next(0, 450), rand.Next(1, 4), 50, 500 + rand.Next(-50, 51), 1000 + rand.Next(-50, 51)));
+                ecosystem.activeFood.Add(new FoodSpecies(1, rand.Next(0, 1600), rand.Next(0, 900), rand.Next(1, 4), 50, 500 + rand.Next(-50, 51), 1000 + rand.Next(-50, 51)));
             }
             for (int i = 0; i < 100; i++)
             {
-                ecosystem.activeWater.Add(new WaterZone(1, 650 + rand.Next(-25, 25), rand.Next(0, 450)));
+                ecosystem.activeWater.Add(new WaterZone(1, 1250 + rand.Next(-25, 25), rand.Next(0, 900)));
             }
             for (int i = 0; i < 100; i++)
             {
-                ecosystem.activeWater.Add(new WaterZone(1, 250 + rand.Next(-25, 25), rand.Next(0, 450)));
+                ecosystem.activeWater.Add(new WaterZone(1, 250 + rand.Next(-25, 25), rand.Next(0, 900)));
             }
             running = true;
             var populationLineGraph = new LineGraphWindow("Populations Graph");
