@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/zPxCrD8nOw=",
+  "dgSpecHash": "WBT+EY9u7+s=",
   "success": true,
   "projectFilePath": "/Users/griffinroberts/Movies/C# Projects/EcosystemSim/EcosystemSim.csproj",
   "expectedPackageFiles": [
@@ -31,7 +31,10 @@
     "/Users/griffinroberts/.nuget/packages/skiasharp.nativeassets.webassembly/2.88.9/skiasharp.nativeassets.webassembly.2.88.9.nupkg.sha512",
     "/Users/griffinroberts/.nuget/packages/skiasharp.nativeassets.win32/2.88.9/skiasharp.nativeassets.win32.2.88.9.nupkg.sha512",
     "/Users/griffinroberts/.nuget/packages/system.io.pipelines/8.0.0/system.io.pipelines.8.0.0.nupkg.sha512",
-    "/Users/griffinroberts/.nuget/packages/tmds.dbus.protocol/0.21.2/tmds.dbus.protocol.0.21.2.nupkg.sha512"
+    "/Users/griffinroberts/.nuget/packages/tmds.dbus.protocol/0.21.2/tmds.dbus.protocol.0.21.2.nupkg.sha512",
+    "/Users/griffinroberts/.nuget/packages/microsoft.netcore.app.ref/9.0.12/microsoft.netcore.app.ref.9.0.12.nupkg.sha512",
+    "/Users/griffinroberts/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.12/microsoft.aspnetcore.app.ref.9.0.12.nupkg.sha512",
+    "/Users/griffinroberts/.nuget/packages/microsoft.netcore.app.host.osx-arm64/9.0.12/microsoft.netcore.app.host.osx-arm64.9.0.12.nupkg.sha512"
   ],
   "logs": []
 }
