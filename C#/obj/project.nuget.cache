@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WBT+EY9u7+s=",
+  "dgSpecHash": "/5pK/+PBQgY=",
   "success": true,
-  "projectFilePath": "/Users/griffinroberts/Movies/C# Projects/EcosystemSim/EcosystemSim.csproj",
+  "projectFilePath": "/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/EcosystemSim.csproj",
   "expectedPackageFiles": [
     "/Users/griffinroberts/.nuget/packages/avalonia/11.3.6/avalonia.11.3.6.nupkg.sha512",
     "/Users/griffinroberts/.nuget/packages/avalonia.angle.windows.natives/2.1.25547.20250602/avalonia.angle.windows.natives.2.1.25547.20250602.nupkg.sha512",

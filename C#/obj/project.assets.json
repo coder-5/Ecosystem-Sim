@@ -1421,11 +1421,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/griffinroberts/Movies/C# Projects/EcosystemSim/EcosystemSim.csproj",
+      "projectUniqueName": "/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/EcosystemSim.csproj",
       "projectName": "EcosystemSim",
-      "projectPath": "/Users/griffinroberts/Movies/C# Projects/EcosystemSim/EcosystemSim.csproj",
+      "projectPath": "/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/EcosystemSim.csproj",
       "packagesPath": "/Users/griffinroberts/.nuget/packages/",
-      "outputPath": "/Users/griffinroberts/Movies/C# Projects/EcosystemSim/obj/",
+      "outputPath": "/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/griffinroberts/.nuget/NuGet/NuGet.Config"

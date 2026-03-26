@@ -17,14 +17,14 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EcosystemSim
-build_property.ProjectDir = /Users/griffinroberts/Movies/C# Projects/EcosystemSim/
+build_property.ProjectDir = /Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[/Users/griffinroberts/Movies/C\# Projects/EcosystemSim/App.axaml]
+[/Users/griffinroberts/Movies/C\# Projects/EcosystemSim/C\#/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/Users/griffinroberts/Movies/C\# Projects/EcosystemSim/MainWindow.axaml]
+[/Users/griffinroberts/Movies/C\# Projects/EcosystemSim/C\#/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
