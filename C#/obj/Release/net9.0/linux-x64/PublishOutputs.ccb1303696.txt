@@ -1,0 +1,4 @@
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/build/linux/EcosystemSim.pdb
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/build/linux/libHarfBuzzSharp.so
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/build/linux/libSkiaSharp.so
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/build/linux/EcosystemSim

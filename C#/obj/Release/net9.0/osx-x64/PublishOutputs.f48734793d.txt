@@ -1,0 +1,5 @@
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/build/osx-x64/EcosystemSim.pdb
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/build/osx-x64/libAvaloniaNative.dylib
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/build/osx-x64/libHarfBuzzSharp.dylib
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/build/osx-x64/libSkiaSharp.dylib
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/build/osx-x64/EcosystemSim

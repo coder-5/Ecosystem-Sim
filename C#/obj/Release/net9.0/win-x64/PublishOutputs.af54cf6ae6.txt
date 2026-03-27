@@ -1,0 +1,2 @@
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/bin/Release/net9.0/win-x64/publish/EcosystemSim.pdb
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/bin/Release/net9.0/win-x64/publish/EcosystemSim.exe

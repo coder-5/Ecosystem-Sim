@@ -1,0 +1,5 @@
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/bin/Release/net9.0/osx-arm64/publish/EcosystemSim.pdb
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/bin/Release/net9.0/osx-arm64/publish/libAvaloniaNative.dylib
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/bin/Release/net9.0/osx-arm64/publish/libHarfBuzzSharp.dylib
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/bin/Release/net9.0/osx-arm64/publish/libSkiaSharp.dylib
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/bin/Release/net9.0/osx-arm64/publish/EcosystemSim

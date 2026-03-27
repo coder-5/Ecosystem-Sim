@@ -1,0 +1,5 @@
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/build/win/EcosystemSim.pdb
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/build/win/av_libglesv2.dll
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/build/win/libHarfBuzzSharp.dll
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/build/win/libSkiaSharp.dll
+/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/build/win/EcosystemSim.exe
