@@ -7,8 +7,6 @@ build_property.AvaloniaNameGeneratorFilterByNamespace = *
 build_property.AvaloniaNameGeneratorViewFileNamingStrategy = NamespaceAndClassName
 build_property.AvaloniaNameGeneratorAttachDevTools = true
 build_property.TargetFramework = net9.0
-build_property.TargetFrameworkIdentifier = .NETCoreApp
-build_property.TargetFrameworkVersion = v9.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = 
 build_property.ProjectTypeGuids = 
@@ -17,14 +15,14 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EcosystemSim
-build_property.ProjectDir = /Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/
+build_property.ProjectDir = /home/vihaan/Ecosystem-Sim/C#/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[/Users/griffinroberts/Movies/C\# Projects/EcosystemSim/C\#/App.axaml]
+[/home/vihaan/Ecosystem-Sim/C\#/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/Users/griffinroberts/Movies/C\# Projects/EcosystemSim/C\#/MainWindow.axaml]
+[/home/vihaan/Ecosystem-Sim/C\#/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

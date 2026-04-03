@@ -1416,19 +1416,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/griffinroberts/.nuget/packages/": {}
+    "/home/vihaan/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/EcosystemSim.csproj",
+      "projectUniqueName": "/home/vihaan/Ecosystem-Sim/C#/EcosystemSim.csproj",
       "projectName": "EcosystemSim",
-      "projectPath": "/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/EcosystemSim.csproj",
-      "packagesPath": "/Users/griffinroberts/.nuget/packages/",
-      "outputPath": "/Users/griffinroberts/Movies/C# Projects/EcosystemSim/C#/obj/",
+      "projectPath": "/home/vihaan/Ecosystem-Sim/C#/EcosystemSim.csproj",
+      "packagesPath": "/home/vihaan/.nuget/packages/",
+      "outputPath": "/home/vihaan/Ecosystem-Sim/C#/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/griffinroberts/.nuget/NuGet/NuGet.Config"
+        "/home/vihaan/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -1452,7 +1452,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -1490,26 +1490,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[9.0.12, 9.0.12]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.osx-arm64",
-            "version": "[9.0.12, 9.0.12]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[9.0.12, 9.0.12]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/vihaan/.dotnet/sdk/9.0.312/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
